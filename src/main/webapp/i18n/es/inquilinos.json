@@ -1,0 +1,19 @@
+{
+    "inquilinos": {
+        "home": {
+            "title": "Inquilino",
+            "createLabel": "Registrar Inquilino",
+            "createLabelEdit": "Editar Inquilino",
+            "createOrEditLabel": "Crear o editar Inquilino"
+        },
+        "created": "A new lde is created with identifier {{ param }}",
+        "updated": "An lde is updated with identifier {{ param }}",
+        "deleted": "An lde is deleted with identifier {{ param }}",
+        "delete": {
+            "question": "¿Seguro que quieres eliminar el inquilino?"
+        },
+        "detail": {
+            "title": "Detalle de inquilino"
+        }
+    }
+}

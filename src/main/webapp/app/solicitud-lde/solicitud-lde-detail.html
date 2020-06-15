@@ -1,0 +1,151 @@
+<div class="block-header">
+    <h2>Detalle de libre de deuda</h2>
+</div>
+<div class="card card-header">
+
+        <div class="row p-t-20">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <center>
+                            <span class="f-18 text-danger" ng-show="vm.solicitudLde.estado == 'Anulado'"> {{vm.solicitudLde.estado}} </span>
+                            <span class="f-18 text-primary" ng-show="vm.solicitudLde.estado != 'Anulado'"> {{vm.solicitudLde.estado}} </span>
+                        </center>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <div class="row p-t-20">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <h5>
+                                <small>N&uacute;mero de Contenedor</small>
+                            </h5>
+                            <span class="f-18"> {{vm.solicitudLde.lde.contenedor.nbr}} </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <h5>
+                                <small>L&iacute;nea Naviera</small>
+                            </h5>
+                            <span class="f-18"> {{vm.solicitudLde.lde.lineaNaviera}} </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <h5>
+                                    <small>CUIT</small>
+                                </h5>
+                                <span class="f-18"> {{vm.solicitudLde.lde.cuit}} </span>
+                            </div>
+                        </div>
+                </div>
+        </div>
+
+        <div class="row p-t-20">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <h5>
+                                <small>Terminal</small>
+                            </h5>
+                            <span class="f-18"> {{vm.solicitudLde.lde.terminal}} </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <h5>
+                                <small>Fecha de Creacion
+                                </small>
+                            </h5>
+                            <span class="f-18"> {{ vm.solicitudLde.createdDate | date : "yyyy-MM-dd HH:mm" }} </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <h5>
+                                <small>Creado por</small>
+                            </h5>
+                            <span class="f-18"> {{vm.solicitudLde.createdBy}} </span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="row p-t-20">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <h5>
+                                <small>Viaje
+                                </small>
+                            </h5>
+                            <span class="f-18"> {{vm.solicitudLde.lde.viaje}} </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <h5>
+                                    <small>Lugar de devolucion</small>
+                                </h5>
+                                    <span class="f-18"> {{vm.solicitudLde.lde.lugar_dev}} </span>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <h5>
+                                <small>Fecha de devolucion</small>
+                            </h5>
+                            <span class="f-18"> {{vm.solicitudLde.lde.fecha_dev | date : "yyyy-MM-dd" }} </span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="row p-t-20 ">
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="form-group">
+                    <div class="fg-line">
+                        <table class="table table-striped table-vmiddle">
+                            <thead>
+                                <tr>
+                                    <th class="mith">BL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="bl in vm.solicitudLde.lde.bls track by $index">
+                                    <td>{{bl}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>        
+</div>
+<div class="block-footer" has-any-authority="ROLE_AGENTE_MARITIMO, ROLE_ADMIN">
+    <center>
+        <button class="btn btn-danger btn-sm" ng-show="vm.solicitudLde.estado == 'Habilitado' && vm.solicitudLde.lde.contenedor.estado == 'ACTIVO'" ng-click="vm.anularLde()">Anular</button>
+        <button class="btn btn-success btn-sm" ng-show="vm.solicitudLde.estado == 'Anulado' && vm.solicitudLde.lde.contenedor.estado == 'ACTIVO'" ng-click="vm.habilitarLde()">Habilitar</button> 
+    </center>
+</div>

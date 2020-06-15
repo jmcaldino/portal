@@ -1,0 +1,99 @@
+<jhi-alert></jhi-alert>
+<div class="container" style="background-color:white;">
+    <div class="row p-t-20" style="background-color:#00AAEE;">
+        <div class="col-12">
+            <div class="block-header">
+                <h2 style="color:white;">Agregar Producto</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+            <div class="card-header">
+                    <ul class="actions">
+                        <li has-any-authority="ROLE_ADMIN">
+                            <button class="btn bgm-blue waves-effect" ui-sref="producto-agregar">
+                                <i class="zmdi zmdi-playlist-plus zmdi-hc-fw"></i> Agregar Producto
+                            </button>
+                        </li>
+                    </ul>
+            </div>
+            <div style="margin-left:2%;">
+                <form name="ListLDEForm" role="form" novalidate ng-submit="vm.buscar()">
+                    <div class="row p-t-20">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                    <input type="text" class="form-control input-agp" name="productSearch" ng-model="vm.buscarInmueble"
+                                        placeholder="Buscar producto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <select class="select-agp" id="exampleFormControlSelect1" ng-options="option.name for option in vm.estadoFiltro.availableOptions track by option.id"
+                                    ng-model="vm.estadoFiltro.selectedOption">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 p-t-5">
+                            <button type="submit" class="btn bgm-blue waves-effect" style="border: 50%; margin-top:1%;" ng-disabled="ListLDEForm.$invalid">
+                                <i class="zmdi zmdi-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                </form>
+            </div>
+            <div class="card-body">
+                <jhi-alert-error></jhi-alert-error>
+                <div class="table-responsive">
+                    <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle">
+                        <tr ng-repeat="w in $data" ng-if="$data.length > 0">
+                            <!-- 
+                            <td data-title="'Id  '" sortable="'id'">
+                                <strong>{{ w.id }}</strong>
+                            </td>         -->
+                            <td data-title="'Producto'">
+                                {{ w.nombre }}
+                            </td>
+                            <td data-title="'Descripcion'">
+                                {{ w.descripcion }}
+                            </td>
+                        </tr>
+                        <tr ng-if="$data.length == 0">
+                            <td colspan="8">Actualmente no hay productos.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="row p-t-20">
+                        <div class="col-sm-10">
+                            <form name="comentarioForm" role="form" novalidate ng-submit="vm.buscar()">
+                                <div class="col-sm-10">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <i class="zmdi zmdi-comment-alt-text"></i>  Comentario del Recibo
+                                            <textarea class="f-18 textarea-custom" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <button   style="margin-top:10%;" type="submit" class="btn bgm-blue waves-effect" style="border: 50%; margin-top:1%;" ng-disabled="comentarioForm.$invalid">
+                                                <i class="zmdi zmdi-cloud-upload"> Guardar</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    <div class="block-footer" has-any-authority="ROLE_AUDITOR, ROLE_ADMIN">
+
+    </div>
+</div>
+    

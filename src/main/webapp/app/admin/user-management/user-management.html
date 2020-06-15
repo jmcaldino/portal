@@ -1,0 +1,111 @@
+<jhi-alert></jhi-alert>
+<div class="container" style="background-color:white;">
+    <div class="row p-t-20" style="background-color:whitesmoke;">
+            <div class="col-12">
+                <div class="block-header">
+                    <h2 data-translate="userManagement.home.title">Users</h2>
+                </div>
+            </div>
+    </div>
+    <div class="row p-t-20 card-header" style="margin-left:2%;">
+        <div class="col-12">
+            <div class="row p-t-20">
+                  <div class="col-12">
+                    <ul class="actions">
+                        <li has-any-authority="ROLE_ADMIN">      
+                        <button class="btn bgm-blue waves-effect"  ui-sref="user-management.new">
+                            <i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Nuevo Usuario
+                        </button>
+                        </li>
+                    </ul>
+                  </div>
+            </div>
+            <div class="row p-t-20">
+                    <div class="row p-t-20">
+                            <div class="col-lg-5">
+                                <form>
+                                    <input type="text" name="search" class="input-search" placeholder="Buscar Usuarios.." 
+                                        ng-model="vm.buscarUsuario" ng-change="vm.buscar()" id="ng-change-search">
+                                </form>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row" style="margin-left:2%;">
+        <div class="col-12">
+            <div class="table-responsive.length > 0">
+                <table ng-table="vm.tableSorting" class="table table-striped table-responsive-sm">
+                    <tr ng-repeat="w in $data">
+                        <td data-title="'Id'" sortable="'id'">
+                            <strong>{{ w.id }}</strong>
+                        </td>
+                        <td data-title="'Login'" sortable="'login'">
+                            {{ w.login }}
+                        </td>
+                        <td data-title="'Nombre, Apellido'" sortable="'lasttName'">
+                            {{ w.firstName }}, {{ w.lastName }}
+                        </td>
+                        <td data-title="'Email'" sortable="'email'">
+                            {{ w.email }}
+                        </td>                    
+                        <td data-title="'Estado'">
+                            <div has-any-authority="ROLE_AUDITOR" >
+                                <div ng-if="w.activated" class="btn btn-success btn-sm btn-block">
+                                    <strong data-translate="userManagement.activated">Activated</strong>
+                                </div>
+                                <div ng-if="!w.activated" class="btn btn-danger btn-sm btn-block">
+                                    <strong data-translate="userManagement.deactivated">Deactivated</strong>
+                                </div>
+                            </div>
+                            <div has-any-authority="ROLE_ADMIN">
+                                <button class="btn btn-danger btn-sm btn-block" ng-click="vm.setActive(w, true)" 
+                                    ng-if="!w.activated"
+                                    data-translate="userManagement.deactivated" 
+                                    style="cursor: pointer;">Deactivated</button>
+                                <button class="btn btn-success btn-sm btn-block" ng-click="vm.setActive(w, false)" 
+                                    ng-if="w.activated"
+                                    data-translate="userManagement.activated" 
+                                    style="cursor: pointer;">Activated</button>
+                            </div>
+                        </td>
+                        <td data-title="'Roles'">
+                            <div ng-repeat="authority in w.authorities">
+                                <span class="label label-info">{{ authority }}</span>
+                            </div>
+                        </td>
+                        <td width="15%">
+                                <span class="tooltip2">   
+                                        <button class="btn btn-default waves-effect" 
+                                            ui-sref="user-management-detail({login:w.login})">
+                                            <i class="zmdi zmdi-eye " style=" color:#4da6ff"></i>
+                                        </button>
+                                        <span class="tooltiptext">Detalle</span>
+                                </span>
+                                <span class="tooltip2">   
+                                        <button has-authority="ROLE_ADMIN" class="btn btn-default waves-effect" ui-sref="user-management.edit({login:w.login})">
+                                                <i class="zmdi zmdi-edit"></i>
+                                        </button>
+                                        <span class="tooltiptext">Editar</span>
+                                </span>
+                                <span class="tooltip2">   
+                                        <button has-authority="ROLE_ADMIN" class="btn btn-default waves-effect" 
+                                            ui-sref="user-management.delete({login:w.login})">
+                                            <i class="zmdi zmdi-delete" style=" color:red"></i>
+                                        </button>
+                                        <span class="tooltiptext">Eliminar</span>
+                                </span>
+                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-12">
+            <div ng-if="vm.tableSorting.data && vm.tableSorting.data.length == 0" class="alert alert-light" role="alert">
+                Lo sentimos, no hay coincidencias con su búsqueda.
+            </div>
+        </div>
+    </div>        
+</div>

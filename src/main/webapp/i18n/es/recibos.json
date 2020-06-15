@@ -1,0 +1,22 @@
+{
+    "recibos": {
+        "home": {
+            "title": "Recibo",
+            "createLabel": "Generar recibo",
+            "createLabelEdit": "Editar recibo",
+            "createOrEditLabel": "Crear o editar recibo"
+        },
+        "formulario":{
+            "contenedor" : "Ingrese el numero de recibo"
+        },
+        "created": "A new lde is created with identifier {{ param }}",
+        "updated": "An lde is updated with identifier {{ param }}",
+        "deleted": "An lde is deleted with identifier {{ param }}",
+        "delete": {
+            "question": "¿Seguro que quieres eliminar el lde?"
+        },
+        "detail": {
+            "title": "Detalle de recibo"
+        }
+    }
+}

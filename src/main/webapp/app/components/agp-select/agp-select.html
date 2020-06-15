@@ -1,0 +1,27 @@
+<div class="agp-select-parent">
+	<div class="row">
+		<div ng-class="{'col-sm-9':limpiar,'col-sm-12':!limpiar}" >
+			<ui-select ng-model="uiModel.selected" ng-disabled="disabled"
+				theme="bootstrap" ng-required="required"
+				on-remove="onItemRemoved($item)"
+				on-select="onItemSelected($item)">
+			<ui-select-match>
+			<div class="selectExp"></div>
+			</ui-select-match> <ui-select-choices repeat="item in items | filter: $select.search">
+			<div class="choiceExp"></div>
+			</ui-select-choices> </ui-select>
+		</div>
+		<div class="col-sm-3" ng-if="limpiar">
+			<button type="button" class="m-l-15 btn bgm-blue" ng-click="limpiarModelo()">
+				<i class="zmdi zmdi-delete"></i>
+			</button>
+		</div>
+	</div>
+</div>
+<div ng-show="pending || options=='loading'">
+	<i class="zmdi zmdi-rotate-right zmdi-hc-spin"></i>
+</div>
+<p
+	ng-show="required && (!form && !uiModel.selected || form[name].$invalid && !form[name].$pristine)"
+	class="text-danger"
+	data-translate="global.messages.error.typeahead-list"></p>

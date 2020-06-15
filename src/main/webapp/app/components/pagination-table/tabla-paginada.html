@@ -1,0 +1,29 @@
+<table ng-table-dynamic="tableParams with cols" show-filter="true" class="table table-bordered table-striped">
+  <tr ng-repeat="row in $data track by row.id">
+    <td ng-repeat="col in $columns">
+        <div ng-switch="cols[$index].type">
+            <span ng-switch-when="'col'">
+                {{::row[col.field]}}
+            </span>
+            <span ng-switch-when="'progress'" class="progress">
+                <div class="progress-bar progress-bar-success active" role="progressbar" aria-valuenow="{{col.progress}}" aria-valuemin="0" aria-valuemax="100">
+                    <span class="sr-only">{{col.progress}}% Complete (success)</span>
+                </div>
+            </span>
+            <span ng-switch-when="'button'">
+                <button class="btn {{col.class}} waves-effect">
+                    <i class="zmdi {{col.icon}}"></i>
+                </button>
+            </span>
+        </div>
+    </td>
+    <td>
+        <button class="btn {{btn.class}} waves-effect" ng-repeat="btn in tableData.actions">
+            <i class="zmdi {{btn.icon}}"></i>
+        </button>
+    </td>
+  </tr>
+  <tr ng-if="$data.length==0">
+      <td colspan="20">{{tableData.config.notFound}}</td>
+  </tr>
+</table>

@@ -1,0 +1,7 @@
+{
+    "error": {
+        "title": "¡Error 403!",
+        "403": "No tiene permisos para acceder a la página.",
+        "usuarioInvalido":"Usuario o Contraseña invalido"
+    }
+}

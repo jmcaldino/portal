@@ -1,0 +1,142 @@
+<div class="sidebar-inner c-overflow" has-authority="ROLE_ADMIN">    
+    <!-- Begin Profile Menu -->
+    <div class="profile-menu">
+        <a href="" toggle-submenu>
+            <div class="profile-pic">
+                <!-- <img src="assets/img/profile-pics/profile-demo-pic.png" alt=""> -->
+            </div>
+            <div class="profile-info">
+                {{ctx.account.firstName}}, {{ctx.account.lastName}}
+            </div>
+        </a>
+    </div>
+    <!-- /End Profile Menu -->
+    
+    <!-- Begin Main Menu -->
+    <ul class="main-menu">
+        <!-- <li data-ui-sref-active="active"  ></li>>
+            <a ui-sref-active="active" ui-sref="solicitud-lde"><i class="zmdi zmdi-home"></i> INICIO</a>
+        </li> -->
+
+        <li>
+            <a  ui-sref="producto">
+                <i class="zmdi zmdi zmdi-tv-list"></i> 
+                <span>Productos</span>
+            </a>
+           
+        </li>
+
+        <li>
+            <a  ui-sref="recibo-listar">
+                <i class="zmdi zmdi-collection-text"></i> 
+                <span>RECIBOS</span>
+            </a>
+           
+        </li>
+
+        <!--
+        <li>
+            <a  ui-sref="recibo-listar">
+                <i class="zmdi zmdi-collection-text"></i> 
+                <span>RECIBOS</span>
+            </a>
+           
+        </li>
+
+        <li>
+            <a  ui-sref="inquilino-listar">
+                <i class="zmdi zmdi-accounts"></i> 
+                <span>INQUILINOS</span>
+            </a>
+           
+        </li>
+
+        <li>
+            <a  ui-sref="inmueble">
+                <i class="zmdi zmdi-balance"></i> 
+                <span>INMUEBLES</span>
+            </a>
+           
+        </li>
+        -->
+        
+        <!-- / End ROLE_ADMIN Adminitration -->
+        <li class="sub-menu" data-ng-class="{active: ctx.$state.includes('admin')}" 
+             has-any-authority="ROLE_ADMIN, ROLE_AUDITOR">
+             
+            <a href="" toggle-submenu>
+                <i class="zmdi zmdi-puzzle-piece zmdi-hc-fw"></i> 
+                <span class="hidden-sm" data-translate="global.menu.admin.main">Administration</span>
+            </a>
+            
+            <ul>
+                <li>
+                    <a data-ui-sref-active="active" data-ui-sref="user-management" 
+                       data-ng-click="ctx.sidebarStat($event)">
+                        <span data-translate="global.menu.admin.userManagement">User management</span>
+                    </a>
+                </li>
+                <!--
+                <li>
+                    <a data-ui-sref-active="active" data-ui-sref="jhi-metrics" 
+                       data-ng-click="ctx.sidebarStat($event)">
+                        <span data-translate="global.menu.admin.metrics">Metrics</span>
+                    </a>
+                </li>
+                <li>
+                    <a data-ui-sref-active="active" data-ui-sref="jhi-health" 
+                       data-ng-click="ctx.sidebarStat($event)">
+                         <span data-translate="global.menu.admin.health">Health</span>
+                    </a>
+                </li>
+                -->
+                <li>
+                    <a data-ui-sref-active="active" data-ui-sref="jhi-configuration" 
+                       data-ng-click="ctx.sidebarStat($event)">
+                         <span data-translate="global.menu.admin.configuration">Configuration</span>
+                    </a>
+                </li>
+                <li>
+                    <a data-ui-sref-active="active" data-ui-sref="audits" 
+                       data-ng-click="ctx.sidebarStat($event)">
+                         <span data-translate="global.menu.admin.audits">Audits</span>
+                    </a>
+                </li>
+                <!--
+                <li>
+                    <a data-ui-sref-active="active" data-ui-sref="logs" 
+                       data-ng-click="ctx.sidebarStat($event)">
+                         <span data-translate="global.menu.admin.logs">Logs</span>
+                    </a>
+                </li>
+                -->
+                <li has-authority="ROLE_ADMIN">
+                    <a data-ui-sref-active="active" data-ui-sref="docs" 
+                       data-ng-click="ctx.sidebarStat($event)">
+                         <span data-translate="global.menu.admin.apidocs">API</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- <li class="sub-menu" data-ng-class="{active: ctx.$state.includes('admin')}" 
+             has-any-authority="ROLE_ADMIN, ROLE_AUDITOR">
+             
+            <a href="" toggle-submenu>
+                <i class="zmdi zmdi-settings-square zmdi-hc-fw"></i> 
+                <span class="hidden-sm" >Parametro General</span>
+            </a>
+            
+            <ul>
+                <li>
+                    <a data-ui-sref="parametro-general" 
+                        data-ng-click="ctx.sidebarStat($event)">
+                        <span>Dígito Verificador</span>
+                    </a>
+                </li>
+            </ul>
+        </li> -->
+        
+    </ul>
+    <!-- /End Main Menu -->
+</div>

@@ -1,0 +1,16 @@
+<table ng-table-dynamic="vm.tableSorting with vm.data.config.cols" class="table table-striped table-vmiddle">
+    <tr ng-repeat="w in $data" ng-if="$data.length > 0">
+
+        <td ng-repeat="col in $columns">
+
+        </td>
+        <td ng-if="vm.data.config.action">
+            <button class="btn btn-default waves-effect" ui-sref="">
+                <i class="zmdi zmdi-eye"></i>
+            </button>
+        </td>
+    </tr>
+    <tr ng-if="$data.length == 0" class="f-16">
+        <td colspan="{{$columns.length}}">{{vm.not_found}}</td>
+    </tr>
+</table>

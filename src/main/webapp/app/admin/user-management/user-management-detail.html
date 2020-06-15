@@ -1,0 +1,59 @@
+<div class="block-header">
+    <h2>Detalle de Usuario</h2>
+</div>
+<div class="card">
+    <div class="card-header ch-alt">
+        <h2>
+            {{vm.user.lastName}}, {{vm.user.firstName}} 
+            <span ng-show="!vm.user.activated" class="label label-danger" data-translate="userManagement.deactivated">
+                Deactivated
+            </span>
+            <span ng-show="vm.user.activated" class="label label-success" data-translate="userManagement.activated">
+                Activated
+            </span>
+        </h2>
+    </div>
+    <div class="card-body card-padding">
+        <div class="pmo-contact">        
+            <ul>
+                <li class="ng-binding">
+                    <i class="zmdi zmdi-account-box-o zmdi-hc-fw"></i> <b>Username:</b> {{vm.user.login}}
+                </li>
+                <li class="ng-binding">
+                    <i class="zmdi zmdi-email"></i> <b>Email:</b> {{vm.user.email}}
+                </li>
+                <li class="ng-binding">
+                    <i class="zmdi zmdi-account-add zmdi-hc-fw"></i> <b>Creado por:</b> {{vm.user.createdBy}}
+                </li>
+                <li class="ng-binding">
+                    <i class="zmdi zmdi-calendar-check zmdi-hc-fw"></i> <b>Fecha de creación:</b> {{vm.user.createdDate | date:'dd/MM/yy HH:mm' }}
+                </li>
+                <li class="ng-binding">
+                    <i class="zmdi zmdi-account-add zmdi-hc-fw"></i> <b>Modificado por:</b> {{vm.user.lastModifiedBy}}
+                </li>
+                <li class="ng-binding">
+                    <i class="zmdi zmdi-calendar-check zmdi-hc-fw"></i> <b>Fecha de modificación:</b> {{vm.user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}
+                </li>
+                <li class="ng-binding" ng-show="vm.user.terminal">
+                    <i class="zmdi zmdi-boat zmdi-hc-fw"></i> <b>Terminal:</b> {{vm.user.terminal}}
+                </li>
+                <li class="ng-binding">
+                        <i class="zmdi zmdi-phone zmdi-hc-fw"></i> <b>Telefono:</b> {{vm.user.telefono}}
+                    </li>
+                <li class="ng-binding">
+                    <i class="zmdi zmdi-lock-open zmdi-hc-fw"></i> <b>Perfiles:</b> 
+                    <span class="label label-info" ng-repeat="authority in vm.user.authorities">
+                        {{authority}}
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <br><br>
+        <button class="btn btn-default waves-effect" ui-sref="user-management">
+            <i class="zmdi zmdi-arrow-left zmdi-hc-fw"></i> Volver
+        </button>
+        <div ng-if="vm.user.login === ctx.account.login" class="pull-right">
+            <a class="btn" ui-sref="account.password">Cambiar Contraseña</a>
+        </div>
+    </div>
+</div>
