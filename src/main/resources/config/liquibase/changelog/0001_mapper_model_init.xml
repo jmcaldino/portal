@@ -1,0 +1,101 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="juan (generated)" id="1590881532564-1">
+        <createTable tableName="categoria">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="categoriaPK"/>
+            </column>
+            <column defaultValueBoolean="true" name="visible" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categoria_fk" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-2">
+        <createTable tableName="marca">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="marcaPK"/>
+            </column>
+            <column defaultValueBoolean="true" name="visible" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-3">
+        <createTable tableName="producto">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="productoPK"/>
+            </column>
+            <column name="descripcion" type="VARCHAR(255)"/>
+            <column defaultValue="demo.png" name="imagen" type="VARCHAR(100)"/>
+            <column defaultValueBoolean="true" name="visible" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="nuevo" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="recomendado" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(100)"/>
+            <column name="precio_nuevo" type="DECIMAL(10, 2)"/>
+            <column name="precio" type="DECIMAL(10, 2)"/>
+            <column name="stock" type="INT"/>
+            <column name="categoria_fk" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="marca_fk" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-4">
+        <createTable tableName="revision">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="revisionPK"/>
+            </column>
+            <column name="comentario" type="VARCHAR(255)"/>
+            <column name="fecha" type="timestamp"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="nombre" type="VARCHAR(30)"/>
+            <column defaultValueNumeric="3" name="estrella" type="INT"/>
+            <column name="producto_fk" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-5">
+        <addUniqueConstraint columnNames="id" constraintName="UC_CATEGORIAID_COL" tableName="categoria"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-6">
+        <addUniqueConstraint columnNames="nombre" constraintName="UC_CATEGORIANOMBRE_COL" tableName="categoria"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-7">
+        <addUniqueConstraint columnNames="id" constraintName="UC_MARCAID_COL" tableName="marca"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-8">
+        <addUniqueConstraint columnNames="nombre" constraintName="UC_MARCANOMBRE_COL" tableName="marca"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-9">
+        <addUniqueConstraint columnNames="id" constraintName="UC_PRODUCTOID_COL" tableName="producto"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-10">
+        <addUniqueConstraint columnNames="id" constraintName="UC_REVISIONID_COL" tableName="revision"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-11">
+        <addForeignKeyConstraint baseColumnNames="categoria_fk" baseTableName="categoria" constraintName="FK1ytxnhd71pui06dwfo200atsy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-12">
+        <addForeignKeyConstraint baseColumnNames="producto_fk" baseTableName="revision" constraintName="FK2rhf4daul8b1kv9f47ru7ly0k" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="producto"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-13">
+        <addForeignKeyConstraint baseColumnNames="marca_fk" baseTableName="producto" constraintName="FK79cqveabrfe1r4r8j7gla7sni" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="marca"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1590881532564-14">
+        <addForeignKeyConstraint baseColumnNames="categoria_fk" baseTableName="producto" constraintName="FKfk1qwclun2sk1apqbc2ettli0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria"/>
+    </changeSet>
+</databaseChangeLog>
