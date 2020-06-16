@@ -33,12 +33,7 @@ public class CategoryController {
 	@GetMapping("/categories")
 	public ResponseEntity<List<Category>> getAllPrincipalCategory() {
 		log.debug("Inside getAllPrincipalCategory method");
-		List<Category> categories = null;
-		try {
-			categories = categoryService.getAllPrincipalCategory();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<Category> categories = categoryService.getAllPrincipalCategory();
 		return new ResponseEntity<>(categories, HttpStatus.OK);
 	}
 
@@ -53,12 +48,7 @@ public class CategoryController {
 	public ResponseEntity<List<Category>> getAllPrincipalCategory(
 			@PathVariable(name = "principalCategory") Long principalCategoryId) {
 		log.debug("Inside getAllPrincipalCategory method. Param {principalCategoryId : " + principalCategoryId);
-		List<Category> categories = null;
-		try {
-			categories = categoryService.getAllSubCategory(principalCategoryId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		List<Category> categories = categoryService.getAllSubCategory(principalCategoryId);
 		return new ResponseEntity<>(categories, HttpStatus.OK);
 	}
 

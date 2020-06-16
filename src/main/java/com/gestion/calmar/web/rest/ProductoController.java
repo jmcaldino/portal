@@ -23,7 +23,6 @@ import com.gestion.calmar.domain.Producto;
 import com.gestion.calmar.repository.ProductRepository;
 import com.gestion.calmar.security.AuthoritiesConstants;
 import com.gestion.calmar.service.ProductService;
-import com.gestion.calmar.web.rest.errors.LoginAlreadyUsedException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.swagger.annotations.ApiParam;
@@ -65,21 +64,18 @@ public class ProductoController {
 		log.debug("REST request to save User : {}", producto);
 
 		if (producto.getId() != null) {
-			throw new LoginAlreadyUsedException();
+			return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, false, "idexists",
+					"A new product cannot already have an ID", "sad")).body(null);
 			// Lowercase the user login before comparing with database
 		} else if (productRepo.findOneByName(producto.getName().toLowerCase()).isPresent()) {
-			throw new LoginAlreadyUsedException();
+			return ResponseEntity.badRequest().headers(
+					HeaderUtil.createFailureAlert(ENTITY_NAME, false, "productexists", "Product already in use", "sad"))
+					.body(null);
 		} else {
-			Producto newProduct = null;
-			try {
-				newProduct = productService.createProduct(producto);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			Producto newProduct = productService.createProduct(producto);
 			// mailService.sendCreationEmail(newUser);
 			return ResponseEntity.created(new URI("/api/productos/" + newProduct.getName()))
-					.headers(
-							HeaderUtil.createAlert("ProductController", "userManagement.created", newProduct.getName()))
+					.headers(HeaderUtil.createAlert("productoEntity", "userManagement.created", newProduct.getName()))
 					.body(newProduct);
 		}
 	}
