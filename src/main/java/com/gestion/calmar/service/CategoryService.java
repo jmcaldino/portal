@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gestion.calmar.domain.Category;
 import com.gestion.calmar.repository.CategoryRepository;
 
+import javassist.NotFoundException;
+
 @Service
 @Transactional
 public class CategoryService {
@@ -34,4 +36,10 @@ public class CategoryService {
 		log.debug("Exit getAllPrincipalCategory method");
 		return listCategoryPripal;
 	}
+
+	public Category getCategory(Long id) throws NotFoundException {
+		return categoryRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Category -> Not Found. Parameter { CategoryId: " + id + "}"));
+	}
+
 }

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,20 +19,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gestion.calmar.domain.Producto;
 import com.gestion.calmar.repository.ProductRepository;
 import com.gestion.calmar.security.AuthoritiesConstants;
 import com.gestion.calmar.service.ProductService;
+import com.gestion.calmar.service.dto.ProductDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
+import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/api")
-public class ProductoController {
+public class ProductController {
 
-	private final Logger log = LoggerFactory.getLogger(ProductoController.class);
+	private final Logger log = LoggerFactory.getLogger(ProductController.class);
 
 	private static final String ENTITY_NAME = "productos";
 
@@ -44,9 +49,11 @@ public class ProductoController {
 	@GetMapping("/productos")
 	public ResponseEntity<Page<Producto>> getAllProducts(@ApiParam Pageable pageable) {
 		log.info("Inside getAllProducts method...");
-		// Page<Producto> pageProduct = productService.listProductPage(pageable);
+		Page<Producto> pageProduct = productService.listProductPage(pageable);
+		HttpHeaders headers = PaginationUtil
+				.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), pageProduct);
 		log.info("Exit getAllProducts method...");
-		return new ResponseEntity<>(null, HttpStatus.OK);
+		return new ResponseEntity<>(pageProduct, headers, HttpStatus.OK);
 	}
 
 //	@PostMapping("/productos")
@@ -60,7 +67,7 @@ public class ProductoController {
 
 	@PostMapping("/productos")
 	@PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
-	public ResponseEntity<?> createUser(@Valid @RequestBody Producto producto) throws URISyntaxException {
+	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO producto) throws URISyntaxException {
 		log.debug("REST request to save User : {}", producto);
 
 		if (producto.getId() != null) {
@@ -72,11 +79,16 @@ public class ProductoController {
 					HeaderUtil.createFailureAlert(ENTITY_NAME, false, "productexists", "Product already in use", "sad"))
 					.body(null);
 		} else {
-			Producto newProduct = productService.createProduct(producto);
-			// mailService.sendCreationEmail(newUser);
-			return ResponseEntity.created(new URI("/api/productos/" + newProduct.getName()))
-					.headers(HeaderUtil.createAlert("productoEntity", "userManagement.created", newProduct.getName()))
-					.body(newProduct);
+			try {
+				productService.createProduct(producto);
+			} catch (NotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// mailService.sendCreationEmail(newUser); TODO CAMBIAR getMarcaId()
+			return ResponseEntity.created(new URI("/api/productos/" + producto.getMarcaId()))
+					.headers(HeaderUtil.createAlert("productoEntity", "userManagement.created", producto.getName()))
+					.body(producto);
 		}
 	}
 }

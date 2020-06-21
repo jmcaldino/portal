@@ -54,11 +54,11 @@ public class Producto implements Serializable {
 	@Column(name = "visible", columnDefinition = "bit default true", nullable = false)
 	private Boolean isEnable = true;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "marca_fk", referencedColumnName = "id", nullable = false)
 	private Marca marca;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoria_fk", referencedColumnName = "id", nullable = false)
 	private Category categoria;
 
