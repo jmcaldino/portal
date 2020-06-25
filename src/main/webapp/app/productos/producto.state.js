@@ -34,6 +34,12 @@
             data: {
                 authorities: ['ROLE_ADMIN'],
                 pageTitle: 'gestionLDE.home.title'
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
             }
         })
     }

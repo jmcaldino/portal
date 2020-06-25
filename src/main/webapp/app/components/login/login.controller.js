@@ -5,9 +5,9 @@
         .module('gestionFlia')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$rootScope', '$state', '$timeout', 'Auth', '$uibModalInstance'];
+    LoginController.$inject = ['$rootScope', '$state', '$timeout', 'Auth', '$uibModalInstance','AlertService'];
 
-    function LoginController ($rootScope, $state, $timeout, Auth, $uibModalInstance) {
+    function LoginController ($rootScope, $state, $timeout, Auth, $uibModalInstance, AlertService) {
         var vm = this;
 
         vm.authenticationError = false;
@@ -61,6 +61,7 @@
                         reload: true
                     });
                 }
+                AlertService.success("Bienvenido " + vm.username +" !");
                 $uibModalInstance.close(true);
             }).catch(function () {
                 vm.authenticationError = true;

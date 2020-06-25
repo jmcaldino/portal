@@ -1,7 +1,7 @@
 <div class="agp-select-parent">
 	<div class="row">
 		<div ng-class="{'col-sm-9':limpiar,'col-sm-12':!limpiar}" >
-			<ui-select ng-model="uiModel.selected" ng-disabled="disabled"
+			<ui-select ng-model="uiModel.selected" ng-disabled="disabled" maxlen="2"
 				theme="bootstrap" ng-required="required"
 				on-remove="onItemRemoved($item)"
 				on-select="onItemSelected($item)">

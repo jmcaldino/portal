@@ -14,9 +14,9 @@
                 method: 'GET',
                 url: 'api/productos'
             },
-            'getByIdAndType': {
-                method: 'GET',
-                url: 'api/inmuebles/id/:id/tipo/:tipo'
+            'agregarProducto': {
+                method: 'POST',
+                url: 'api/productos'
             },
             'searchInmueble': {
                 method: 'GET',

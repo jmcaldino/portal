@@ -26,3 +26,8 @@ body.login{
 .center{
     text-align: center;
   }
+
+.separado{
+    margin-top: 20px;
+    margin-right: 20px;
+}
