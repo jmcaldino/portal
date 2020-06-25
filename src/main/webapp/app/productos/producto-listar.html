@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select class="select-agp" id="exampleFormControlSelect1" ng-options="option.name for option in vm.estadoFiltro.availableOptions track by option.id"
+                            <select class="select-agp" id="exampleFormControlSelect1" ng-options="option.name for option in vm.estadoFiltro.availableOptions"
                                 ng-model="vm.estadoFiltro.selectedOption">
                             </select>
                         </div>
@@ -55,10 +55,45 @@
                             <strong>{{ w.id }}</strong>
                         </td>         -->
                         <td data-title="'Producto'">
-                            {{ w.nombre }}
+                            {{ w.name }}
+                        </td>
+                        <td data-title="'Precio'">
+                            {{ w.price }}
                         </td>
                         <td data-title="'Descripcion'">
-                            {{ w.descripcion }}
+                            {{ w.description }}
+                        </td>
+                        <td data-title="'Categoria'">
+                            {{ w.categoria.name }}
+                        </td>
+                        <td data-title="'Stock'">
+                            {{ w.stock }}
+                        </td>
+                        <td data-title="'Oferta'">
+                            <div ng-show="w.newPrice">{{ w.newPrice }}</div>
+                        </td>
+                        <td data-title="'Accion'" width="15%">
+                            <span class="tooltip2">   
+                                    <button class="btn btn-default waves-effect" 
+                                        ui-sref="user-management-detail({login:w.login})">
+                                        <i class="zmdi zmdi-eye " style=" color:#4da6ff"></i>
+                                    </button>
+                                    <span class="tooltiptext">Detalle</span>
+                            </span>
+                            <span class="tooltip2">   
+                                    <button has-authority="ROLE_ADMIN" class="btn btn-default waves-effect" ui-sref="user-management.edit({login:w.login})">
+                                            <i class="zmdi zmdi-edit"></i>
+                                    </button>
+                                    <span class="tooltiptext">Editar</span>
+                            </span>
+                            <span class="tooltip2">   
+                                    <button has-authority="ROLE_ADMIN" class="btn btn-default waves-effect" 
+                                        ui-sref="user-management.delete({login:w.login})">
+                                        <i class="zmdi zmdi-delete" style=" color:red"></i>
+                                    </button>
+                                    <span class="tooltiptext">Eliminar</span>
+                            </span>
+                        
                         </td>
                     </tr>
                     <tr ng-if="$data.length == 0">

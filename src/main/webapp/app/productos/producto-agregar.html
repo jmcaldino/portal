@@ -8,90 +8,117 @@
         </div>
     </div>
     <div class="card">
-            <div class="card-header">
-                    <ul class="actions">
-                        <li has-any-authority="ROLE_ADMIN">
-                            <button class="btn bgm-blue waves-effect" ui-sref="producto-agregar">
-                                <i class="zmdi zmdi-playlist-plus zmdi-hc-fw"></i> Agregar Producto
-                            </button>
-                        </li>
-                    </ul>
-            </div>
-            <div style="margin-left:2%;">
-                <form name="ListLDEForm" role="form" novalidate ng-submit="vm.buscar()">
+            <div class="card-header"></div>
+            <div class="card-body">
+                <jhi-alert-error></jhi-alert-error>
+                <div style="margin-left:2%;">
+                <form name="createProduct" role="form" novalidate ng-submit="vm.save()">
                     <div class="row p-t-20">
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="fg-line">
-                                    <input type="text" class="form-control input-agp" name="productSearch" ng-model="vm.buscarInmueble"
-                                        placeholder="Buscar producto">
+                                    <label class="pull-left">Nombre de Producto</label>
+                                    <input type="text" class="form-control input-agp" name="productSearch" ng-model="vm.nombre"
+                                        placeholder="Ingrese el nombre del producto">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <select class="select-agp" id="exampleFormControlSelect1" ng-options="option.name for option in vm.estadoFiltro.availableOptions track by option.id"
-                                    ng-model="vm.estadoFiltro.selectedOption">
-                                </select>
+                                <div class="fg-line">
+                                        <label class="pull-left">Precio</label>
+                                    <input type="number" class="form-control input-agp" name="productSearch" ng-model="vm.precio"
+                                        placeholder="Ingrese el precio">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-2 p-t-5">
-                            <button type="submit" class="btn bgm-blue waves-effect" style="border: 50%; margin-top:1%;" ng-disabled="ListLDEForm.$invalid">
-                                <i class="zmdi zmdi-search"></i> Buscar
-                            </button>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                        <label class="pull-left">Stock</label>
+                                    <input type="number" class="form-control input-agp" name="productSearch" ng-model="vm.stock"
+                                        placeholder="Ingrese el stock">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <hr>
-                </form>
-            </div>
-            <div class="card-body">
-                <jhi-alert-error></jhi-alert-error>
-                <div class="table-responsive">
-                    <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle">
-                        <tr ng-repeat="w in $data" ng-if="$data.length > 0">
-                            <!-- 
-                            <td data-title="'Id  '" sortable="'id'">
-                                <strong>{{ w.id }}</strong>
-                            </td>         -->
-                            <td data-title="'Producto'">
-                                {{ w.nombre }}
-                            </td>
-                            <td data-title="'Descripcion'">
-                                {{ w.descripcion }}
-                            </td>
-                        </tr>
-                        <tr ng-if="$data.length == 0">
-                            <td colspan="8">Actualmente no hay productos.</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="card">
-                <div class="row p-t-20">
-                        <div class="col-sm-10">
-                            <form name="comentarioForm" role="form" novalidate ng-submit="vm.buscar()">
-                                <div class="col-sm-10">
+                    <div class="row p-t-20">
+                            <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="fg-line pull-left">
+                                                <label for="exampleFormControlFile1">Seleccione una Imager</label>
+                                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <label class="pull-left">Marca</label>
+                                        <agp-select disabled="false" model="vm.estadoFiltro.selectedOption.name" maxlen="3"
+                                                    placeholder="Ingrese una Marca"
+                                                    options="vm.estadoFiltro.availableOptions" parse="$item.name"
+                                                    required="true" name="marcas">
+                                        </agp-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <div class="fg-line">
+                                            <label class="pull-left">Categoria</label>
+                                            <select class="select-agp" id="exampleFormControlSelect1" ng-options="option.name for option in vm.estadoFiltro.availableOptions track by option.id"
+                                                ng-model="vm.estadoFiltro.selectedOption">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row p-t-20">
+                            <div class="col-sm-8">
                                     <div class="form-group">
                                         <div class="fg-line">
-                                            <i class="zmdi zmdi-comment-alt-text"></i>  Comentario del Recibo
+                                            <i class="zmdi zmdi-comment-alt-text pull-left"></i>
+                                            <label class="pull-left">Descripcion</label>
                                             <textarea class="f-18 textarea-custom" rows="2"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
-                                    <div class="form-group">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="fg-line">
                                         <div class="fg-line">
-                                            <button   style="margin-top:10%;" type="submit" class="btn bgm-blue waves-effect" style="border: 50%; margin-top:1%;" ng-disabled="comentarioForm.$invalid">
-                                                <i class="zmdi zmdi-cloud-upload"> Guardar</i>
-                                            </button>
+                                                <label class="pull-left">Precio en Oferta (Opcional)</label>
+                                            <input type="number" class="form-control input-agp" name="productSearch" ng-model="vm.precio"
+                                                placeholder="Atención! Precio rebaja ">
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
                     </div>
+                    <hr>
+                    <div class="row p-t-20">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-success separado" >
+                                                    <span class="glyphicon glyphicon-floppy-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger separado" ui-sref="producto" ng-click="vm.clear()">
+                                                    <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+                                                        data-translate="entity.action.cancel">Cancel</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                            </div>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
     <div class="block-footer" has-any-authority="ROLE_AUDITOR, ROLE_ADMIN">
 
     </div>
