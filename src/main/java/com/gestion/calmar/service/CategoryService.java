@@ -42,4 +42,8 @@ public class CategoryService {
 				.orElseThrow(() -> new NotFoundException("Category -> Not Found. Parameter { CategoryId: " + id + "}"));
 	}
 
+	public List<Category> getAllCategory() {
+		return categoryRepository.findAll();
+	}
+
 }

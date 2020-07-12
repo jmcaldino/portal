@@ -3,13 +3,17 @@
 
     angular
         .module('gestionFlia')
-        .factory('HomeService', HomeService);
+        .factory('CategoryService', CategoryService);
 
-        HomeService.$inject = ['$resource', '$state'];
+        CategoryService.$inject = ['$resource'];
 
-    function HomeService($resource, $state) {
-
-        var service = $resource('/public-api', {}, {
+    function CategoryService($resource) {
+        var service = $resource('public-api/categories', {}, {
+            'getAllCategory': {
+                method: 'GET',
+                url: 'public-api/categories',
+                isArray: true
+            },
             'getAllPrincipalCategory': {
                 method: 'GET',
                 url: 'public-api/categories/dad',
@@ -20,7 +24,6 @@
                 url: 'public-api/categories/:id',
                 isArray: true
             }
-                
         });
 
         return service;

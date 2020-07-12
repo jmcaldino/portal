@@ -1,4 +1,4 @@
-package com.gestion.calmar.web.rest;
+package com.gestion.calmar.web.rest.publicAPI;
 
 import java.util.List;
 
@@ -25,12 +25,25 @@ public class CategoryController {
 	private CategoryService categoryService;
 
 	/**
-	 * GET /users : get all principal categories.
+	 * GET /users : get all categories.
 	 *
 	 * @return the ResponseEntity with status 200 (OK) and with body all principal
 	 *         categories
 	 */
 	@GetMapping("/categories")
+	public ResponseEntity<List<Category>> getAllCategory() {
+		log.debug("Inside getAllPrincipalCategory method");
+		List<Category> categories = categoryService.getAllCategory();
+		return new ResponseEntity<>(categories, HttpStatus.OK);
+	}
+
+	/**
+	 * GET /users : get all principal categories.
+	 *
+	 * @return the ResponseEntity with status 200 (OK) and with body all principal
+	 *         categories
+	 */
+	@GetMapping("/categories/dad")
 	public ResponseEntity<List<Category>> getAllPrincipalCategory() {
 		log.debug("Inside getAllPrincipalCategory method");
 		List<Category> categories = categoryService.getAllPrincipalCategory();
