@@ -83,7 +83,7 @@ public class StorageService {
 
 	private static String getFileServer() {
 		String devPath = Paths.get(".").toAbsolutePath().normalize().toString();
-		String fileName = System.getProperty("sprbun.file_upload_server");
+		String fileName = System.getProperty("calmar.file_upload_server");
 		if (fileName != null && !fileName.isEmpty()) {
 			return fileName;
 		}
@@ -91,7 +91,7 @@ public class StorageService {
 	}
 
 	private static String getUploadFolder() {
-		String fileName = System.getProperty("sprbun.file_upload_folder");
+		String fileName = System.getProperty("calmar.file_upload_folder");
 		if (fileName != null && !fileName.isEmpty()) {
 			return fileName;
 		}

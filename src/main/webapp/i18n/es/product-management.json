@@ -1,0 +1,25 @@
+{
+    "productManagement": {
+        "home": {
+            "title": "Productos",
+            "createLabel": "Crear un nuevo producto",
+            "createOrEditLabel": "Crear o editar un producto"
+        },
+        "created": "Se creó el producto {{ param }}",
+        "updated": "Se actualizó el producto {{ param }}",
+        "deleted": "Se eliminó el producto {{ param }}",
+        "delete": {
+            "question": "¿Seguro que quieres eliminar el producto {{ login }}?"
+        },
+        "detail": {
+            "title": "Producto"
+        },
+        "activated": "Activado",
+        "deactivated": "Desactivado",
+        "langKey": "Idioma",
+        "createdBy": "Creado por",
+        "createdDate": "Fecha de creación",
+        "lastModifiedBy": "Modificado por",
+        "lastModifiedDate": "Fecha de modificación"
+    }
+}

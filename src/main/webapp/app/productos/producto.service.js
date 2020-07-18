@@ -14,9 +14,15 @@
                 method: 'GET',
                 url: 'api/productos'
             },
-            'agregarProducto': {
-                method: 'POST',
+            'actualizarProducto': {
+                method: 'PUT',
                 url: 'api/productos'
+            },
+            'crearProducto': {
+                method: 'POST',
+                url: 'api/productos',
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
             },
             'searchInmueble': {
                 method: 'GET',
