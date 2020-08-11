@@ -10131,7 +10131,7 @@ h6 small,
 #main {
   position: relative;
   padding-bottom: 110px;
-  padding-top: 100px;
+  padding-top: 10px;
 }
 
 .container.c-alt {
@@ -15471,7 +15471,7 @@ border-radius: 2px !important;
 }
 
 .input-search[type=text] {
-  width: 300px;
+  width: 97%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -15567,3 +15567,4 @@ border-radius: 2px !important;
   background-color: #f8f8f8;
   resize: none;
 }
+

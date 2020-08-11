@@ -12,6 +12,13 @@
 
         vm.principalCategories = [];
         vm.subCategories = undefined;
+        vm.productosDestacados = {};
+
+        
+        HomeService.getAllRecommendedProduct({
+        },  function (response) {
+			    vm.productosDestacados = response.content;
+        });
 
         HomeService.getAllPrincipalCategory({
         },  function (response) {
@@ -32,5 +39,6 @@
         vm.getLogin = LoginService.open;
 
         vm.logout = Auth.logout();
+
     }
 })();

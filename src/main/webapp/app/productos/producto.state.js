@@ -42,6 +42,23 @@
                 }]
             }
         })
+        .state('producto-editar', {
+            parent: 'app',
+            url: '/producto-listado/editar/:name',
+            templateUrl: 'app/productos/producto-editar.html',
+            controller: 'ProductoEditarController',
+            controllerAs: 'vm',
+            data: {
+                authorities: ['ROLE_ADMIN', 'ROLE_AUDITOR'],
+                pageTitle: 'gestionLDE.home.title'
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
+        });
     }
     
 })();

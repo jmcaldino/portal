@@ -24,6 +24,7 @@
                 <div class="row p-t-20">
                     <div class="col-sm-4">
                         <div class="form-group">
+                            <label>Buscador</label>
                             <div class="fg-line">
                                 <input type="text" class="form-control input-agp" name="productSearch" ng-model="vm.buscarInmueble"
                                     placeholder="Buscar producto">
@@ -32,12 +33,14 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <select class="select-agp" id="exampleFormControlSelect1" ng-options="option.name for option in vm.estadoFiltro.availableOptions"
+                            <label>Filtrar productos</label>
+                            <select class="select-agp" id="exampleFormControlSelect1" ng-options="option.name for option in vm.estadoFiltro.availableOptions track by option.id"
                                 ng-model="vm.estadoFiltro.selectedOption">
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-2 p-t-5">
+                        </br>
                         <button type="submit" class="btn bgm-blue waves-effect" style="border: 50%; margin-top:1%;" ng-disabled="ListLDEForm.$invalid">
                             <i class="zmdi zmdi-search"></i> Buscar
                         </button>
@@ -82,14 +85,14 @@
                                     <span class="tooltiptext">Detalle</span>
                             </span>
                             <span class="tooltip2">   
-                                    <button has-authority="ROLE_ADMIN" class="btn btn-default waves-effect" ui-sref="user-management.edit({login:w.login})">
+                                    <button has-authority="ROLE_ADMIN" class="btn btn-default waves-effect" ui-sref="producto-editar({name:w.name})">
                                             <i class="zmdi zmdi-edit"></i>
                                     </button>
                                     <span class="tooltiptext">Editar</span>
                             </span>
                             <span class="tooltip2">   
                                     <button has-authority="ROLE_ADMIN" class="btn btn-default waves-effect" 
-                                        ui-sref="user-management.delete({login:w.login})">
+                                        ng-click="vm.deleteProduct(w.name)">
                                         <i class="zmdi zmdi-delete" style=" color:red"></i>
                                     </button>
                                     <span class="tooltiptext">Eliminar</span>

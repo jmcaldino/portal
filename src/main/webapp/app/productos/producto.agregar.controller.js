@@ -11,7 +11,7 @@
         var vm = this;
         vm.clear = clear;
         vm.selectedMarca = undefined;
-        vm.selectedCategory = [];
+        vm.selectedCategory = undefined;
         vm.producto = {
             id: null, name: null, description: null, price: null, newPrice: null,
             stock: null, isNew: false, isRecommended: false, marcaId: null, categoriaId: null,

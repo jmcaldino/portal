@@ -19,6 +19,11 @@
                 method: 'GET',
                 url: 'public-api/categories/:id',
                 isArray: true
+            },
+            'getAllRecommendedProduct': {
+                method: 'GET',
+                url: 'public-api/producto/recomendados',
+                isArray: false
             }
                 
         });

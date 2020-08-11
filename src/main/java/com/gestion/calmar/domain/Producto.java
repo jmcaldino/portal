@@ -29,7 +29,7 @@ public class Producto implements Serializable {
 	private Long id;
 
 	@NotNull
-	@Column(name = "nombre", columnDefinition = "varchar(100)", unique = true)
+	@Column(name = "nombre", columnDefinition = "varchar(100)", unique = true, nullable = false)
 	private String name;
 
 	@Column(name = "descripcion")
