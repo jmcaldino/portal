@@ -56,8 +56,14 @@ public class ProductService {
 	}
 
 	@Transactional(readOnly = true)
-	public Page<Producto> listRecommendedProductPage(Pageable pageable) {
-		Page<Producto> products = productRepository.getAllRecommendedProduct(pageable);
+	public Page<Producto> listProductByCategoryPage(String categoria, Pageable pageable) {
+		Page<Producto> products = productRepository.getAllProductByCategory(categoria, pageable);
+		return products;
+	}
+
+	@Transactional(readOnly = true)
+	public Page<Producto> listDestacadosProductPage(Pageable pageable) {
+		Page<Producto> products = productRepository.getAllDestacadosProduct(pageable);
 		return products;
 	}
 
@@ -152,6 +158,12 @@ public class ProductService {
 			productRepository.delete(product);
 			log.debug("Deleted Product: {}", product);
 		});
+	}
+
+	@Transactional(readOnly = true)
+	public Page<Producto> searchProductByNameOrDescription(String keyword, Pageable pageable) {
+		Page<Producto> products = productRepository.searchProduct("%" + keyword + "%", pageable);
+		return products;
 	}
 
 }

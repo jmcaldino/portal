@@ -23,27 +23,45 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="fg-line">
-                                    <label class="pull-left">Nombre de Producto</label>
-                                    <input type="text" class="form-control input-agp" name="productSearch" ng-model="vm.producto.name"
-                                        placeholder="Ingrese el nombre del producto">
+                                    <label class="pull-left">Nombre de Producto <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="createProduct.nombre.$valid"> </i></label></label>
+                                    <input type="text" name="nombre" class="form-control input-agp" ng-model="vm.producto.name"
+                                        placeholder="Ingrese el nombre del producto" ng-minlength="20" ng-maxlength="29" required>
+                                </div>
+                                <div ng-show="createProduct.nombre.$invalid">
+                                    <p class="help-block" ng-show="!createProduct.nombre.$valid">
+                                        <i class="zmdi zmdi-alert-triangle text-warning"> El nombre del producto debe tener entre 20 y 29 caracteres.</i>
+                                    </p>   
+                                </div>
+                                <div class="valid-feedback text-success" ng-show="createProduct.nombre.$valid">
+                                    <h4 class="text-success"><i class="zmdi zmdi-check"> El nombre de producto valido!</i></h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="fg-line">
-                                        <label class="pull-left">Precio</label>
-                                    <input type="number" class="form-control input-agp" name="productSearch" ng-model="vm.producto.price"
-                                        placeholder="Ingrese el precio">
+                                        <label class="pull-left">Precio <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="createProduct.precio.$valid"> </i></label></label>
+                                    <input type="number" class="form-control input-agp" name="precio" ng-model="vm.producto.price"
+                                        placeholder="Ingrese el precio" required>
+                                </div>
+                                <div ng-show="createProduct.precio.$invalid">
+                                    <p class="help-block" ng-show="!createProduct.precio.$required">
+                                        <i class="zmdi zmdi-alert-triangle text-warning"> Este campo es mandatorio.</i>
+                                    </p>   
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="fg-line">
-                                        <label class="pull-left">Stock</label>
-                                    <input type="number" class="form-control input-agp" name="productSearch" ng-model="vm.producto.stock"
-                                        placeholder="Ingrese el stock">
+                                        <label class="pull-left">Stock <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="createProduct.stock.$valid"> </i></label></label>
+                                    <input type="number" class="form-control input-agp" name="stock" ng-model="vm.producto.stock"
+                                        placeholder="Ingrese el stock" required>
+                                </div>
+                                <div ng-show="createProduct.stock.$invalid">
+                                    <p class="help-block" ng-show="!createProduct.stock.$required">
+                                        <i class="zmdi zmdi-alert-triangle text-warning"> Este campo es mandatorio.</i>
+                                    </p>   
                                 </div>
                             </div>
                         </div>
@@ -58,15 +76,15 @@
                                                 <adjunto-upload adjuntos="vm.producto.img"></adjunto-upload>
                                                                                             <input type="file" class="form-control-file" id="exampleFormControlFile1" file-model="vm.producto.img">
                                             -->
-                                            <label form="exampleFormControlFile1" class="pull-left">Imagen de producto</label>
-                                            <input type="file" class="form-control-file" id="file" file-model="vm.producto.file">
+                                            <label form="exampleFormControlFile1" class="pull-left">Imagen de producto <i class="zmdi zmdi-check-circle zmdi-hc-lg text-success" ng-show="vm.producto.file.name"> </i></label>
+                                            <input type="file" class="form-control-file" id="file" file-model="vm.producto.file" required>
                                         </div>
                                     </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="fg-line">
-                                        <label class="pull-left">Marca  <i class="zmdi zmdi-help zmdi-hc-lg"></i></label>
+                                        <label class="pull-left">Marca <label class="text-success" ng-show="vm.selectedMarca.name"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="createProduct.marca.$valid"> </i></label> <i class="zmdi zmdi-help zmdi-hc-lg" ng-show="!vm.selectedMarca.name"></i></label>
                                         <!--
                                         <agp-select disabled="false" model="vm.estadoFiltro.selectedOption.name" maxlen="3"
                                                     placeholder="Ingrese una Marca"
@@ -85,7 +103,7 @@
                                 <div class="form-group">
                                     <div class="fg-line">
                                         <div class="fg-line">
-                                            <label class="pull-left">Categoria <i class="zmdi zmdi-help zmdi-hc-lg"></i></label>
+                                            <label class="pull-left">Categoria <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.selectedCategory.name"> </i></label> <i class="zmdi zmdi-help zmdi-hc-lg" ng-show="!vm.selectedCategory.name"></i></label>
                                             <agp-select min-chars="3" placeholder="Seleccione una Categoria" model="vm.selectedCategory" name="categoria"
                                                 options="vm.selectedCategory" parse="$item.name" required="true"
                                                 search="vm.doCategorySearch($search)">
@@ -164,7 +182,7 @@
                             <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="fg-line">
-                                            <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-success separado" >
+                                            <button type="submit" ng-disabled="createProduct.$invalid" class="btn btn-success separado" >
                                                     <span class="glyphicon glyphicon-floppy-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
                                             </button>
                                             <button type="button" class="btn btn-danger separado" ui-sref="producto" ng-click="vm.clear()">

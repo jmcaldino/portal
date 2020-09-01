@@ -5,7 +5,7 @@
         .module('gestionFlia')
         .controller('ProductoAgregarController', ProductoAgregarController);
 
-        ProductoAgregarController.$inject = ['ProductoService', 'TablaPaginada', 'AlertService', '$state','$stateParams', 'MarcaService', 'CategoryService', 'ConfirmModalService', 'multipartForm'];
+        ProductoAgregarController.$inject = ['ProductoService','TablaPaginada', 'AlertService', '$state','$stateParams', 'MarcaService', 'CategoryService', 'ConfirmModalService', 'multipartForm'];
 
     function ProductoAgregarController(ProductoService, TablaPaginada, AlertService, $state, $stateParams, MarcaService, CategoryService, ConfirmModalService, multipartForm) {
         var vm = this;

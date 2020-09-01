@@ -14366,7 +14366,7 @@ html:not(.ie9) .select.fg-line:before {
 .pagination > li > a > .zmdi,
 .pagination > li > span > .zmdi {
   font-size: 22px;
-  line-height: 40px;
+  line-height: 30px;
 }
 
 @media (min-width: 768px) {
@@ -15471,25 +15471,51 @@ border-radius: 2px !important;
 }
 
 .input-search[type=text] {
+  float: left;
   width: 97%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
   background-color: white;
-  background-image: url('../img/icons/searchicon.png');
+  /* background-image: url('../img/icons/searchicon.png'); */
   background-position: 10px 10px; 
   background-repeat: no-repeat;
-  padding: 10px 75px 10px 38px;
+  padding: 10px 75px 10px 10px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
 
+#main-form .main-form .shortfieldz .zmdi-link {
+  position: absolute;
+  font-size: 28px;
+  top: 1px;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  padding-left: 6px;
+  border-left: 1px solid #ccc;
+  border-radius: 4px;
+  /* left: 25px; */ 
+  right: 25px;
+  color: #8c8c8c;
+  pointer-events: auto;
+}
+
+.event-link-btn:hover {
+  background-color: whitesmoke;
+  transform: scale(1.3, 1); /* Igual que: scaleX(2) scaleY(0.5) */
+  transform-origin: left;
+  padding-right: 1px;
+  position: relative;
+  top: 16px;
+}
+
 .input-search[type=text]:focus {
-  width: 100%;
+  float: left;
+  /* width: 98%; */
   outline: none !important;
   border:1px solid red;
-  box-shadow: 0 0 10px #719ECE;
+  box-shadow: 0 0 20px #719ECE;
 }
 
 .input-agp[type=text], select {

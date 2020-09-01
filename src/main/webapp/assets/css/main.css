@@ -859,6 +859,18 @@ h2.title {
   position: relative;
 }
 
+.image-header {
+  text-align: center;
+  padding: 10px 5px 8px;
+  line-height: 100%;
+  text-transform: uppercase;
+  border-bottom: 1px solid #F0F0F0;
+  font-weight: 500;
+  color: white;
+  background-color: #005b97;
+  margin-bottom: 1px;
+}
+
 .new, .sale {
   position: absolute;
   top: 0;
