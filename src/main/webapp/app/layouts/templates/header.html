@@ -1,5 +1,5 @@
 <ul class="header-inner clearfix">
-    <li has-authority="ROLE_ADMIN" id="menu-trigger" data-target="mainmenu" data-toggle-sidebar data-model-left="ctx.sidebarToggle.left" 
+    <li id="menu-trigger" data-target="mainmenu" data-toggle-sidebar data-model-left="ctx.sidebarToggle.left" 
         data-ng-class="{ 'open': ctx.sidebarToggle.left === true }">
         <div class="line-wrap">
             <div class="line top"></div>
@@ -11,7 +11,7 @@
     <li class="logo hidden-xs">
         <a data-ui-sref="home" data-ng-click="ctx.sidebarStat($event)">
             CALMAR <span class="version"></span>
-        </a> 
+        </a>
     </li>
     
     <li class="pull-right">
@@ -19,16 +19,19 @@
             <li ng-show="ctx.account.firstName" class="c-white p-r-20 p-t-10 no-hover">
                 {{ctx.account.firstName}}, {{ctx.account.lastName}}
             </li>
-            <li id="toggle-width" has-authority="ROLE_ADMIN">
+            <!--
+            <li id="toggle-width">
                 <div class="toggle-switch">
                     <input id="tw-switch" type="checkbox" hidden="hidden" data-change-layout="ctx.layoutType">
                     <label for="tw-switch" class="ts-helper"></label>
                 </div>
             </li>
+            -->
 
-            <!-- <li id="top-search">
+            <li id="top-search">
                 <a href="" data-ng-click="header.openSearch()"><i class="tm-icon zmdi zmdi-search"></i></a>
-            </li> -->
+            </li>
+
             <!-- <li class="dropdown" uib-dropdown>
                 <a uib-dropdown-toggle href="">
                     <i class="tm-icon zmdi zmdi-email"></i>
@@ -59,33 +62,33 @@
                     </div>
                 </div>
             </li> -->
-            <li class="dropdown" uib-dropdown>
+            <li class="dropdown" id="carritoBtn" uib-dropdown>
                 <a uib-dropdown-toggle href="">
-                    <i class="tm-icon zmdi zmdi-notifications"></i>
-                    <i class="tmn-counts">0</i>
+                    <i class="tm-icon zmdi zmdi-shopping-cart"></i>
+                    <i class="tmn-counts"><span id="cantidadCarritoHead">0</span></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg stop-propagate pull-right">
                     <div class="listview" id="notifications">
                         <div class="lv-header">
-                            Notification
+                            <h2 class="text-danger">$ {{header.carritoHead.total}}</h2>
 
                             <ul class="actions">
                                 <li>
                                     <a href="" data-ng-click="header.clearNotification($event)">
-                                        <i class="zmdi zmdi-check-all"></i>
+                                        <i class="zmdi zmdi-delete"></i>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="lv-body">
-                            <a class="lv-item" ng-href="" ng-repeat="w in header.messageResult.list">
+                            <a class="lv-item" ng-href="" ng-repeat="w in header.carritoHead.items">
                                 <div class="media">
                                     <div class="pull-left">
-                                        <img class="lv-img-sm" ng-src="img/profile-pics/{{ w.img }}" alt="">
+                                        <img class="lv-img-sm" ng-src="{{ w.producto.img }}" alt="">
                                     </div>
                                     <div class="media-body">
-                                        <div class="lv-title">{{ w.user }}</div>
-                                        <small class="lv-small">{{ w.text }}</small>
+                                        <div class="lv-title">{{ w.producto.name }}</div>
+                                        <small class="lv-small">UNIDADES: {{ w.cantidad }}, PRECIO: {{w.producto.price}}</small>
                                     </div>
                                 </div>
                             </a>
@@ -110,9 +113,9 @@
                         <span ng-repeat="w in ctx.skinList | limitTo : 6" class="ss-skin bgm-{{ w }}" data-ng-click="ctx.skinSwitch(w)"></span>
                     </li>
                     <li class="divider hidden-xs"></li>
-                    <!-- <li>
+                    <li>
                         <a data-ng-click="header.clearLocalStorage()" href=""><i class="zmdi zmdi-delete"></i> Clear Local Storage</a>
-                    </li> -->
+                    </li>
                     <li>
                         <a data-ui-sref="user-management-detail({login:ctx.account.login})"><i class="zmdi zmdi-face"></i> Ver Perfil</a>
                     </li>
@@ -134,8 +137,22 @@
 
 <!-- Top Search Content -->
 <div id="top-search-wrap">
-    <div class="tsw-inner">
-        <i id="top-search-close" class="zmdi zmdi-arrow-left" data-ng-click="header.closeSearch()"></i>
-        <input type="text">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="tsw-inner">
+                    <i id="top-search-close" class="zmdi zmdi-arrow-left" data-ng-click="header.closeSearch()"></i>
+                    <form id="search-form" name="productSearch" ng-submit="header.searchProduct(vm.buscarProducto)">
+                        <div class="main-form">
+                            <div class="shortfieldz">
+                                <input type="text" name="nameSearch" class="input-search pull-left" placeholder="Buscar en Calmar..." 
+                                    ng-model="vm.buscarProducto" id="ng-change-search">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<!-- </div> -->

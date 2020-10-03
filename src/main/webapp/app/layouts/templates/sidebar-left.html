@@ -1,4 +1,8 @@
-<div class="sidebar-inner c-overflow" has-authority="ROLE_ADMIN">    
+<div class="sidebar-inner c-overflow">
+    
+    <div ng-include="'app/home/home.sidebar-left-category.html'"></div>
+
+    <div has-authority="ROLE_ADMIN">
     <!-- Begin Profile Menu -->
     <div class="profile-menu">
         <a href="" toggle-submenu>
@@ -139,4 +143,5 @@
         
     </ul>
     <!-- /End Main Menu -->
+    </div>
 </div>

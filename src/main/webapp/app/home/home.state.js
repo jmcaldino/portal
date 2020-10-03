@@ -45,6 +45,47 @@
                     $state.go('home');
                 });
             }]
+        })
+        .state('home.calmar', {
+            parent: 'app',
+            url: '/producto-listado?page',
+            data: {
+                authorities: []
+            },
+            params: {
+                page: null
+            },
+            templateUrl: 'app/home/home.html',
+            controller: 'HomeController',
+            controllerAs: 'vm'
+        })
+        .state('home.category', {
+            parent: 'app',
+            url: '/producto-listado/categoria/:name?page',
+            data: {
+                authorities: []
+            },
+            params: {
+                name: null,
+                page: null
+            },
+            templateUrl: 'app/home/home.html',
+            controller: 'CategoryController',
+            controllerAs: 'vm'
+        })
+        .state('home.search', {
+            parent: 'app',
+            url: '/producto-listado/buscar/:keyword?page',
+            data: {
+                authorities: []
+            },
+            params: {
+                keyword: null,
+                page: null
+            },
+            templateUrl: 'app/home/home.html',
+            controller: 'SearchController',
+            controllerAs: 'vm'
         });
     }   
 })();

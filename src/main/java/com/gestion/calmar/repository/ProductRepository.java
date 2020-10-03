@@ -19,6 +19,8 @@ public interface ProductRepository extends JpaRepository<Producto, Long> {
 
 	Optional<Producto> findOneByName(String name);
 
+	Optional<Producto> findOneById(Long id);
+
 	@Query(value = "FROM Producto p "
 			+ "WHERE p.isEnable = true AND p.categoria.isEnable = true AND p.marca.isEnable = true and p.categoria.name = :categoria")
 	Page<Producto> getAllProductByCategory(@Param("categoria") String categoria, Pageable pageable);
@@ -30,4 +32,11 @@ public interface ProductRepository extends JpaRepository<Producto, Long> {
 	@Query(value = "FROM Producto p "
 			+ "WHERE p.isEnable = true AND p.categoria.isEnable = true AND p.marca.isEnable = true AND ( p.name like :keyword OR p.description like :keyword )")
 	Page<Producto> searchProduct(@Param("keyword") String keyword, Pageable pageable);
+
+	@Query(value = "FROM Producto p "
+			+ "WHERE p.isEnable = true AND p.categoria.isEnable = true AND p.marca.isEnable = true AND "
+			+ "( p.name like :keyword OR p.description like :keyword "
+			+ "OR p.name like :keyword2 OR p.description like :keyword2 )")
+	Page<Producto> searchProductWithTwoWord(@Param("keyword") String keyword, @Param("keyword2") String keyword2,
+			Pageable pageable);
 }

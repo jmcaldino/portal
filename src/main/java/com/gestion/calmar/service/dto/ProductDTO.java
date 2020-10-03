@@ -1,5 +1,7 @@
 package com.gestion.calmar.service.dto;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -8,7 +10,9 @@ import com.gestion.calmar.domain.Producto;
 /**
  * A DTO representing a product.
  */
-public class ProductDTO {
+public class ProductDTO implements Serializable {
+
+	private static final long serialVersionUID = 1319530743162476800L;
 
 	private Long id;
 

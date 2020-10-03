@@ -2275,6 +2275,10 @@ body.login-content:before {
   filter: alpha(opacity=80);
 }
 
+[data-current-skin="blueCalmar"] {
+  background-color: #023F91;
+}
+
 [data-current-skin="lightblue"] {
   background-color: #03A9F4;
 }

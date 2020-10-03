@@ -77,6 +77,16 @@ public class ProductService {
 	}
 
 	@Transactional(readOnly = true)
+	public ProductDTO getProductById(Long id) {
+		log.info("getProductById method -> Param { id: " + id + " }");
+		Optional<Producto> product = productRepository.findOneById(id);
+		Optional<ProductDTO> productDTO = Optional.of(product).filter(Optional::isPresent).map(Optional::get)
+				.map(ProductDTO::new);
+		log.info("Exit getProductById method::: " + productDTO.get() + " . ");
+		return productDTO.get();
+	}
+
+	@Transactional(readOnly = true)
 	public Optional<Producto> getByName(String prodName) {
 		return productRepository.findOneByName(prodName);
 	}
@@ -162,8 +172,12 @@ public class ProductService {
 
 	@Transactional(readOnly = true)
 	public Page<Producto> searchProductByNameOrDescription(String keyword, Pageable pageable) {
-		Page<Producto> products = productRepository.searchProduct("%" + keyword + "%", pageable);
-		return products;
+		String[] words = keyword.split(" ");
+		if (words.length == 1) {
+			return productRepository.searchProduct("%" + words[0] + "%", pageable);
+		} else {
+			return productRepository.searchProductWithTwoWord("%" + words[0] + "%", "%" + words[1] + "%", pageable);
+		}
 	}
 
 }

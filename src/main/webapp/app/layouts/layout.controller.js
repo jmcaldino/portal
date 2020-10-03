@@ -56,7 +56,7 @@
         ctx.wallLink = false;
 
         //Skin Switch
-        ctx.currentSkin = 'lightblue';
+        ctx.currentSkin = 'blueCalmar';
 
         ctx.skinList = [
             'lightblue',
@@ -88,7 +88,7 @@
 
         function logout() {
             Auth.logout();
-        } 
+        }
         
         ctx.account = null;
         
@@ -113,11 +113,18 @@
         .module('gestionFlia')
         .controller('HeaderController', HeaderController);
     
-    HeaderController.$inject = ['$timeout'];
+    HeaderController.$inject = ['$timeout','HomeService','$state', 'CarritoService'];
     
-    function HeaderController ($timeout) {
+    function HeaderController ($timeout, HomeService, $state, CarritoService) {
         var vm = this;
+        vm.carritoHead = undefined;
         
+        CarritoService.getCarrito({}, function (response) {
+            vm.carritoHead = response;
+            //document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+            //angular.element('#cantidadCarritoHead').val(vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+        });
+
         // Top Search
         vm.openSearch = function(){
             angular.element('#header').addClass('search-toggled');
@@ -207,6 +214,43 @@
             }
             else {
                 launchIntoFullscreen(document.documentElement);
+            }
+        }
+
+        vm.searchProduct = function searchProduct(buscar) {
+            if(buscar){
+                $state.go('home.search', {
+                    keyword: buscar,
+                    page: 0
+                });
+            }
+        }
+
+        vm.revisarSiEstaEnCarrito = function revisarSiEstaEnCarrito() {
+            CarritoService.getCarrito({}, function (response) {
+                vm.carritoHead = response;
+                load(response.items);
+                document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+            }),
+            function (err) {
+                return cb(err);
+            }
+            function load (card) {
+                if(vm.productosDestacados){
+                    for (var i = 0; i < vm.productosDestacados.length; i++) {
+                        if(card){
+                            for (var j = 0; j < card.length; j++) {
+                                if(card[j].producto.id == vm.productosDestacados[i].id){
+                                    vm.productosDestacados[i].isExistInCard=true;
+                                    vm.productosDestacados[i].isExistInCardCount=card[j].cantidad;
+                                    break;
+                                }
+                            }
+                        }else{
+                            break;
+                        }
+                    }
+                }
             }
         }
     

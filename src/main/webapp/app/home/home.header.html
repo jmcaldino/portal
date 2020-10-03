@@ -1,22 +1,23 @@
 <div class="card-header">
-        <div class="container">
+        <div class="container  p-t-20">
                 <div class="row">
-                    <div class="col-sm-2">
-                        <center>
-                            <img src="assets/img/home/calmar-logo.png" class="girl img-responsive" alt="" />
-                        </center>
+                    <div class="col-sm-2" align="center">
+                        <a ui-sref="home">
+                            <img src="assets/img/home/calmar-logo.png" class="girl img-responsive" alt="" href="" />
+                        </a>
                     </div>
                     <div class="col-sm-10">
-                        <div class="row" style="padding-bottom: 20px;">
+                        <div class="row p-b-20">
                             <div class="col-sm-8"></div>
-                            <div class="col-sm-4">
-                                <center>
-                                    <button class="btn bgm-lightblue waves-effect" style="padding-right: 20px;">
-                                            <span class="zmdi zmdi-download zmdi-hc-lg" style="margin-right: 10px;"></span> Lista de precios
-                                            <!-- ui-sref="home.login()" -->
-                                    </button>
-                                </center>
-                            </div>
+                            <!--
+                                <div class="col-sm-4">
+                                    <center>
+                                        <button class="btn bgm-lightblue waves-effect" style="padding-right: 20px;">
+                                                <span class="zmdi zmdi-download zmdi-hc-lg" style="margin-right: 10px;"></span> Lista de precios
+                                        </button>
+                                    </center>
+                                </div>
+                            -->
                         </div>
                         <div class="row p-t-10">
                             <div class="col-sm-6">
@@ -35,7 +36,7 @@
                                                         <img src="assets/img/icons/searchicon3.png" class="img-responsive zmdi zmdi-link event-link-btn" alt="Responsive image " width="30" height="24" /> 
                                                     </a>
                                                     <input type="text" name="nameSearch" class="input-search pull-left" placeholder="Buscar productos..." 
-                                                        ng-model="vm.buscarProducto" id="ng-change-search" required>
+                                                        ng-model="vm.buscarProducto" id="ng-change-search2" required>
                                                     </div>
                                                     <button type="submit" ng-show="vm.hiddenBtnSearch" ng-disabled="productSearch.$invalid" >
                                                     </button>
@@ -55,7 +56,7 @@
                                                 </a>
                                             </li>
                                             <li class="hidden-xs">
-                                                <a href="#">
+                                                <a ui-sref="cart">
                                                 <i> <img src="assets/img/carrito.png" alt=""/>
                                                     Carrito
                                                 </i>
@@ -75,12 +76,24 @@
                         </div>
                     </div>
                 </div>
-            <hr>
+        </div>
+        <div class="container">
+                <div class="row p-b-20">
+                    <div class="col-sm-12">
+                            <div class="contactinfo">
+                                <ul class="nav nav-pills">
+                                    <li><a href="#">
+                                        <img src="assets/img/icons/whatsapp-16.png" alt=""/> <span> whatsapp +54 (221) XXX XXXX</span></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-email"></i> info@e-shopper.com</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-truck"></i> Envios a todo el pais</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
         </div>
 
         <div class="container">
-
-                <div class="row">
+                <div class="row p-t-15" style="border-top: 1px solid whitesmoke;margin-right: 25px;">
                         <div class="col-sm-12">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
@@ -95,14 +108,14 @@
                                 <ul class="nav navbar-nav navbar-light collapse navbar-collapse">
                                     <li class="dropdown active"><a href="#">Producto <i class="zmdi zmdi-chevron-down"></i></a>
                                         <ul role="menu" class="sub-menu">
-                                            <li><a href="#">Escobas</a></li> 
-                                            <li><a href="#">Cepillos</a></li> 
-                                            <li><a href="#">Liquidos de limpieza</a></li> 
-                                            <li><a href="#">Bazar y Hermeticos</a></li>
-                                            <li><a href="#">Bolsas</a></li> 
-                                            <li><a href="#">Lampazos y Baldes</a></li>
-                                            <li><a href="#">Trapos, Franelas y Rep.</a></li>
-                                            <li><a href="#">Varios</a></li>  
+                                            <li><a ui-sref="home.category(({name:'Escobas', page:0}))">Escobas</a></li> 
+                                            <li><a ui-sref="home.category(({name:'Cepillos', page: 0 }))">Cepillos</a></li> 
+                                            <li><a ui-sref="home.category(({name:'Liquidos de limpieza', page: 0 }))">Liquidos de limpieza</a></li> 
+                                            <li><a ui-sref="home.category(({name:'Bazar y Hermeticos', page: 0 }))">Bazar y Hermeticos</a></li>
+                                            <li><a ui-sref="home.category(({name:'Bolsas', page: 0 }))">Bolsas</a></li> 
+                                            <li><a ui-sref="home.category(({name:'Baldes,Lampazos y Mopa', page: 0 }))">Lampazos y Baldes</a></li>
+                                            <li><a ui-sref="home.category(({name:'Trapos, Franelas y Rep.', page: 0 }))">Trapos, Franelas y Rep.</a></li>
+                                            <li><a ui-sref="home.category(({name:'Varios', page: 0 }))">Varios</a></li>  
                                         </ul>
                                     </li>
                                     <li><a href="#">Novedades</a></li>
@@ -121,15 +134,6 @@
                                 </ul>
                             </div>           
                         </div>
-
-                        <!-- Lo saco 
-                        <div class="col-sm-3">
-                            <div class="search_box pull-right">
-                                <input type="text" placeholder="Buscar..."/>
-                            </div>
-                        </div>
-                        -->
-                    
                 </div>
 
         </div>

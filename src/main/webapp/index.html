@@ -21,7 +21,8 @@
         
     <!-- Vendor CSS -->
     <!-- <link href="bower_components/animate.css/animate.min.css" rel="stylesheet"> -->
-    <link href="bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+    <!-- <link href="bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
     <link href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
     <link href="bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet">
     <link href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
@@ -170,6 +171,8 @@
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.service.js"></script>
     <script src="app/home/home.controller.js"></script>
+    <script src="app/home/controller-section/category.controller.js"></script>
+    <script src="app/home/controller-section/search.controller.js"></script>
     <script src="app/entities/entity.state.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
@@ -253,45 +256,20 @@
     <script src="app/components/adjunto-simple/file-model.directive.js"></script>
     <!-- End Nuevos componentes -->
 
-    <!-- Begin Carga Solicitud Lde -->
-    <script src="app/solicitud-lde/solicitud-lde-create.controller.js"></script>
-    <script src="app/solicitud-lde/solicitud-lde-retirar-unit-dialog.controller.js"></script>
-    <script src="app/solicitud-lde/solicitud-lde-listar.controller.js"></script>
-    <script src="app/solicitud-lde/solicitud-lde-detail.controller.js"></script>
-    <script src="app/solicitud-lde/solicitud-lde.service.js"></script>
-    <script src="app/solicitud-lde/solicitud-lde.state.js"></script>
-
-    <!-- Begin Carga Recibos -->
-    <script src="app/recibo/recibo.listar.controller.js"></script>
-    <script src="app/recibo/recibo.service.js"></script>
-    <script src="app/recibo/recibo.state.js"></script>
-    <script src="app/recibo/recibo-detail.controller.js"></script>
-
-    <!-- Begin Carga Inquilinos -->
-    <script src="app/inquilino/inquilino.listar.controller.js"></script>
-    <script src="app/inquilino/inquilino.service.js"></script>
-    <script src="app/inquilino/inquilino.state.js"></script>
-
-    <!-- Begin Carga Inmueble -->
-    <script src="app/inmueble/inmueble.listar.controller.js"></script>
-    <script src="app/inmueble/inmueble-detalle.controller.js"></script>
-    <script src="app/inmueble/inmueble.service.js"></script>
-    <script src="app/inmueble/inmueble.state.js"></script>
-
     <!-- Begin Carga Producto -->
     <script src="app/productos/producto.editar.controller.js"></script>
     <script src="app/productos/producto.agregar.controller.js"></script>
     <script src="app/productos/producto.listar.controller.js"></script>
     <script src="app/productos/producto.service.js"></script>
-    <script src="app/productos/producto.state.js"></script>    
+    <script src="app/productos/producto.state.js"></script>  
+    
+    <!-- Begin Carrito -->
+    <script src="app/carrito/carrito.controller.js"></script>
+    <script src="app/carrito/carrito.state.js"></script>
+    <script src="app/carrito/carrito.service.js"></script>
+    <script src="app/carrito/carrito.header.service.js"></script>
 
-    <!-- End Carga Solicitud Lde-->
-
-    <!-- Begin Carga Parametro General -->
-    <script src="app/parametro-general/parametro-general.controller.js"></script>
-    <script src="app/parametro-general/parametro-general.service.js"></script>
-    <script src="app/parametro-general/parametro-general.state.js"></script>
-    <!-- End Carga Parametro General -->
+    <!-- End Carga Carrito-->
 
     <script src="app/services/user/support.service.js"></script>
     <script src="app/account/settings/settings.state.js"></script>
