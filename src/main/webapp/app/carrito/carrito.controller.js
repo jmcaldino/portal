@@ -54,5 +54,14 @@
             }
         }
 
+        vm.refresh = function refresh() {
+            //$state.reload();
+            $state.go('home.calmar', {
+                page: $scope.currentPage
+            }, {
+                reload: true
+            });
+        }
+
     }
 })();

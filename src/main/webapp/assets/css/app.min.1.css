@@ -15725,3 +15725,8 @@ border-radius: 2px !important;
       opacity: 1;
   }
 }
+
+.scroll-panel-body {
+  overflow: scroll;
+  height: 100px;
+}

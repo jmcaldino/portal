@@ -1,9 +1,13 @@
 package com.gestion.calmar.service.dto;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class CategoriaDTO {
+public class CategoriaDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@NotNull(message = "categoriaId may not be null")
 	private Long id;

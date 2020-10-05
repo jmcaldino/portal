@@ -1,9 +1,13 @@
 package com.gestion.calmar.service.dto;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class MarcaDTO {
+public class MarcaDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@NotNull(message = "marcaId may not be null")
 	private Long id;

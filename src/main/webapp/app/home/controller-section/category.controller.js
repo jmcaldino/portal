@@ -114,12 +114,13 @@
         }
 
         vm.asignarProducto = function asignarProducto(idProd,cantidadActual, valor, operacion) {
-            if(idProd && valor && cantidadActual){
+            if(idProd && valor && cantidadActual >= 1){
                 if(valor != 0 && ((cantidadActual + valor) >= 1)){
                     var action = 'orderQuantity';
                     var valueInput = valor;
                     if(operacion == 'sumaoresta'){
                         action = 'order';
+                        valueInput = cantidadActual + valor;
                     }
                     CarritoService.carrito({
                         id: idProd,
@@ -128,11 +129,19 @@
                     },  function (response) {
                     });
                     CarritoHeaderService.refreshProductosDestacados(vm.productosDestacados);
-
                     document.getElementById("inputData" + idProd).value = valueInput;
-                    document.getElementById("cantidadCarritoHead").innerHTML = vm.carrito.cantidad;
+                    //$state.reload();
                 }
             }
+        }
+
+        vm.refresh = function refresh() {
+            //$state.reload();
+            $state.go('home.calmar', {
+                page: $scope.currentPage
+            }, {
+                reload: true
+            });
         }
 
         vm.searchProduct = function searchProduct() {

@@ -120,7 +120,11 @@
         vm.carritoHead = undefined;
         
         CarritoService.getCarrito({}, function (response) {
-            vm.carritoHead = response;
+            CarritoService.getCarrito({}, function (response) {
+                vm.carritoHead = response;
+                //document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+                //angular.element('#cantidadCarritoHead').val(vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+            });
             //document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
             //angular.element('#cantidadCarritoHead').val(vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
         });
@@ -133,6 +137,19 @@
 
         vm.closeSearch = function(){
             angular.element('#header').removeClass('search-toggled');
+        }
+
+        //Clear Notification
+        vm.refreshNotification = function() {
+//            $timeout(function(e){
+//                $state.go($state.current, {}, {reload: true});
+//              }, 1000);
+            //$state.reload();
+            CarritoService.getCarrito({}, function (response) {
+                vm.carritoHead = response;
+                //document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+                //angular.element('#cantidadCarritoHead').val(vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+            });
         }
 
 

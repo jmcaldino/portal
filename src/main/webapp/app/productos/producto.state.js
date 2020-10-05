@@ -9,7 +9,7 @@
 
     function stateConfig($stateProvider) {
         $stateProvider.state('producto', {
-            url: '/producto-listado',
+            url: '/listado-productos',
             parent: 'app',
             templateUrl: 'app/productos/producto-listar.html',
             controller: 'ListarProductoController',

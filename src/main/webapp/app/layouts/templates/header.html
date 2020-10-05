@@ -63,7 +63,7 @@
                 </div>
             </li> -->
             <li class="dropdown" id="carritoBtn" uib-dropdown>
-                <a uib-dropdown-toggle href="">
+                <a uib-dropdown-toggle href="" data-ng-click="header.refreshNotification()">
                     <i class="tm-icon zmdi zmdi-shopping-cart"></i>
                     <i class="tmn-counts"><span id="cantidadCarritoHead">0</span></i>
                 </a>
@@ -80,15 +80,15 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="lv-body">
-                            <a class="lv-item" ng-href="" ng-repeat="w in header.carritoHead.items">
+                        <div class="lv-body scroll-panel-body">
+                            <a class="lv-item" ng-href="" data-ng-repeat="w in header.carritoHead.items track by $index">
                                 <div class="media">
                                     <div class="pull-left">
                                         <img class="lv-img-sm" ng-src="{{ w.producto.img }}" alt="">
                                     </div>
                                     <div class="media-body">
                                         <div class="lv-title">{{ w.producto.name }}</div>
-                                        <small class="lv-small">UNIDADES: {{ w.cantidad }}, PRECIO: {{w.producto.price}}</small>
+                                        <small class="lv-small">PRECIO: $ {{w.producto.price}} , Unidades: {{w.cantidad}}</small>
                                     </div>
                                 </div>
                             </a>

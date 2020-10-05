@@ -140,8 +140,18 @@
                     });
                     CarritoHeaderService.refreshProductosDestacados(vm.productosDestacados);
                     document.getElementById("inputData" + idProd).value = valueInput;
+                    //$state.reload();
                 }
             }
+        }
+
+        vm.refresh = function refresh() {
+            //$state.reload();
+            $state.go('home.calmar', {
+                page: $scope.currentPage
+            }, {
+                reload: true
+            });
         }
 
         vm.getLogin = LoginService.open;
