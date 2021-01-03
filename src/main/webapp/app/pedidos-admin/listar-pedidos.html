@@ -1,0 +1,107 @@
+<div class="container" style="background-color:white;">
+    <div class="row p-t-20" style="background-color:#00AAEE;">
+        <div class="col-12">
+            <div class="block-header">
+            </div>
+        </div>
+    </div>
+    <div class="card-header">
+        <ul class="actions">
+            <li has-any-authority="ROLE_ADMIN">
+                <button class="btn bgm-blue waves-effect" ui-sref="producto-agregar">
+                    <i class="zmdi zmdi-playlist-plus zmdi-hc-fw"></i> Crear Pedido
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <jhi-alert></jhi-alert>
+        <jhi-alert-error></jhi-alert-error>
+        <div style="margin-left:2%;">
+            <form name="ListLDEForm" role="form" novalidate ng-submit="vm.buscar()">
+                <div class="row p-t-20">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Buscador</label>
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-agp" name="productSearch" ng-model="vm.buscarInmueble"
+                                    placeholder="Buscar producto">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Filtrar productos</label>
+                            <select class="select-agp" id="exampleFormControlSelect1" ng-options="option.name for option in vm.estadoFiltro.availableOptions track by option.id"
+                                ng-model="vm.estadoFiltro.selectedOption">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 p-t-5 m-t-20">
+                        <button type="submit" class="btn bgm-blue waves-effect m-t-5" style="border: 50%;" ng-disabled="ListLDEForm.$invalid">
+                            <i class="zmdi zmdi-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+                <hr>
+            </form>
+        </div>
+        <div class="card-body">
+            <jhi-alert-error></jhi-alert-error>
+            <div class="table-responsive">
+                <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle">
+                    <tr ng-repeat="w in $data" ng-if="$data.length > 0">
+                        <!-- 
+                        <td data-title="'Id  '" sortable="'id'">
+                            <strong>{{ w.id }}</strong>
+                        </td>         -->
+                        <td data-title="'Fecha'">
+                            {{w.createdDate | date:'dd/MM/yy' }}
+                        </td>
+                        <td data-title="'Estado'">
+                            {{ w.estado }}
+                        </td>
+                        <td data-title="'Cliente'">
+                            {{ w.cliente.apellido }}
+                        </td>
+                        <td data-title="'Entrega'">
+                            {{ w.tipoEnvio }}
+                        </td>
+                        <td data-title="'Domicilio'">
+                            {{ w.cliente.domicilio }}
+                        </td>
+                        <td data-title="'Email'">
+                            {{ w.cliente.email }}
+                        </td>
+                        <td data-title="'Codigo'">
+                            {{ w.codigoPedido }}
+                        </td>
+                        <td data-title="'Total'">
+                            $ {{ w.total }}
+                        </td>
+                        <td data-title="'Accion'" width="15%">
+                            <span class="tooltip2">   
+                                    <button class="btn btn-default waves-effect" 
+                                        ui-sref="ver-mi-pedido({id:w.codigoPedido})">
+                                        <i class="zmdi zmdi-eye c-blue"></i>
+                                    </button>
+                                    <span class="tooltiptext">Detalle</span>
+                            </span>
+                            <span class="tooltip2">   
+                                    <button has-authority="ROLE_ADMIN" class="btn btn-default waves-effect" ui-sref="pedido-editar({codigo:w.codigoPedido})">
+                                            <i class="zmdi zmdi-edit"></i>
+                                    </button>
+                                    <span class="tooltiptext">Editar</span>
+                            </span>
+                        
+                        </td>
+                    </tr>
+                    <tr ng-if="$data.length == 0">
+                        <td colspan="8">Actualmente no hay productos.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

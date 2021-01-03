@@ -20,6 +20,11 @@
                 url: 'public-api/carrito',
                 isArray: false
             },
+            'clearCart': {
+                method: 'DELETE',
+                url: 'public-api/carrito',
+                isArray: false
+            }
         });
 
         return service;

@@ -118,17 +118,23 @@
     function HeaderController ($timeout, HomeService, $state, CarritoService) {
         var vm = this;
         vm.carritoHead = undefined;
-        
+
         CarritoService.getCarrito({}, function (response) {
-            CarritoService.getCarrito({}, function (response) {
-                vm.carritoHead = response;
-                //document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
-                //angular.element('#cantidadCarritoHead').val(vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
-            });
+            vm.carritoHead = response;
+            if(vm.carritoHead && vm.carritoHead.total > 0){
+                document.getElementById("cantidadCarritoHead").innerHTML = vm.carritoHead.cantidad;
+                angular.element('#btnComprar').removeClass('disabled');
+                angular.element('#carritoBtn').addClass('dropdown open');
+                $timeout(function(e){
+                        angular.element('#carritoBtn').removeClass('open');
+                      }, 3000);
+            } else{
+                angular.element('#btnComprar').addClass('disabled');
+            }
             //document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
             //angular.element('#cantidadCarritoHead').val(vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
         });
-
+        
         // Top Search
         vm.openSearch = function(){
             angular.element('#header').addClass('search-toggled');
@@ -147,6 +153,12 @@
             //$state.reload();
             CarritoService.getCarrito({}, function (response) {
                 vm.carritoHead = response;
+                if(vm.carritoHead && vm.carritoHead.total > 0){
+                    document.getElementById("cantidadCarritoHead").innerHTML = vm.carritoHead.cantidad;
+                    angular.element('#btnComprar').removeClass('disabled');
+                } else{
+                    angular.element('#btnComprar').addClass('disabled');
+                }
                 //document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
                 //angular.element('#cantidadCarritoHead').val(vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
             });
@@ -179,6 +191,13 @@
             $timeout(function(){
                 angular.element('#notifications').addClass('empty');
             }, (z*150)+200);
+            CarritoService.clearCart({}, function (response) {
+                vm.carritoHead = undefined;
+                document.getElementById("cantidadCarritoHead").innerHTML = '0';
+                $timeout(function(){
+                    $state.reload();
+                    },1500);
+            });
         }
         
         // Clear Local Storage

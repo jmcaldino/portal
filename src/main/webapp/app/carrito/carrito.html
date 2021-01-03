@@ -26,7 +26,7 @@
                                     <td class="description"></td>
                                     <td class="price">Precio</td>
                                     <td class="quantity">Cantidad</td>
-                                    <td class="total">Total</td>
+                                    <td class="total">Subtotal</td>
                                     <td></td>
                                 </tr>
                             </thead>
@@ -65,23 +65,37 @@
         
             <section id="do_action">
                 <div class="container">
-                    <div class="heading">
-                        <h3>¿Que te gustar&iacute;a hacer ahora?</h3>
-                        <p>¿Solicitar el pedido o seguir comprando?</p>
-                    </div>
                     <div class="row">
-                        
                         <div class="col-sm-10">
+                            <div class="heading">
+                                <h3>¿Que te gustar&iacute;a hacer ahora?</h3>
+                                <p>¿Solicitar el pedido o seguir comprando?</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row row p-t-20">    
+                        <div class="col-sm-10 ">
                             <div class="total_area">
-                                <ul>
-                                    <!--
-                                    <li>Sub Total <span>$ {{vm.carrito.total}}</span></li>
-                                    <li>Tax/IVA(6%) <span>$6.6</span></li>
-                                    -->
-                                    <li><h3>Total <span>$ {{vm.carrito.total}}</span></h3></li>
-                                </ul>
-                                                    <a class="btn btn-default update" href="Inicio">Seguir comprando</a>
-                                                    <a class="btn btn-default check_out" href="Checkout">Solicitar Compra</a>
+                                <div class="row row p-t-20">    
+                                    <div class="col-sm-12">
+                                        <ul>
+                                            <li ng-repeat="item in vm.carrito.items"><strong>{{item.producto.name}}</strong> por {{item.cantidad}} Unidades<span>$ {{item.producto.price * item.cantidad}}</span></li>
+                                        </ul>
+                                        <ul>
+                                            <li><h3>Total <span>$ {{vm.carrito.total}}</span></h3></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row p-t-20">
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4 pull-right"> 
+                                        <button class="btn bgm-green waves-effect m-l-10 pull-left" href="" ui-sref="pedido"> <i class="zmdi zmdi-shopping-cart zmdi-hc-lg m-r-5"></i> Comprar</button>
+                                    </div>
+                                    <div class="col-sm-4 pull-right">
+                                        <button class="btn bgm-blue waves-effect m-r-20 pull-right" ng-click="vm.refresh()"> <i class="zmdi zmdi-home zmdi-hc-lg"></i> Ver mas productos</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

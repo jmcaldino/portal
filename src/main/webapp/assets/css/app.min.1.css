@@ -1697,8 +1697,9 @@ mark,
   text-transform: capitalize;
 }
 
-.text-muted {
+.text-muted {   /* CUIDADO AGREGUE ESE FLOAT */
   color: #777777;
+  float: left !important;
 }
 
 .text-primary {
@@ -9733,6 +9734,10 @@ a.waves-effect .waves-ripple {
   font-size: 20px !important;
 }
 
+.f-ls {
+  letter-spacing: 0.3ch;
+}
+
 /*
  * Font Weight
  */
@@ -9895,6 +9900,10 @@ a.waves-effect .waves-ripple {
 
 .bgm-green {
   background-color: #4CAF50 !important;
+}
+
+.bg-whitesmoke {
+  background: whitesmoke !important;
 }
 
 .c-green {
@@ -15730,3 +15739,236 @@ border-radius: 2px !important;
   overflow: scroll;
   height: 100px;
 }
+
+.header-element-to-cart {
+  position: relative;
+  height: 100px;
+  width: 100%;
+  background: #EEF4FF;
+  border: 0 none;
+  border-radius: 0;
+  color: #696763;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.solid-tr{
+  border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#lista1 {
+  font-family:Arial;
+  font-weight:bold;
+  font-size:13px;
+  left: -20px;
+  padding: 0px;
+  /* position: absolute; SI ES ABSOLUTE SE VA DE ROW */ 
+}
+
+#lista1 li {
+  display:inline;
+  padding-left:0px;
+  padding-right:1px;
+  background-color:whitesmoke;
+}
+
+#tv {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
+  box-shadow: 5px 5px rgba(0,0,0,.15);
+  transition: all .4s ease;
+}
+#tv:hover {
+  border-radius: 0% 0% 1% 1% / 0% 0% 5% 5% ;
+  box-shadow: 1px 1px rgba(0,0,0,.25);
+}
+
+.sketchy {
+  display: inline-block;
+  border: 1px solid #dad9d8;
+  border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+  letter-spacing: 0.3ch;
+  background: whitesmoke;
+  position: relative;
+}
+
+.center-component {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+/* 
+  You want a simple and fancy tooltip?
+  Just copy all [data-tooltip] blocks:
+*/
+[data-tooltip] {
+  position: relative;
+  z-index: 10;
+  animation: fadein 6s;
+  -moz-animation: fadein 6s; /* Firefox */
+  -webkit-animation: fadein 6s; /* Safari and Chrome */
+  -o-animation: fadein 6s; /* Opera */
+}
+
+/* Positioning and visibility settings of the tooltip */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  left: 50%;
+  bottom: calc(100% + 5px); /* 5px is the size of the arrow */
+  pointer-events: none;
+  transition: 0.2s;
+  will-change: transform;
+}
+
+/* The actual tooltip with a dynamic width */
+[data-tooltip]:before {
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  content: attr(data-tooltip);
+  padding: 10px 18px;
+  min-width: 50px;
+  max-width: 300px;
+  width: max-content;
+  width: -moz-max-content;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: rgba(59, 72, 80, 0.9);
+  background-image: linear-gradient(30deg,
+    rgba(59, 72, 80, 0.44),
+    rgba(59, 68, 75, 0.44),
+    rgba(60, 82, 88, 0.44)),
+    url("../img/icons/alert.png");
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-align: center;
+  white-space: pre-wrap;
+  transform: translate(-50%, -5px) scale(0.5);
+}
+
+/* Tooltip arrow */
+[data-tooltip]:after {
+  content: '';
+  border-style: solid;
+  border-width: 5px 5px 0px 5px; /* CSS triangle */
+  border-color: rgba(55, 64, 70, 0.9) transparent transparent transparent;
+  transition-duration: 0s; /* If the mouse leaves the element, 
+                              the transition effects for the 
+                              tooltip arrow are "turned off" */
+  transform-origin: top;   /* Orientation setting for the
+                              slide-down effect */
+  transform: translateX(-50%) scaleY(0);
+}
+
+/* Tooltip becomes visible at hover */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: visible;
+  opacity: 1;
+}
+/* Scales from 0.5 to 1 -> grow effect */
+[data-tooltip]:before {
+  transition-delay: 0.3s;
+  transform: translate(-50%, -5px) scale(1);
+}
+/* 
+  Arrow slide down effect only on mouseenter (NOT on mouseleave)
+*/
+[data-tooltip]:after {
+  transition-delay: 0.5s; /* Starting after the grow effect */
+  transition-duration: 0.2s;
+  transform: translateX(-50%) scaleY(1);
+}
+
+/*
+  If you want some adjustability
+  here are some orientation settings you can use:
+*/
+/* BOTTOM */
+[data-tooltip-location="bottom"]:before,
+[data-tooltip-location="bottom"]:after {
+  top: calc(100% + 5px);
+  bottom: auto;
+}
+
+[data-tooltip-location="bottom"]:before {
+  transform: translate(-50%, 5px) scale(0.5);
+}
+[data-tooltip-location="bottom"]:before {
+  transform: translate(-50%, 5px) scale(1);
+}
+
+[data-tooltip-location="bottom"]:after {
+  border-width: 0px 5px 5px 5px;
+  border-color: transparent transparent rgba(55, 64, 70, 0.9) transparent;
+  transform-origin: bottom;
+}
+
+.cart_quantity_detail {
+  width: 20%;
+}
+
+@media (max-width: 868px) {
+  .cart_quantity_detail {
+    width: 30%;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart_quantity_detail {
+    width: 30%;
+  }
+}
+
+/* ALERT Custom*/ 
+
+.alert>.start-icon {
+  margin-right: 0;
+  min-width: 20px;
+  text-align: center;
+}
+
+.alert>.start-icon {
+  margin-right: 5px;
+}
+
+.greencross
+{
+font-size:18px;
+    color: #25ff0b;
+  text-shadow: none;
+}
+
+.alert-simple.alert-primary{
+border: 1px solid rgba(6, 241, 226, 0.81);
+  background-color: #03A9F4;
+  color: white;
+  text-shadow: 2px 1px darkblue;
+  font-style: italic;
+  transition:0.5s;
+  border-radius: 1px 10px 5px;
+}
+
+.alertprimary
+{
+  font-size: 18px;
+  color: #CCE5FF;
+  text-shadow: none;
+}
+

@@ -50,6 +50,7 @@ public class ProductController {
 	private ProductService productService;
 
 	@GetMapping("/productos")
+	@PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
 	public ResponseEntity<Page<Producto>> getAllProducts(@ApiParam Pageable pageable) {
 		log.info("Inside getAllProducts method...");
 		Page<Producto> pageProduct = productService.listProductPage(pageable);
@@ -60,10 +61,10 @@ public class ProductController {
 	}
 
 	@GetMapping("/productos/name/{name}")
+	@PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
 	public ResponseEntity<ProductDTO> getProduct(@PathVariable(name = "name") String name) {
 		log.info("Inside getProduct method..." + " { name = " + name + " }");
 		ProductDTO productDTO = productService.getProductByName(name);
-		log.info("Exit getProduct method...");
 		return new ResponseEntity<>(productDTO, HttpStatus.OK);
 	}
 
@@ -84,7 +85,6 @@ public class ProductController {
 		log.info("Creando el producto '" + name + "'.");
 		productService.createProduct(name, description, file, price, newPrice, stock, isNew, isRecommended, isEnable,
 				marcaId, categoriaId);
-		// mailService.sendCreationEmail(newUser); TODO CAMBIAR getMarcaId()
 		return ResponseEntity.created(new URI("/api/productos"))
 				.headers(HeaderUtil.createAlert("productManagement", "productManagement.created", name)).body(null);
 	}

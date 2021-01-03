@@ -1,0 +1,315 @@
+<jhi-alert></jhi-alert>
+<div class="container c-white" has-any-authority="ROLE_AUDITOR, ROLE_ADMIN">
+    <div class="row p-t-20 c-blue">
+        <div class="col-12">
+            <div class="block-header">
+                <h2 class="c-white">Editar Pedido</h2>
+            </div>
+        </div>
+    </div>
+    <div id="tv" class="card">
+        <div class="card-body">
+            <jhi-alert-error></jhi-alert-error>
+            <div class="m-l-10">
+                <div class="card-header ch-alt">
+                    <h2 class="text-center"> Modificar Pedido </h2>
+                </div>
+                <div class="row m-t-20">
+                        <div class="col-sm-4 m-t-15">
+                        </div>
+                        <div class="col-sm-4 m-t-15 sketchy">
+                            <div class="row">
+                                <div class="col-sm-12 text-center mark">
+                                    <label class="f-ls f-16 c-black ">
+                                            ESTADO
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row p-b-10">
+                                    <div class="col-sm-12 text-center m-t-10">
+                                        <ui-select ng-model="vm.estados.selected" ng-disabled="disabled"
+                                            theme="bootstrap" search-enabled="false">
+                                            <ui-select-match placeholder="Seleccione un estado">
+                                                <a href="" class="f-ls f-16 center-block text-center">
+                                                    <i> {{$select.selected.name}}</i>
+                                                </a>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item in vm.estados | filter: $select.search">
+                                                    <span href="" class="f-ls f-16 c-dark center-block text-center">
+                                                             {{item.name}}
+                                                    </span>
+                                            </ui-select-choices> 
+                                        </ui-select>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 m-t-15">
+                            </div>
+                </div>
+                <div class="row m-t-20">
+                    <div class="col-sm-12 m-t-15">
+                        <form name="createProduct" role="form" novalidate ng-submit="vm.edit()">
+                            <div class="row p-t-20">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <label class="f-ls f-16 c-black">Codigo de Pedido</label>
+                                            <input type="text" class="form-control input-agp" name="productSearch" ng-model="vm.pedido.codigoPedido" readonly
+                                                ng-minlength="3" ng-maxlength="38">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <div class="row">
+                                                <div class="col-sm-12 p-b-5">
+                                                    <label class="f-ls f-16 c-black">Fecha de creacion</label>
+                                                </div>
+                                            </div>
+                                            <div class="row m-r-5 m-l-5 m-b-10">
+                                                <div class="col-sm-12 sketchy ">
+                                                    <span class="f-ls f-16 c-black p-t-20"><b>{{vm.pedido.createdDate | date:'dd/MM/yyyy' }}</b></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <label class="f-ls f-16 c-black">Tipo de Envio <i class="zmdi zmdi-alert-circle zmdi-hc-lg" ng-show="vm.pedido.tipoEnvio"> </i></label>
+                                            <input type="text" class="form-control input-agp" name="tipoEnvio" ng-model="vm.pedido.tipoEnvio" placeholder="Ingrese la forma de envio">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row p-t-20">
+                                    <div class="col-sm-4">
+                                        <div class="form-group m-r-10">
+                                            <div class="fg-line m-l-5">
+                                                <label class="pull-left f-ls f-16 c-black">
+                                                    Apellido
+                                                    <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.apellido"> </i></label>
+                                                </label>
+                                                <input type="text" id="lastName" name="lastName" class="form-control input-agp" ng-model="vm.pedido.cliente.apellido"
+                                                    placeholder="Ingrese su apellido" ng-minlength="3" ng-maxlength="38">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group m-r-5">
+                                                <div class="fg-line m-l-5">
+                                                    <label class="pull-left f-ls f-16 c-black">
+                                                        Nombre
+                                                        <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.nombre"> </i></label>
+                                                    </label>
+                                                    <p></p>
+                                                    <input type="text" id="firstName" name="firstName" class="form-control input-agp" ng-model="vm.pedido.cliente.nombre"
+                                                        placeholder="Ingrese su nombre" ng-minlength="3" ng-maxlength="38">
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group m-r-10">
+                                                <div class="fg-line m-l-5">
+                                                    <label class="pull-left f-ls f-16 c-black">DNI <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.dni"> </i></label></label>
+                                                    <input type="text" name="dni" class="form-control input-agp" ng-model="vm.pedido.cliente.dni"
+                                                        placeholder="Ingrese su Documento de Identidad" ng-minlength="3" ng-maxlength="38">
+                                                </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <!-- other row-->
+                            <div class="row">
+                                    <div class="p-t-20 hidden-xs">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group m-r-10">
+                                            <div class="fg-line m-l-5">
+                                                <label class="pull-left f-ls f-16 c-black">
+                                                    Provincia
+                                                    <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.provincias.selected"> </i></label>
+                                                </label>
+                                                <p class="p-t-20"></p>
+                                                <ui-select ng-model="vm.provincias.selected" ng-disabled="disabled"
+                                                    theme="bootstrap" search-enabled="false">
+                                                    <ui-select-match placeholder="Seleccione una provincia">
+                                                        <span href="" class="f-ls f-14 c-dark center-block text-center">
+                                                            {{$select.selected.name}}
+                                                       </span>
+                                                    </ui-select-match>
+                                                    <ui-select-choices repeat="item in vm.provincias | filter: $select.search">
+                                                        <span href="" class="f-ls f-14 c-dark center-block text-center">
+                                                            {{item.name}}
+                                                       </span>
+                                                    </ui-select-choices> 
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group m-r-5">
+                                                <div class="fg-line m-l-5">
+                                                    <label class="pull-left f-ls f-16 c-black">
+                                                        Ciudad
+                                                        <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.ciudad"> </i></label>
+                                                    </label>
+                                                    <p></p>
+                                                    <input type="text" name="city" class="form-control input-agp" ng-model="vm.pedido.cliente.ciudad"
+                                                        placeholder="Ingrese la ciudad" ng-minlength="3" ng-maxlength="38">
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group m-r-10">
+                                                <div class="fg-line m-l-5">
+                                                    <label class="pull-left f-ls f-16 c-black">
+                                                        Codigo Postal
+                                                        <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.codigoPostal"> </i></label>
+                                                    </label>
+                                                    <input type="text" id="postalCode" name="postalCode" class="form-control input-agp" ng-model="vm.pedido.cliente.codigoPostal"
+                                                        placeholder="Ingrese el codigo postal" ng-minlength="1" ng-maxlength="38">
+                                                </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <!-- other row-->
+                            <div class="row">
+                                    <div class="p-t-20 hidden-xs">
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <div class="form-group m-r-10">
+                                                <div class="fg-line m-l-5">
+                                                    <label class="pull-left f-ls f-16 c-black">
+                                                        Direcci&oacute;n 
+                                                        <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.domicilio"> </i></label>
+                                                    </label>
+                                                    <input type="text" name="address" class="form-control input-agp" ng-model="vm.pedido.cliente.domicilio"
+                                                    placeholder="Ingrese su direccion" ng-minlength="3" ng-maxlength="38">
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <div class="fg-line">
+                                                <label class="pull-left f-ls f-16 c-black">
+                                                    Correo Electronico
+                                                    <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.email"> </i></label>
+                                                </label>
+                                                <input type="text" name="email" class="form-control input-agp" ng-model="vm.pedido.cliente.email"
+                                                    placeholder="Ingrese la ciudad" ng-minlength="3" ng-maxlength="38">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <div class="form-group m-r-10">
+                                                    <div class="fg-line m-l-5">
+                                                    </div>
+                                            </div>
+                                    </div>
+                            </div>
+                            <!-- other row-->
+                            <div class="row">    
+                                    <div class="p-t-20 hidden-xs">
+                                    </div>
+                                    <div class="col-sm-6 pull-left">
+                                        <div class="m-l-10 sketchy">
+                                            <div class="row p-t-10">
+                                            <div class="col-sm-12">
+                                                <div>
+                                                    <div class="fg-line m-l-5 c-black">
+                                                        <label class="pull-left f-16">TEL&Eacute;FONO <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.telefonoArea && vm.pedido.cliente.numeroDeTelefono"> </i></label></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        
+                                            <div class="row p-t-5">
+                                                <div class="col-sm-4">
+                                                <div class="form-group m-r-10">
+                                                    <div class="fg-line m-l-5">
+                                                        <label class="pull-left c-black">Area <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.telefonoArea"> </i></label></label>
+                                                        <input type="text" id="area" name="area" class="form-control input-agp" ng-model="vm.pedido.cliente.telefonoArea"
+                                                            placeholder="Nro de Area" ng-minlength="1" ng-maxlength="38">
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                <div class="form-group m-r-10">
+                                                        <div class="fg-line m-l-5 c-black">
+                                                            <label class="pull-left">N&uacute;mero de Tel&eacute;fono  <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.pedido.cliente.numeroDeTelefono"> </i></label></label>
+                                                            <input type="text" id="number" name="phone" class="form-control input-agp" ng-model="vm.pedido.cliente.numeroDeTelefono"
+                                                                placeholder="Ingrese su telefono" ng-minlength="3" ng-maxlength="38">
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="m-t-20">
+                                                            <div class="fg-line m-t-10 pull-left">
+                                                                <ul id="lista1">
+                                                                        <li>
+                                                                            <a href="" ng-click="vm.selectWhatapp()">
+                                                                                <i class="zmdi zmdi-check-square zmdi-hc-2x" ng-show="vm.pedido.contactarWhatapp"></i>
+                                                                                <i class="zmdi zmdi-square-o zmdi-hc-2x" ng-show="!vm.pedido.contactarWhatapp"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span class="text-dark"></span><a href="" ng-click="vm.selectWhatapp()">Contactarme por Whatapp</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span> </span><a><img src="assets/img/icons/whatsapp-16.png" alt=""/></a>
+                                                                        </li>
+                                                                </ul>
+                                                            </div>
+                                                    </div>  
+                                                </div>
+                                        </div>   
+                                    </div>
+                            </div>
+                            <!-- other row-->
+                            <div class="row p-t-20 m-r-10">
+                                    <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="fg-line">
+                                                    <i class="zmdi zmdi-comment-alt-text pull-left"></i>
+                                                    <label class="pull-left f-ls f-16 c-black">Mensaje</label>
+                                                    <textarea class="f-18 textarea-custom" rows="2" ng-model="vm.pedido.mensaje"></textarea>
+                                                </div>
+                                            </div>
+                                    </div>
+                            </div>
+                            <!-- last row-->
+                            <hr>
+                            <div class="row p-t-20">
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-success separado">
+                                                <span class="glyphicon glyphicon-floppy-save"></span>&nbsp;
+                                                <span data-translate="entity.action.edit">Save</span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger separado" ui-sref="pedidos" ng-click="vm.clear()">
+                                                <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
+                                                <span data-translate="entity.action.cancel">Cancel</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-footer" has-any-authority="ROLE_AUDITOR, ROLE_ADMIN">
+
+    </div>
+</div>

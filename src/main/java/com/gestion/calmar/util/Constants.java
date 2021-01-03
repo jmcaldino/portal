@@ -7,4 +7,6 @@ public final class Constants {
 
 	// PATH-FILE-BY-DEFAULT
 	public static final String CONTEXT_PATH_FILE = "assets/img/productos/demo.png";
+
+	public static final String STATUS_PENDING = "Pendiente";
 }

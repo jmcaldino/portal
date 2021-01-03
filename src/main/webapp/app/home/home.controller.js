@@ -47,12 +47,7 @@
                         pages.push(i+1);
                 }
                 $scope.pagedItems= pages;
-
                 CarritoHeaderService.refreshProductosDestacados(vm.productosDestacados);
-                angular.element('#carritoBtn').addClass('dropdown open');
-                $timeout(function(e){
-                        angular.element('#carritoBtn').removeClass('open');
-                      }, vm.menuCartTimeout);
         });
         
         $scope.range = function (start, end) {
@@ -70,6 +65,7 @@
         $scope.prevPage = function () {
             if ($scope.currentPage > 0) {
                 $scope.currentPage--;  // Restamos
+                angular.element('#initproductfocus').find('button').focus();
                 $state.go('home.calmar', {
                     page: $scope.currentPage
                 }, {
@@ -81,6 +77,7 @@
         $scope.nextPage = function () {
             if ($scope.currentPage < $scope.pagedItems.length - 1) {
                 $scope.currentPage++;  // Sumamos
+                angular.element('#initproductfocus').find('button').focus();
                 $state.go('home.calmar', {
                     page: $scope.currentPage
                 }, {
@@ -91,6 +88,7 @@
         
         $scope.setPage = function () {
             $scope.currentPage = this.n; // Asignamos
+            angular.element('#initproductfocus').find('button').focus();
             $state.go('home.calmar', {
                 page: $scope.currentPage
             }, {
@@ -143,6 +141,10 @@
                     //$state.reload();
                 }
             }
+        }
+
+        vm.minusSlider = function minusSlider(){
+            //vm.hiddenCarousel = true;
         }
 
         vm.refresh = function refresh() {

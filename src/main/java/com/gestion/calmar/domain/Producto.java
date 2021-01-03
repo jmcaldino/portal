@@ -19,7 +19,7 @@ import org.hibernate.annotations.Check;
 @Entity
 @Table(name = "producto")
 @Check(constraints = "precio > precio_nuevo")
-public class Producto implements Serializable {
+public class Producto extends AbstractAuditingEntity implements Serializable {
 
 	private static final long serialVersionUID = 365799170906643456L;
 

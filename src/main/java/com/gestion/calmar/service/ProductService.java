@@ -1,6 +1,8 @@
 package com.gestion.calmar.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +47,7 @@ public class ProductService {
 		newProd.setCategoria(category);
 		final Marca marca = marcaService.getMarca(product.getMarca().getId());
 		newProd.setMarca(marca);
+		log.info("Insert new product: '{}'", newProd);
 		// TODO falta la clase revisión
 		productRepository.save(newProd);
 	}
@@ -91,6 +94,11 @@ public class ProductService {
 		return productRepository.findOneByName(prodName);
 	}
 
+	@Transactional(readOnly = true)
+	public Set<Producto> getProductByIds(List<Long> ids) {
+		return productRepository.getProductByIDs(ids);
+	}
+
 	public void createProduct(String name, String description, MultipartFile file, Double price, Double newPrice,
 			Integer stock, Boolean isNew, Boolean isRecommended, Boolean isEnable, Long marcaId, Long categoriaId) {
 		log.info("CreateProduct method -> Param { name: " + name + ", description: " + description + ", file: " + file
@@ -126,12 +134,14 @@ public class ProductService {
 				+ newPrice + ", stock: " + stock + ", isNew: " + isNew + ", isRecommended: " + isRecommended
 				+ ", isEnable: " + isEnable + ", marcaId: " + marcaId + ", categoriaId" + categoriaId + "}");
 		try {
+			boolean updateFile = false;
 			String filePath = "";
 			if (file != null) {
 				log.info("Uploading file::: " + file.getName());
 				String fileName = storageService.upload(file);
 				filePath = Constants.ATTACH_PATH_PRODUCT + "/" + fileName; // assets/img/productos/fileName
 				log.info("Updated file. FilePath::: " + filePath);
+				updateFile = true;
 			}
 
 			Optional<Producto> productOp = Optional.of(this.productRepository.getOne(id));
@@ -147,6 +157,9 @@ public class ProductService {
 				}
 				Producto product = productOp.get();
 				String fileImg = (!filePath.isEmpty() ? filePath : product.getImg());
+				if (updateFile) { // Eliminamos la imagen anterior
+					storageService.delete(product.getImg());
+				}
 				Marca marca = marcaService.getMarca(marcaId);
 				Category categoria = categoryService.getCategory(categoriaId);
 				Producto productUpdate = new Producto(name, description, price, newPrice, stock, isNew, isRecommended,

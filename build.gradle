@@ -147,6 +147,7 @@ liquibase {
             defaultSchemaName "calmar"
             logLevel "debug"
             classpath "src/main/resources/"
+            referenceUrl "hibernate:spring:com.interna.gestionflia.domain?dialect=org.hibernate.dialect.MySQL5Dialect"
         }
         diffLog {
             driver "com.mysql.cj.jdbc.Driver"
@@ -154,7 +155,7 @@ liquibase {
             username "juan"
             password "juan123"
             changeLogFile project.ext.diffChangelogFile
-            referenceUrl "hibernate:spring:com.gestion.calmar.domain?dialect=org.hibernate.dialect.MySQL8Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+            referenceUrl "hibernate:spring:com.interna.gestionflia.domain?dialect=org.hibernate.dialect.MySQL5Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
             defaultSchemaName "calmar"
             logLevel "debug"
             classpath "$buildDir/classes/java/main"
@@ -274,6 +275,9 @@ dependencies {
     testImplementation "com.tngtech.archunit:archunit-junit5-api:${archunit_junit5_version}"
     testRuntimeOnly "com.tngtech.archunit:archunit-junit5-engine:${archunit_junit5_version}"
     testImplementation "com.h2database:h2"
+        
+    implementation "org.postgresql:postgresql"
+    liquibaseRuntime "org.postgresql:postgresql"
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }
 

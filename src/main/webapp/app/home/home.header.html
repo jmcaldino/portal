@@ -22,27 +22,29 @@
                         <div class="row p-t-10">
                             <div class="col-sm-6">
                                     <div>
-                                        <form id="main-form" name="productSearch" ng-submit="vm.searchProduct()">
-                                            <div class="main-form">
-                                            <!-- 
-                                            <small class="pull-left">Ingrese el producto que desea buscar</small>
-                                            <input type="text" name="search" class="input-search pull-left" placeholder="Buscar producto..." 
-                                                ng-model="vm.buscarProducto" id="ng-change-search">
-                                                -->
-                                                <div class="shortfieldz">
-                                                    <small class="pull-left">Ingrese el producto que desea buscar...</small>
-                                                    <div class="fg-line">
-                                                    <a href="" class="pull-right" ng-click="vm.searchProduct()">
-                                                        <img src="assets/img/icons/searchicon3.png" class="img-responsive zmdi zmdi-link event-link-btn" alt="Responsive image " width="30" height="24" /> 
-                                                    </a>
-                                                    <input type="text" name="nameSearch" class="input-search pull-left" placeholder="Buscar productos..." 
-                                                        ng-model="vm.buscarProducto" id="ng-change-search2" required>
+                                        <div id="searchProduct">
+                                            <form id="main-form" name="productSearch" ng-submit="vm.searchProduct()">
+                                                <div class="main-form">
+                                                <!-- 
+                                                <small class="pull-left">Ingrese el producto que desea buscar</small>
+                                                <input type="text" name="search" class="input-search pull-left" placeholder="Buscar producto..." 
+                                                    ng-model="vm.buscarProducto" id="ng-change-search">
+                                                    -->
+                                                    <div class="shortfieldz">
+                                                        <small class="pull-left">Ingrese el producto que desea buscar...</small>
+                                                        <div class="fg-line">
+                                                        <a href="" class="pull-right" ng-click="vm.searchProduct()">
+                                                            <img src="assets/img/icons/searchicon3.png" class="img-responsive zmdi zmdi-link event-link-btn" alt="Responsive image " width="30" height="24" /> 
+                                                        </a>
+                                                        <input type="text" name="nameSearch" class="input-search pull-left" placeholder="Buscar productos..." 
+                                                            ng-model="vm.buscarProducto" id="ng-change-search2" required>
+                                                        </div>
+                                                        <button type="submit" ng-show="vm.hiddenBtnSearch" ng-disabled="productSearch.$invalid" >
+                                                        </button>
                                                     </div>
-                                                    <button type="submit" ng-show="vm.hiddenBtnSearch" ng-disabled="productSearch.$invalid" >
-                                                    </button>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                             </div>
                             <div class="col-sm-6">

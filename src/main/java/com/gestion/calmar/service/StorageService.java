@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -50,7 +51,7 @@ public class StorageService {
 	}
 
 	public String upload(MultipartFile file) throws Exception {
-		log.info("vamos a guardar en" + getUploadDirectory());
+		log.info("vamos a guardar en '{}'.", getUploadDirectory());
 		if (!Arrays.asList(ALLOWED_CONTENT_TYPES).contains(file.getContentType())) {
 			throw new Exception("No se puede subir este tipo de archivo");
 		}
@@ -66,9 +67,15 @@ public class StorageService {
 
 	}
 
-	public boolean delete(String path) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public void delete(String path) throws Exception {
+		path = path.replace("assets/img/productos/", "");
+		log.info("Vamos a eliminar en el directorio '{}' el archivo '{}'...", getUploadDirectory(), path);
+		log.info("Deleting file '{}'", getUploadDirectory().concat(path));
+		try {
+			Files.deleteIfExists(Paths.get(getUploadDirectory().concat(path)));
+		} catch (NoSuchFileException e) {
+			log.info("No such file/directory exists. '{}'", path);
+		}
 	}
 
 	public File readFile(String path) throws Exception {
@@ -83,10 +90,10 @@ public class StorageService {
 
 	private static String getFileServer() {
 		String devPath = Paths.get(".").toAbsolutePath().normalize().toString();
-		String fileName = System.getProperty("calmar.file_upload_server");
-		if (fileName != null && !fileName.isEmpty()) {
-			return fileName;
-		}
+//		String fileName = System.getProperty("calmar.file_upload_server");
+//		if (fileName != null && !fileName.isEmpty()) {
+//			return fileName;
+//		}
 		return devPath;
 	}
 

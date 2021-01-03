@@ -1,0 +1,127 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="juan (generated)" id="1607312598070-1">
+        <createTable tableName="cliente">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="clientePK"/>
+            </column>
+            <column name="apellido" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provincia" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ciudad" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codigo_postal" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dni" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="domicilio" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefono_numero" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefono_area" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1607312598070-2">
+        <createTable tableName="solicitud_pedido">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="solicitud_pedidoPK"/>
+            </column>
+            <column name="codigo_pedido" type="VARCHAR(255)"/>
+            <column defaultValue="Pendiente" name="estado" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total" type="DECIMAL(10, 2)"/>
+            <column name="mensaje" type="TEXT"/>
+            <column name="tipo_envio" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="contactar_whatapp" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cliente_fk" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1607312598070-3">
+        <createTable tableName="solicitud_pedido_item">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="solicitud_pedido_itemPK"/>
+            </column>
+            <column name="cantidad" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="imagen" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre_de_producto" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="precio_de_compra" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="precio_nuevo" type="DECIMAL(10, 2)"/>
+            <column name="producto_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sub_total" type="DECIMAL(10, 2)"/>
+            <column name="solicitud_pedido_fk" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1607312598070-4">
+        <addColumn tableName="producto">
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1607312598070-5">
+        <addColumn tableName="producto">
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1607312598070-6">
+        <addColumn tableName="producto">
+            <column name="last_modified_by" type="varchar(50)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1607312598070-7">
+        <addColumn tableName="producto">
+            <column name="last_modified_date" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1607312598070-8">
+        <addForeignKeyConstraint baseColumnNames="solicitud_pedido_fk" baseTableName="solicitud_pedido_item" constraintName="FKq8k9huqypsx6nt8o08rvxnly3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="solicitud_pedido"/>
+    </changeSet>
+    <changeSet author="juan (generated)" id="1607312598070-9">
+        <addForeignKeyConstraint baseColumnNames="cliente_fk" baseTableName="solicitud_pedido" constraintName="FKt3dsq2hr3eip7bmrv7am67oef" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="cliente"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,6 +1,8 @@
 package com.gestion.calmar.repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,4 +41,7 @@ public interface ProductRepository extends JpaRepository<Producto, Long> {
 			+ "OR p.name like :keyword2 OR p.description like :keyword2 )")
 	Page<Producto> searchProductWithTwoWord(@Param("keyword") String keyword, @Param("keyword2") String keyword2,
 			Pageable pageable);
+
+	@Query(value = "FROM Producto p WHERE p.id IN :ids")
+	Set<Producto> getProductByIDs(@Param("ids") List<Long> ids);
 }

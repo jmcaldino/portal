@@ -15,4 +15,7 @@
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/0001_mapper_model_init.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/0002_mapper_solicitud_pedido.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/0003_script_category_marca.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/0004_script_producto.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

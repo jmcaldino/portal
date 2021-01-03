@@ -70,7 +70,7 @@
                 <div class="dropdown-menu dropdown-menu-lg stop-propagate pull-right">
                     <div class="listview" id="notifications">
                         <div class="lv-header">
-                            <h2 class="text-danger">$ {{header.carritoHead.total}}</h2>
+                            <h2 class="text-danger">$ {{(header.carritoHead.total && header.carritoHead.total > 0)? header.carritoHead.total : '0'}}</h2>
 
                             <ul class="actions">
                                 <li>
@@ -96,7 +96,14 @@
 
                         <div class="clearfix"></div>
 
-                        <a class="lv-footer" href="">View Previous</a>
+                        <!-- <a class="lv-footer" href="">View Previous</a> -->
+                        <hr align="left" noshade="noshade" size="2" width="100%" />
+                        <div class="header-element-to-cart text-center">
+                            <h2 class="p-t-10">Total $ {{(header.carritoHead.total && header.carritoHead.total > 0)? header.carritoHead.total : '0'}}</h2>
+                            <a id="btnComprar" class="btn bgm-green waves-effect" href="" data-ui-sref="pedido">
+                                <i class="tm-icon zmdi zmdi-shopping-cart"></i><span> Comprar</span>
+                            </a>
+                        </div>
                     </div>
 
                 </div>
