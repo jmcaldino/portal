@@ -44,4 +44,6 @@ public interface ProductRepository extends JpaRepository<Producto, Long> {
 
 	@Query(value = "FROM Producto p WHERE p.id IN :ids")
 	Set<Producto> getProductByIDs(@Param("ids") List<Long> ids);
+
+	List<Producto> findFirst12ByIsEnableAndIsRecommended(Boolean isEnable, Boolean IsRecommended);
 }

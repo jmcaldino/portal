@@ -1,5 +1,7 @@
 package com.gestion.calmar.web.rest.publicAPI;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +33,9 @@ public class ProductoPublicController {
 
 	@GetMapping("/productos/destacados")
 	public ResponseEntity<Page<Producto>> getAllDestacadosProduct(@ApiParam Pageable pageable) {
-		log.info("Inside getAllRecommendedProduct method...");
+		log.info("Inside getAllDestacadosProduct method...");
 		Page<Producto> listPage = productService.listDestacadosProductPage(pageable);
-		log.info("Exit getAllRecommendedProduct method...");
+		log.info("Exit getAllDestacadosProduct method...");
 		return new ResponseEntity<>(listPage, HttpStatus.OK);
 	}
 
@@ -57,5 +59,13 @@ public class ProductoPublicController {
 				.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), pageProduct);
 		log.info("Exit searchProductByName method...");
 		return new ResponseEntity<>(pageProduct, headers, HttpStatus.OK);
+	}
+
+	@GetMapping("/productos/recomendados")
+	public ResponseEntity<List<Producto>> getAllRecommendedProduct() {
+		log.info("Inside getAllRecommendedProduct method...");
+		List<Producto> listPage = productService.listRecommendedProduct();
+		log.info("Exit getAllRecommendedProduct method...");
+		return new ResponseEntity<>(listPage, HttpStatus.OK);
 	}
 }

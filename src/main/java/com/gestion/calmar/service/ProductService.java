@@ -193,4 +193,9 @@ public class ProductService {
 		}
 	}
 
+	@Transactional(readOnly = true)
+	public List<Producto> listRecommendedProduct() {
+		return productRepository.findFirst12ByIsEnableAndIsRecommended(true, true);
+	}
+
 }
