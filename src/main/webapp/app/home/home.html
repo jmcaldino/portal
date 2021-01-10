@@ -177,83 +177,85 @@
                                 <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
                                         <div class="item active">	
-                                            <div class="col-sm-4">
+                                            <div ng-repeat="item in vm.recommended1" class="col-sm-4">
                                                 <div class="product-image-wrapper">
                                                     <div class="single-products">
                                                         <div class="productinfo text-center">
-                                                            <img src="assets/img/home/home/recommend1.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carrito</a>
+                                                            <img ng-cloak ng-src="{{item.img}}" alt=""/>
+                                                            <h2>{{item.price}}</h2>
+                                                            <p>{{item.name}}</p>
+                                                            <div class="add-element-to-cart" ng-show="!item.isExistInCard">
+                                                                <span class="btn bgm-blue waves-effect add-to-cart" ng-click="vm.agregarProducto(item.id)"><i class="zmdi zmdi-shopping-cart"></i>Agregar</span>
+                                                            </div>
+                                                            <div class="add-element-to-cart" ng-show="item.isExistInCard">
+                                                                <div class="centrado-porcentual">
+                                                                    <div class="cart_quantity">
+                                                                        <div class="cart_quantity_button">
+                                                                            <a class="cart_quantity_up btn bgm-blue waves-effect" href="" ng-click="vm.asignarProducto(item.id, item.isExistInCardCount, 1 , 'sumaoresta')"> <i class="zmdi zmdi-plus"></i> </a>
+                                                                            <input id="inputData{{item.id}}" class="cart_quantity_input" type="text" name="quantity" ng-value="item.isExistInCardCount" name="quantity" ng-model="item.isExistInCardCount"
+                                                                                    autocomplete="off" size="2" ng-change="vm.asignarProducto(item.id, item.isExistInCardCount, item.isExistInCardCount, 'asignar')" ng-min="1">
+                                                                            <a class="cart_quantity_down btn bgm-blue waves-effect" href="" ng-click="vm.asignarProducto(item.id,item.isExistInCardCount,  -1, 'sumaoresta')"> <i class="zmdi zmdi-minus"></i>  </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-                                                        <div class="productinfo text-center">
-                                                            <img src="assets/img/home/home/recommend2.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carrito</a>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-                                                        <div class="productinfo text-center">
-                                                            <img src="assets/img/home/home/recommend3.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carrito</a>
-                                                        </div>
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="item">	
-                                            <div class="col-sm-4">
+                                            <div ng-repeat="item in vm.recommended2" class="col-sm-4">
                                                 <div class="product-image-wrapper">
                                                     <div class="single-products">
                                                         <div class="productinfo text-center">
-                                                            <img src="assets/img/home/home/recommend1.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carrito</a>
+                                                            <img ng-cloak ng-src="{{item.img}}" alt=""/>
+                                                            <h2>{{item.price}}</h2>
+                                                            <p>{{item.name}}</p>
+                                                            <div class="add-element-to-cart" ng-show="!item.isExistInCard">
+                                                                <span class="btn bgm-blue waves-effect add-to-cart" ng-click="vm.agregarProducto(item.id)"><i class="zmdi zmdi-shopping-cart"></i>Agregar</span>
+                                                            </div>
+                                                            <div class="add-element-to-cart" ng-show="item.isExistInCard">
+                                                                <div class="centrado-porcentual">
+                                                                    <div class="cart_quantity">
+                                                                        <div class="cart_quantity_button">
+                                                                            <a class="cart_quantity_up btn bgm-blue waves-effect" href="" ng-click="vm.asignarProducto(item.id, item.isExistInCardCount, 1 , 'sumaoresta')"> <i class="zmdi zmdi-plus"></i> </a>
+                                                                            <input id="inputData{{item.id}}" class="cart_quantity_input" type="text" name="quantity" ng-value="item.isExistInCardCount" name="quantity" ng-model="item.isExistInCardCount"
+                                                                                    autocomplete="off" size="2" ng-change="vm.asignarProducto(item.id, item.isExistInCardCount, item.isExistInCardCount, 'asignar')" ng-min="1">
+                                                                            <a class="cart_quantity_down btn bgm-blue waves-effect" href="" ng-click="vm.asignarProducto(item.id,item.isExistInCardCount,  -1, 'sumaoresta')"> <i class="zmdi zmdi-minus"></i>  </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                        </div>
+                                        <div class="item">	
+                                            <div ng-repeat="item in vm.recommended3" class="col-sm-4">
                                                 <div class="product-image-wrapper">
                                                     <div class="single-products">
                                                         <div class="productinfo text-center">
-                                                            <img src="assets/img/home/home/recommend2.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carrito</a>
+                                                            <img ng-cloak ng-src="{{item.img}}" alt=""/>
+                                                            <h2>{{item.price}}</h2>
+                                                            <p>{{item.name}}</p>
+                                                            <div class="add-element-to-cart" ng-show="!item.isExistInCard">
+                                                                <span class="btn bgm-blue waves-effect add-to-cart" ng-click="vm.agregarProducto(item.id)"><i class="zmdi zmdi-shopping-cart"></i>Agregar</span>
+                                                            </div>
+                                                            <div class="add-element-to-cart" ng-show="item.isExistInCard">
+                                                                <div class="centrado-porcentual">
+                                                                    <div class="cart_quantity">
+                                                                        <div class="cart_quantity_button">
+                                                                            <a class="cart_quantity_up btn bgm-blue waves-effect" href="" ng-click="vm.asignarProducto(item.id, item.isExistInCardCount, 1 , 'sumaoresta')"> <i class="zmdi zmdi-plus"></i> </a>
+                                                                            <input id="inputData{{item.id}}" class="cart_quantity_input" type="text" name="quantity" ng-value="item.isExistInCardCount" name="quantity" ng-model="item.isExistInCardCount"
+                                                                                    autocomplete="off" size="2" ng-change="vm.asignarProducto(item.id, item.isExistInCardCount, item.isExistInCardCount, 'asignar')" ng-min="1">
+                                                                            <a class="cart_quantity_down btn bgm-blue waves-effect" href="" ng-click="vm.asignarProducto(item.id,item.isExistInCardCount,  -1, 'sumaoresta')"> <i class="zmdi zmdi-minus"></i>  </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="product-image-wrapper">
-                                                    <div class="single-products">
-                                                        <div class="productinfo text-center">
-                                                            <img src="assets/img/home/home/recommend3.jpg" alt="" />
-                                                            <h2>$56</h2>
-                                                            <p>Easy Polo Black Edition</p>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carrito</a>
-                                                        </div>
-                                                        
                                                     </div>
                                                 </div>
                                             </div>

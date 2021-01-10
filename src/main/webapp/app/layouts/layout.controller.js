@@ -113,9 +113,9 @@
         .module('gestionFlia')
         .controller('HeaderController', HeaderController);
     
-    HeaderController.$inject = ['$timeout','HomeService','$state', 'CarritoService'];
+    HeaderController.$inject = ['$timeout','HomeService','$state', 'CarritoService', 'ConfirmModalService'];
     
-    function HeaderController ($timeout, HomeService, $state, CarritoService) {
+    function HeaderController ($timeout, HomeService, $state, CarritoService, ConfirmModalService) {
         var vm = this;
         vm.carritoHead = undefined;
 
@@ -167,36 +167,39 @@
 
         //Clear Notification
         vm.clearNotification = function($event) {
-            $event.preventDefault();
+            ConfirmModalService.open('Vaciar Carrito de Compras','¿Está seguro que desea vaciar el carrito?',
+            function(){
+                $event.preventDefault();
             
-            var x = angular.element($event.target).closest('.listview');
-            var y = x.find('.lv-item');
-            var z = y.size();
-            
-            angular.element($event.target).parent().fadeOut();
-            
-            x.find('.list-group').prepend('<i class="grid-loading hide-it"></i>');
-            x.find('.grid-loading').fadeIn(1500);
-            var w = 0;
-            
-            y.each(function(){
-                var z = $(this);
+                var x = angular.element($event.target).closest('.listview');
+                var y = x.find('.lv-item');
+                var z = y.size();
+                
+                angular.element($event.target).parent().fadeOut();
+                
+                x.find('.list-group').prepend('<i class="grid-loading hide-it"></i>');
+                x.find('.grid-loading').fadeIn(1500);
+                var w = 0;
+                
+                y.each(function(){
+                    var z = $(this);
+                    $timeout(function(){
+                        z.addClass('animated fadeOutRightBig').delay(1000).queue(function(){
+                            z.remove();
+                        });
+                    }, w+=150);
+                })
+                
                 $timeout(function(){
-                    z.addClass('animated fadeOutRightBig').delay(1000).queue(function(){
-                        z.remove();
-                    });
-                }, w+=150);
-            })
-            
-            $timeout(function(){
-                angular.element('#notifications').addClass('empty');
-            }, (z*150)+200);
-            CarritoService.clearCart({}, function (response) {
-                vm.carritoHead = undefined;
-                document.getElementById("cantidadCarritoHead").innerHTML = '0';
-                $timeout(function(){
-                    $state.reload();
-                    },1500);
+                    angular.element('#notifications').addClass('empty');
+                }, (z*150)+200);
+                CarritoService.clearCart({}, function (response) {
+                    vm.carritoHead = undefined;
+                    document.getElementById("cantidadCarritoHead").innerHTML = '0';
+                    $timeout(function(){
+                        $state.reload();
+                        },1500);
+                });
             });
         }
         

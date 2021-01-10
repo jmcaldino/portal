@@ -34,6 +34,9 @@
         $scope.n = 0;
         vm.page = ($stateParams.page)?$stateParams.page: 0;
         vm.quantityProd = undefined;
+        vm.recommended1 = [];
+        vm.recommended2 = [];
+        vm.recommended3 = [];
 
         HomeService.getAllDestacadosProduct({
             size:vm.size,
@@ -48,6 +51,16 @@
                 }
                 $scope.pagedItems= pages;
                 CarritoHeaderService.refreshProductosDestacados(vm.productosDestacados);
+        });
+
+        HomeService.getAllRecommendedProduct({
+        },  function (response) {
+            vm.recommended1 = response.slice(0, 3);
+            vm.recommended2 = response.slice(3,6);
+            vm.recommended3 = response.slice(6,9);
+            CarritoHeaderService.refreshProductosDestacados(vm.recommended1);
+            CarritoHeaderService.refreshProductosDestacados(vm.recommended2);
+            CarritoHeaderService.refreshProductosDestacados(vm.recommended3);
         });
         
         $scope.range = function (start, end) {
@@ -137,6 +150,7 @@
                     },  function (response) {
                     });
                     CarritoHeaderService.refreshProductosDestacados(vm.productosDestacados);
+                    CarritoHeaderService.refreshProductosDestacados(vm.recommended1);
                     document.getElementById("inputData" + idProd).value = valueInput;
                     //$state.reload();
                 }

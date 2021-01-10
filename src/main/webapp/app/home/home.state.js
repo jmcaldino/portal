@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('gestionFlia')
-        .config(stateConfig);
+    .module('gestionFlia',["ui.router"])
+    .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider'];
-    
-    function stateConfig($stateProvider) {
+    stateConfig.$inject = ['$stateProvider','$urlRouterProvider'];
+
+    function stateConfig($stateProvider, $urlRouterProvider) {
         $stateProvider.state('home', {
             parent: 'app',
             url: '/',
@@ -87,5 +87,5 @@
             controller: 'SearchController',
             controllerAs: 'vm'
         });
-    }   
+    } 
 })();

@@ -34,7 +34,12 @@
                 method: 'GET',
                 url: 'public-api/productos/search/keyword/:keyword',
                 isArray: false
-            }
+            },
+            'getAllRecommendedProduct': {
+                method: 'GET',
+                url: 'public-api/productos/recomendados',
+                isArray: true
+            },
                 
         });
 
