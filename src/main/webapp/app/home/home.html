@@ -21,28 +21,28 @@
                             <div class="col-sm-12">
                                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
-                                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-                                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                                        <li data-target="#slider-carousel" data-slide-to="0"></li>
+                                        <li data-target="#slider-carousel" data-slide-to="1" class="active"></li>
                                         <!-- <li data-target="#slider-carousel" data-slide-to="2"></li> -->
                                     </ol>
                                     
                                     <div class="carousel-inner">
                                         <div class="item active">
                                             <div class="col-sm-6">
-                                                <h1>Todos podemos limpiar</h1>
+                                                <h1><span>Fuera de Servicio</span>-</h1>
                                                 <!-- <button type="button" class="btn btn-default get">Comprar ahora</button> -->
                                             </div>
                                             <div class="col-sm-6">
-                                                <img ng-cloak src="assets/img/home/portada2.jpg" class="girl img-responsive" alt="" />
+                                                <img ng-cloak src="assets/img/home/web-remodelacion.png" class="girl img-responsive" alt="" />
                                                 <!-- <img src="assets/img/home/home/pricing.png"  class="pricing" alt="" /> -->
                                             </div>
                                         </div>
                                         <div class="item">
                                             <div class="col-sm-6">
-                                                <h1><span>COVID-19</span>-LIMPIEZA PROFUNDA</h1>
+                                                <h1>EN  CONSTRUCCI&Oacute;N</h1>
                                             </div>
                                             <div class="col-sm-6">
-                                                <img ng-cloak src="assets/img/home/portada1.jpg" class="girl img-responsive" alt="" />
+                                                <img ng-cloak src="assets/img/home/web-en-contruccion.png" class="girl img-responsive" alt="" />
                                                 <!-- <img src="assets/img/home/home/pricing.png"  class="pricing" alt="" /> -->
                                             </div>
                                         </div>
@@ -152,7 +152,7 @@
                                                 <li class="page-item {disabled: currentPage == 0}">
                                                     <a class="page-link" href="" ng-click="prevPage()" tabindex="-1"><i class="zmdi zmdi-chevron-left"></i> </a>
                                                 </li>
-                                                <li class="page-item" ng-repeat="n in range(pagedItems.length)"
+                                                <li class="page-item" ng-repeat="n in range(pagedItems.length) "
                                                             ng-class="{active: n == currentPage}"
                                                         ng-click="setPage()"><a href="" ng-bind="n + 1">1</a></li>
                                                 <li class="page-item {disabled: currentPage == pagedItems.length - 1}">
@@ -177,7 +177,7 @@
                                 <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
                                         <div class="item active">	
-                                            <div ng-repeat="item in vm.recommended1" class="col-sm-4">
+                                            <div ng-repeat="item in vm.recommended1 " class="col-sm-4">
                                                 <div class="product-image-wrapper">
                                                     <div class="single-products">
                                                         <div class="productinfo text-center">
@@ -205,7 +205,7 @@
                                             </div>
                                         </div>
                                         <div class="item">	
-                                            <div ng-repeat="item in vm.recommended2" class="col-sm-4">
+                                            <div ng-repeat="item in vm.recommended2 " class="col-sm-4">
                                                 <div class="product-image-wrapper">
                                                     <div class="single-products">
                                                         <div class="productinfo text-center">
@@ -233,7 +233,7 @@
                                             </div>
                                         </div>
                                         <div class="item">	
-                                            <div ng-repeat="item in vm.recommended3" class="col-sm-4">
+                                            <div ng-repeat="item in vm.recommended3 " class="col-sm-4">
                                                 <div class="product-image-wrapper">
                                                     <div class="single-products">
                                                         <div class="productinfo text-center">

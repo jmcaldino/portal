@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-    .module('gestionFlia',["ui.router"])
+    .module('gestionFlia')
     .config(stateConfig);
 
-    stateConfig.$inject = ['$stateProvider','$urlRouterProvider'];
+    stateConfig.$inject = ['$stateProvider'];
 
     function stateConfig($stateProvider, $urlRouterProvider) {
         $stateProvider.state('home', {
