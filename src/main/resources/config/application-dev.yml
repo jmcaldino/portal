@@ -15,9 +15,9 @@
 
 logging:
   level:
-    ROOT: DEBUG
-    io.github.jhipster: DEBUG
-    com.gestion.calmar: DEBUG
+    ROOT: INFO
+    io.github.jhipster: INFO
+    com.gestion.calmar: INFO
 
 spring:
   profiles:
@@ -37,9 +37,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/calmar
-    username: postgres
-    password: nostry314
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -66,7 +66,7 @@ spring:
     cache: false
 
 server:
-  port: 8080
+  port: ${PORT}
 
 # ===================================================================
 # JHipster specific properties
