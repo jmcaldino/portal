@@ -1,0 +1,153 @@
+<div class="card-header">
+        <div class="container  p-t-20">
+                <div class="row">
+                    <div class="col-sm-2" align="center">
+                        <a>
+                            <img src="assets/img/home/calmar-logo.png" class="girl img-responsive" alt="" href="" ng-click="vm.refresh()"/>
+                        </a>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row p-b-20">
+                            <div class="col-sm-8"></div>
+                            <!--
+                                <div class="col-sm-4">
+                                    <center>
+                                        <button class="btn bgm-lightblue waves-effect" style="padding-right: 20px;">
+                                                <span class="zmdi zmdi-download zmdi-hc-lg" style="margin-right: 10px;"></span> Lista de precios
+                                        </button>
+                                    </center>
+                                </div>
+                            -->
+                        </div>
+                        <div class="row p-t-10">
+                            <div class="col-sm-6">
+                                    <div>
+                                        <div id="searchProduct">
+                                            <form id="main-form" name="productSearch" ng-submit="vm.searchProduct()">
+                                                <div class="main-form">
+                                                <!-- 
+                                                <small class="pull-left">Ingrese el producto que desea buscar</small>
+                                                <input type="text" name="search" class="input-search pull-left" placeholder="Buscar producto..." 
+                                                    ng-model="vm.buscarProducto" id="ng-change-search">
+                                                    -->
+                                                    <div class="shortfieldz">
+                                                        <small class="pull-left">Ingrese el producto que desea buscar...</small>
+                                                        <div class="fg-line">
+                                                        <a href="" class="pull-right" ng-click="vm.searchProduct()">
+                                                            <img src="assets/img/icons/searchicon3.png" class="img-responsive zmdi zmdi-link event-link-btn" alt="Responsive image " width="30" height="24" /> 
+                                                        </a>
+                                                        <input type="text" name="nameSearch" class="input-search pull-left" placeholder="Buscar productos..." 
+                                                            ng-model="vm.buscarProducto" id="ng-change-search2" required>
+                                                        </div>
+                                                        <button type="submit" ng-show="vm.hiddenBtnSearch" ng-disabled="productSearch.$invalid" >
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-sm-6">
+                                    <div class="row p-t-5">
+                                        <ul class="nav nav-pills">
+                                            <li >
+                                                <a ui-sref="home.login()" class="hidden-xs">
+                                                    <i> <img src="assets/img/user.png" alt=""/>
+                                                        Mi Cuenta
+                                                    </i>
+                                                </a>
+                                            </li>
+                                            <li class="hidden-xs">
+                                                <a ui-sref="cart">
+                                                <i> <img src="assets/img/carrito.png" alt=""/>
+                                                    Carrito
+                                                </i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="container">
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="container">
+                <div class="row p-b-20">
+                    <div class="col-sm-12">
+                            <div class="contactinfo">
+                                <ul class="nav nav-pills">
+                                    <li><a href="#">
+                                        <img src="assets/img/icons/whatsapp-16.png" alt=""/> <span> whatsapp +54 (221) XXX XXXX</span></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-email"></i> info@e-shopper.com</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-truck"></i> Envios a todo el pais</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="container">
+                <div class="row p-t-15" style="border-top: 1px solid whitesmoke;margin-right: 25px;">
+                        <div class="col-sm-12">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="sr-only">Navegación</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                                                
+                            <div class="mainmenu pull-left">
+                                <ul class="nav navbar-nav navbar-light collapse navbar-collapse">
+                                    <li class="dropdown active"><a href="#">Producto <i class="zmdi zmdi-chevron-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a ui-sref="home.category(({name:'Escobas', page:0}))">Escobas</a></li> 
+                                            <li><a ui-sref="home.category(({name:'Cepillos', page: 0 }))">Cepillos</a></li> 
+                                            <li><a ui-sref="home.category(({name:'Liquidos de limpieza', page: 0 }))">Liquidos de limpieza</a></li> 
+                                            <li><a ui-sref="home.category(({name:'Bazar y Hermeticos', page: 0 }))">Bazar y Hermeticos</a></li>
+                                            <li><a ui-sref="home.category(({name:'Bolsas', page: 0 }))">Bolsas</a></li> 
+                                            <li><a ui-sref="home.category(({name:'Baldes,Lampazos y Mopa', page: 0 }))">Lampazos y Baldes</a></li>
+                                            <li><a ui-sref="home.category(({name:'Trapos, Franelas y Rep.', page: 0 }))">Trapos, Franelas y Rep.</a></li>
+                                            <li><a ui-sref="home.category(({name:'Varios', page: 0 }))">Varios</a></li>  
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Novedades</a></li>
+                                    <li><a href="#">Ofertas</a></li> 
+                                    <!--
+                                    <li class="dropdown"><a href="#">Mi Compra <i class="zmdi zmdi-chevron-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a href="#">Finalizar compra</a></li> 
+                                            <li><a href="#">Ver carrito</a></li> 
+                                            <li><a href="#">Iniciar sesión</a></li> 
+                                        </ul>
+                                    </li>
+                                    -->
+                                    <li><a href="#">Trabaja con nosotros</a></li>
+                                    <li><a href="#">Contacto</a></li>
+                                </ul>
+                            </div>           
+                        </div>
+                </div>
+
+        </div>
+        
+</div>
+<!--confianza-->
+<!--
+<p align="center">                                     
+    <img alt="Elementos de Confianza" src="assets/img/home/home/confianza.png">
+    <img alt="Elementos de Confianza" src="assets/img/home/home/confianza2.png">
+    <img alt="Elementos de Confianza" src="assets/img/home/home/confianza3.png">
+    <hr/>
+</p>
+-->
+<!--/confianza-->

@@ -1,0 +1,404 @@
+<div class="container card-header">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="total_area solid-tr">
+                <div class="row p-t-20">            
+                    <div class="col-sm-12">
+                        <h1 class="text-center"> SOLICITAR PEDIDO</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <jhi-alert></jhi-alert>
+    <!-- FORM to Order-->
+    <div class="row" ng-init="vm.initPedido()">            
+        <div class="col-sm-12">
+            <div class="total_area solid-tr">
+                <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group m-r-10 pull-left">
+                                <div class="fg-line m-l-5">
+                                    <h4><i class="zmdi zmdi-alert-circle-o pull-left text-danger"> El minimo de compra ONLINE es de $3500</i></h4>
+                                    <h4><i class="zmdi zmdi-alert-circle-o pull-left text-danger"> Para coordinar el pago y envío de tu pedido comunicate por whatsapp al XXX</i></h4>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <form name="createOrder" role="form" novalidate ng-submit="vm.save()">
+                    <div id="tv" class="m-b-20">
+                    <div class="row p-t-20">
+                        <div id="optionfocus">
+                            <div class="body p-l-20">
+                                <div class="sketchy p-l-10 p-t-10 p-r-20">
+                                    <div class="row">
+                                        <div class="col-sm-12 fg-line">
+                                            <h4><i class="zmdi zmdi-truck pull-left"> OPCIONES DE ENV&Iacute;O</i></h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group m-r-10 pull-left">
+                                                <div class="fg-line m-l-5 p-r-20 p-t-10">
+                                                    <!-- Group of default radios - option 1 -->
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input f-16" id="defaultGroupExample1" ng-model="vm.order.envio" value="domicilio" name="domicilio" ng-checked="true">
+                                                        <label class="custom-control-label f-16" for="defaultGroupExample1">Envio a Domicilio</label>
+                                                    </div>
+                                                    <!-- Group of default radios - option 2 -->
+                                                    <div class="custom-control custom-radio m-l-5">
+                                                        <input type="radio" class="custom-control-input f-16" id="defaultGroupExample2" ng-model="vm.order.envio" value="coordinar" name="coordinar">
+                                                        <label class="custom-control-label f-16" for="defaultGroupExample2">Coordinar entrega</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-t-20">
+                        <div class="col-sm-4">
+                            <div class="form-group m-r-10">
+                                <div class="fg-line m-l-5">
+                                    <label class="pull-left f-ls f-16">
+                                        Apellido
+                                        <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.lastName"> </i></label>
+                                    </label>
+                                    <input type="text" id="lastName" name="lastName" class="form-control input-agp" ng-model="vm.order.lastName"
+                                        placeholder="Ingrese su apellido" ng-minlength="3" ng-maxlength="38">
+                                    <div ng-show="!vm.validateFields.lastName" data-tooltip="Por favor, ingrese su apellido." data-tooltip-location="bottom"></div>
+                                </div>
+                                <!-- <div ng-show="createOrder.nombre.$invalid">
+                                    <p class="help-block" ng-show="!createOrder.nombre.$valid">
+                                        <i class="zmdi zmdi-alert-triangle text-warning"> El nombre del producto debe tener entre 20 y 29 caracteres.</i>
+                                    </p>   
+                                </div>
+                                <div class="valid-feedback text-success" ng-show="createOrder.nombre.$valid">
+                                    <h4 class="text-success"><i class="zmdi zmdi-check"> El nombre de producto valido!</i></h4>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-r-5">
+                                    <div class="fg-line m-l-5">
+                                        <label class="pull-left f-ls f-16">
+                                            Nombre
+                                            <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.firstName"> </i></label>
+                                        </label>
+                                        <p></p>
+                                        <input type="text" id="firstName" name="firstName" class="form-control input-agp" ng-model="vm.order.firstName"
+                                            placeholder="Ingrese su nombre" ng-minlength="3" ng-maxlength="38">
+                                        <div ng-show="!vm.validateFields.firstName" data-tooltip="Por favor, ingrese su nombre." data-tooltip-location="bottom"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-r-10">
+                                    <div class="fg-line m-l-5">
+                                        <label class="pull-left f-ls f-16">DNI <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.dni"> </i></label></label>
+                                        <input type="text" name="dni" class="form-control input-agp" ng-model="vm.order.dni"
+                                            placeholder="Ingrese su Documento de Identidad" ng-minlength="3" ng-maxlength="38">
+                                        <div ng-show="!vm.validateFields.dni" data-tooltip="Por favor, debe ingresar su Documento de Identidad" data-tooltip-location="bottom"></div>
+                                    </div>
+                                    <!-- <div ng-show="createOrder.nombre.$invalid">
+                                        <p class="help-block" ng-show="!createOrder.nombre.$valid">
+                                            <i class="zmdi zmdi-alert-triangle text-warning"> El nombre del producto debe tener entre 20 y 29 caracteres.</i>
+                                        </p>   
+                                    </div>
+                                    <div class="valid-feedback text-success" ng-show="createOrder.nombre.$valid">
+                                        <h4 class="text-success"><i class="zmdi zmdi-check"> El nombre de producto valido!</i></h4>
+                                    </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- other row-->
+                    <div class="row">
+                        <div class="p-t-20 hidden-xs">
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="form-group m-r-10">
+                                    <div class="fg-line m-l-5">
+                                        <label class="pull-left f-ls f-16 c-black">
+                                            Provincia
+                                            <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.province"> </i></label>
+                                        </label>
+                                        <p class="p-t-20"></p>
+                                        <ui-select ng-model="vm.order.province" ng-disabled="disabled"
+                                            theme="bootstrap" search-enabled="false" class="center-block">
+                                            <ui-select-match placeholder="Seleccione una provincia">
+                                                <span href="" class="f-ls f-14 c-dark center-block text-center">
+                                                    {{$select.selected.name}}
+                                               </span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item in vm.provincias | filter: $select.search">
+                                                <span href="" class="f-ls f-16 c-dark center-block text-center">
+                                                    {{item.name}}
+                                               </span>
+                                            </ui-select-choices> 
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-r-5">
+                                    <div class="fg-line m-l-5">
+                                        <label class="pull-left f-ls f-16">
+                                            Ciudad
+                                            <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.city"> </i></label>
+                                        </label>
+                                        <p></p>
+                                        <input type="text" name="city" class="form-control input-agp" ng-model="vm.order.city"
+                                            placeholder="Ingrese la ciudad" ng-minlength="3" ng-maxlength="38">
+                                        <div ng-show="!vm.validateFields.city" data-tooltip="Por favor, debe ingresar la ciudad" data-tooltip-location="bottom"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-r-10">
+                                    <div class="fg-line m-l-5">
+                                        <label class="pull-left f-ls f-16">
+                                            Codigo Postal
+                                            <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.postalCode"> </i></label>
+                                        </label>
+                                        <input type="text" id="postalCode" name="postalCode" class="form-control input-agp" ng-model="vm.order.postalCode"
+                                            placeholder="Ingrese el codigo postal" ng-minlength="1" ng-maxlength="38">
+                                        <div ng-show="!vm.validateFields.postalCode" data-tooltip="Por favor, debe ingresar su codigo postal." data-tooltip-location="bottom"></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- other row-->
+                    <div class="row">
+                        <div class="p-t-20 hidden-xs">
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="form-group m-r-10">
+                                    <div class="fg-line m-l-5">
+                                        <label class="pull-left f-ls f-16">
+                                            Direcci&oacute;n 
+                                            <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.address"> </i></label>
+                                        </label>
+                                        <input type="text" name="address" class="form-control input-agp" ng-model="vm.order.address"
+                                        placeholder="Ingrese su direccion" ng-minlength="3" ng-maxlength="38">
+                                    <div ng-show="!vm.validateFields.address" data-tooltip="Por favor, ingrese su direccion." data-tooltip-location="bottom"></div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                    <label class="pull-left f-ls f-16">
+                                        Correo Electronico
+                                        <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.email"> </i></label>
+                                    </label>
+                                    <input type="text" name="email" class="form-control input-agp" ng-model="vm.order.email"
+                                        placeholder="Ingrese la ciudad" ng-minlength="3" ng-maxlength="38">
+                                    <div ng-show="!vm.validateFields.email" data-tooltip="Por favor, ingrese su correo electronico." data-tooltip-location="bottom"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="form-group m-r-10">
+                                        <div class="fg-line m-l-5">
+                                        </div>
+                                </div>
+                        </div>
+                    </div>
+                    <!-- other row-->
+                    <div class="row">    
+                        <div class="p-t-20 hidden-xs">
+                        </div>
+                        <div class="col-sm-6 pull-left">
+                            <div class="m-l-10 sketchy">
+                                <div class="row p-t-10">
+                                <div class="col-sm-12">
+                                    <div>
+                                        <div class="fg-line m-l-5">
+                                            <label class="pull-left f-16">TEL&Eacute;FONO <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.phone.area && vm.order.phone.number"> </i></label></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="row p-t-5">
+                                    <div class="col-sm-4">
+                                    <div class="form-group m-r-10">
+                                        <div class="fg-line m-l-5">
+                                            <label class="pull-left">Area <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.phone.area"> </i></label></label>
+                                            <input type="text" id="area" name="area" class="form-control input-agp" ng-model="vm.order.phone.area"
+                                                placeholder="Nro de Area" ng-minlength="1" ng-maxlength="38">
+                                            <div ng-show="!vm.validateFields.area" data-tooltip="Por favor, ingrese el codigo de area." data-tooltip-location="bottom"></div>
+                                        </div>
+                                        <!-- <div class="valid-feedback text-success" ng-show="createOrder.nombre.$valid">
+                                            <h4 class="text-success"><i class="zmdi zmdi-check"> El nombre de producto valido!</i></h4>
+                                        </div> -->
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                    <div class="form-group m-r-10">
+                                            <div class="fg-line m-l-5">
+                                                <label class="pull-left">N&uacute;mero de Tel&eacute;fono  <label class="text-success"><i class="zmdi zmdi-check-circle zmdi-hc-lg" ng-show="vm.order.phone.number"> </i></label></label>
+                                                <input type="text" id="number" name="phone" class="form-control input-agp" ng-model="vm.order.phone.number"
+                                                    placeholder="Ingrese su telefono" ng-minlength="3" ng-maxlength="38">
+                                                <div ng-show="!vm.validateFields.number" data-tooltip="Por favor, ingrese su numero de telefono." data-tooltip-location="bottom"></div>
+                                            </div>
+                                            <!-- <div class="valid-feedback text-success" ng-show="createOrder.nombre.$valid">
+                                                <h4 class="text-success"><i class="zmdi zmdi-check"> El nombre de producto valido!</i></h4>
+                                            </div> -->
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="m-t-20">
+                                                <div class="fg-line m-t-10 pull-left">
+                                                    <ul id="lista1">
+                                                            <li>
+                                                                <a href="" ng-click="vm.selectWhatapp()">
+                                                                    <i class="zmdi zmdi-check-square zmdi-hc-2x" ng-show="vm.order.contactMeByWhatsapp"></i>
+                                                                    <i class="zmdi zmdi-square-o zmdi-hc-2x" ng-show="!vm.order.contactMeByWhatsapp"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <span class="text-dark"></span><a href="" ng-click="vm.selectWhatapp()">Contactarme por Whatapp</a>
+                                                            </li>
+                                                            <li>
+                                                                <span> </span><a><img src="assets/img/icons/whatsapp-16.png" alt=""/></a>
+                                                            </li>
+                                                    </ul>
+                                                </div>
+                                        </div>  
+                                    </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <!-- other row-->
+                    <div class="row p-t-20 m-r-20">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                    <label for="comment" class="pull-left f-ls m-l-20 f-16">Mensaje:</label>
+                                    <textarea class="form-control m-l-20 m-r-20" rows="5" id="comment" name="message" ng-model="vm.order.message"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- last row-->
+                    <div class="row p-t-20 m-b-20">
+                        <div class="col-sm-12 m-b-20">
+                                <div class="form-group bg-whitesmoke m-b-20">
+                                    <div class="fg-line center-component">
+                                        <button type="submit" ng-disabled="createOrder.$invalid" class="btn btn-success separado">
+                                            <span class="m-l-5 glyphicon glyphicon-send"></span>&nbsp;<span>Realizar Pedido </span>
+                                        </button>
+                                        <!--
+                                            <button type="button" class="btn btn-danger separado" ui-sref="producto" ng-click="vm.clear()">
+                                                <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
+                                                    <span>Seguir Comprando</span>
+                                            </button>
+                                        -->
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="p-t-20"></div>
+                    </div>
+                    <section id="cart_items" ng-show="vm.carrito.cantidad && vm.carrito.cantidad > 0">
+                            <div class="container p-t-20">
+                                <h2 class="p-l-15 text-danger">Mi Pedido <a data-ui-sref="home"><i class="text-primary f-16"> (Seguir Comprando) </i></a></h2> 
+                            </div>
+                                <!-- 
+                                <div class="breadcrumbs">
+                                    <ol class="breadcrumb">
+                                            <li><a href="#">Carrito</a></li>
+                                            <li class="active">Lista de productos</li>
+                                            <h2>List de Productos</h2>>
+                                        </ol>
+                                    </div>
+                                -->
+                            <div class="container">
+                                <div class="row p-t-20 m-b-20">
+                                    <div class="col-sm-12">
+                                <div class="table-responsive.sm cart_info">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr class="cart_menu">
+                                                <td class="image hidden-xs">Producto</td>
+                                                <td class="image visible-xs">Producto</td>
+                                                <td class="description hidden-xs"></td>
+                                                <td class="price">Precio</td>
+                                                <td class="quantity">Cantidad</td>
+                                                <td class="total">Subtotal</td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="item in vm.carrito.items">
+                                            <tr>
+                                                <td class="cart_product hidden-xs">
+                                                    <a href=""><img class ="img_media" ng-src="{{item.producto.img}}" alt=""></a>
+                                                </td>
+                                                <td class="cart_description">
+                                                    <h4><a href="">{{item.producto.name}}</a></h4>
+                                                    <p>{{item.producto.description}}</p>
+                                                </td>
+                                                <td class="cart_price">
+                                                    <p>${{item.producto.price}}</p>
+                                                </td>
+                                                <td class="cart_quantity_detail">
+                                                    <div class="cart_quantity_button">
+                                                        <a href="" class="cart_quantity_up" ng-click="vm.asignarProducto(item.producto.id, item.cantidad, 1 , 'sumaoresta')"> <i class="zmdi zmdi-plus"></i> </a>
+                                                        <input class="cart_quantity_input" type="text" ng-model="item.product.id.quantity" name="quantity" ng-value="item.cantidad" 
+                                                        autocomplete="off" size="2" ng-change="vm.asignarProducto(item.producto.id, item.cantidad, item.product.id.quantity, 'asignar')" ng-min="1">
+                                                        <a href="" class="cart_quantity_down" ng-click="vm.asignarProducto(item.producto.id,item.cantidad,  -1, 'sumaoresta')"> <i class="zmdi zmdi-minus"></i> </a>
+                                                    </div>
+                                                </td>
+                                                <td class="cart_total">
+                                                    <p id="precio_1" class="cart_total_price">${{item.producto.price * item.cantidad}}</p>
+                                                </td>
+                                                <td class="cart_delete">
+                                                    <a href="" class="cart_quantity_delete" ng-click="vm.quitarProducto(item.producto.id)"><i class="zmdi zmdi-close"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="summary">
+                                                <tr class="hidden-xs">
+                                                    <td colspan="3"></td>
+                                                    <td class="bg-danger"> <label class="c-white f-20 f-ls">TOTAL: </label></td>
+                                                    <td class="bg-danger" colspan="2"> <label><strong class="c-white f-20 f-ls">${{vm.carrito.total}}</strong></label></td>
+                                                </tr>
+                                                <tr class="visible-xs">
+                                                        <td colspan="2"></td>
+                                                        <td class="bg-danger"> <h2 class="c-white">TOTAL: </h2></td>
+                                                        <td class="bg-danger" colspan="2"> <h2><strong class="c-white">${{vm.carrito.total}}</strong></h2></td>
+                                                </tr>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                </div>
+                                </div>
+                                <div class="row p-t-20 m-b-20">
+                                        <div class="col-sm-12 m-b-20">
+                                                <div class="form-group bg-whitesmoke m-b-20">
+                                                    <div class="fg-line center-component">
+                                                        <button type="submit" ng-disabled="createOrder.$invalid" class="btn btn-success separado">
+                                                            <span class="m-l-5 glyphicon glyphicon-send"></span>&nbsp;<span>Realizar Pedido </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </section> <!--/#cart_items-->
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

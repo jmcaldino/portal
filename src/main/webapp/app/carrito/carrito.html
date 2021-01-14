@@ -1,0 +1,107 @@
+<div class="card">
+    <jhi-alert></jhi-alert>
+    <div ng-include="'app/home/home.header.html'"></div>
+
+    <div class="card-body">
+        <div>
+            <section id="cart_items">
+                <div class="container p-t-20">
+                    <h2 class="p-l-15 text-danger">Mi Carrito <a data-ui-sref="home"><i class="text-primary f-16"> (Seguir Comprando) </i></a></h2> 
+                </div>
+                    <!-- 
+                    <div class="breadcrumbs">
+                        <ol class="breadcrumb">
+                                <li><a href="#">Carrito</a></li>
+                                <li class="active">Lista de productos</li>
+                                <h2>List de Productos</h2>>
+                            </ol>
+                        </div>
+                    -->
+                <div class="container">
+                    <div class="table-responsive.sm cart_info">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr class="cart_menu">
+                                    <td class="image">Producto</td>
+                                    <td class="description"></td>
+                                    <td class="price">Precio</td>
+                                    <td class="quantity">Cantidad</td>
+                                    <td class="total">Subtotal</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="item in vm.carrito.items">
+                                <tr>
+                                    <td class="cart_product">
+                                        <a href=""><img class ="img_media" ng-src="{{item.producto.img}}" alt=""></a>
+                                    </td>
+                                    <td class="cart_description">
+                                        <h4><a href="">{{item.producto.name}}</a></h4>
+                                        <p>{{item.producto.description}}</p>
+                                    </td>
+                                    <td class="cart_price">
+                                        <p>${{item.producto.price}}</p>
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <div class="cart_quantity_button">
+                                            <a href="" class="cart_quantity_up" ng-click="vm.asignarProducto(item.producto.id, item.cantidad, 1 , 'sumaoresta')"> <i class="zmdi zmdi-plus"></i> </a>
+                                            <input class="cart_quantity_input" type="text" ng-model="item.product.id.quantity" name="quantity" ng-value="item.cantidad" 
+                                                    autocomplete="off" size="2" ng-change="vm.asignarProducto(item.producto.id, item.cantidad, item.product.id.quantity, 'asignar')" ng-min="1">
+                                            <a href="" class="cart_quantity_down" ng-click="vm.asignarProducto(item.producto.id,item.cantidad,  -1, 'sumaoresta')"> <i class="zmdi zmdi-minus"></i> </a>
+                                        </div>
+                                    </td>
+                                    <td class="cart_total">
+                                        <p id="precio_1" class="cart_total_price">${{item.producto.price * item.cantidad}}</p>
+                                    </td>
+                                    <td class="cart_delete">
+                                        <a href="" class="cart_quantity_delete" ng-click="vm.quitarProducto(item.producto.id)"><i class="zmdi zmdi-close"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section> <!--/#cart_items-->
+        
+            <section id="do_action">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <div class="heading">
+                                <h3>¿Que te gustar&iacute;a hacer ahora?</h3>
+                                <p>¿Solicitar el pedido o seguir comprando?</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row row p-t-20">    
+                        <div class="col-sm-10 ">
+                            <div class="total_area">
+                                <div class="row row p-t-20">    
+                                    <div class="col-sm-12">
+                                        <ul>
+                                            <li ng-repeat="item in vm.carrito.items"><strong>{{item.producto.name}}</strong> por {{item.cantidad}} Unidades<span>$ {{item.producto.price * item.cantidad}}</span></li>
+                                        </ul>
+                                        <ul>
+                                            <li><h3>Total <span>$ {{vm.carrito.total}}</span></h3></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row p-t-20">
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4 pull-right"> 
+                                        <button class="btn bgm-green waves-effect m-l-10 pull-left" href="" ui-sref="pedido"> <i class="zmdi zmdi-shopping-cart zmdi-hc-lg m-r-5"></i> Comprar</button>
+                                    </div>
+                                    <div class="col-sm-4 pull-right">
+                                        <button class="btn bgm-blue waves-effect m-r-20 pull-right" ng-click="vm.refresh()"> <i class="zmdi zmdi-home zmdi-hc-lg"></i> Ver mas productos</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!--/#do_action-->        
+
+        </div>
+    </div>
+</div>

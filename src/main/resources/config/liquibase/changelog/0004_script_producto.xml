@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="juan (generated)" id="1607202429798-1">
+        <loadData
+                  file="config/liquibase/data/productos.csv"
+                  separator=","
+                  tableName="producto">
+            <column name="id" type="numeric"/>
+            <column name="descripcion" type="string"/>
+            <column name="imagen" type="string"/>
+            <column name="visible" type="boolean"/>
+           	<column name="nuevo" type="boolean"/>
+           	<column name="recomendado" type="boolean"/>
+           	<column name="nombre" type="string"/>
+           	<column name="precio_nuevo" type="numeric"/>
+           	<column name="precio" type="numeric"/>
+           	<column name="stock" type="numeric"/>
+            <column name="categoria_fk" type="numeric"/>
+            <column name="marca_fk" type="numeric"/>
+           	<column name="created_by" type="string"/>        
+            <column name="created_date" type="timestamp"/> 
+           	<column name="last_modified_by" type="string"/> 
+            <column name="last_modified_date" type="timestamp"/> 
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

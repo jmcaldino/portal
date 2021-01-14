@@ -1,5 +1,7 @@
 package com.gestion.calmar.service.dto;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -8,7 +10,9 @@ import com.gestion.calmar.domain.Producto;
 /**
  * A DTO representing a product.
  */
-public class ProductDTO {
+public class ProductDTO implements Serializable {
+
+	private static final long serialVersionUID = 1319530743162476800L;
 
 	private Long id;
 
@@ -28,11 +32,11 @@ public class ProductDTO {
 
 	private Boolean isRecommended;
 
-	@NotNull(message = "marcaId may not be null")
-	private Long marcaId;
+	@NotNull(message = "marca may not be null")
+	private MarcaDTO marca;
 
-	@NotNull(message = "categoriaId may not be null")
-	private Long categoriaId;
+	@NotNull(message = "categoria may not be null")
+	private CategoriaDTO categoria;
 
 	private String img;
 
@@ -40,6 +44,56 @@ public class ProductDTO {
 
 	public ProductDTO() {
 		super();
+	}
+
+	public ProductDTO(String name, String description, String img, Double price, Double newPrice, Integer stock,
+			Boolean isNew, Boolean isRecommended, Boolean isEnable, Long marcaId, Long categoriaId) {
+		this.setName(name);
+		this.setDescription(description);
+		this.setImg(img);
+		this.setPrice(price);
+		this.setNewPrice(newPrice);
+		this.setStock(stock);
+		this.setIsNew(isNew);
+		this.setIsRecommended(isRecommended);
+		this.setIsEnable(isEnable);
+		this.marca = this.setMarca(marcaId, null, null);
+		this.categoria = this.setCategoria(categoriaId, null, null);
+	}
+
+	public ProductDTO(Producto product) {
+		this.setId(product.getId());
+		this.setName(product.getName());
+		this.setDescription(product.getDescription());
+		this.setImg(product.getImg());
+		this.setPrice(product.getPrice());
+		this.setNewPrice(product.getNewPrice());
+		this.setStock(product.getStock());
+		this.setIsNew(product.getIsNew());
+		this.setIsRecommended(product.getIsRecommended());
+		this.setIsEnable(product.getIsEnable());
+		MarcaDTO marca = this.setMarca(product.getMarca().getId(), product.getMarca().getName(),
+				product.getMarca().getIsEnable());
+		this.setMarca(marca);
+		CategoriaDTO category = this.setCategoria(product.getCategoria().getId(), product.getCategoria().getName(),
+				product.getCategoria().getIsEnable());
+		this.setCategoria(category);
+	}
+
+	private MarcaDTO setMarca(Long id, String name, Boolean isEnable) {
+		MarcaDTO marca = new MarcaDTO();
+		marca.setId(id);
+		marca.setName(name);
+		marca.setIsEnable(isEnable);
+		return marca;
+	}
+
+	private CategoriaDTO setCategoria(Long id, String name, Boolean isEnable) {
+		CategoriaDTO category = new CategoriaDTO();
+		category.setId(id);
+		category.setName(name);
+		category.setIsEnable(isEnable);
+		return category;
 	}
 
 	public Long getId() {
@@ -106,20 +160,20 @@ public class ProductDTO {
 		this.isRecommended = isRecommended;
 	}
 
-	public Long getMarcaId() {
-		return marcaId;
+	public MarcaDTO getMarca() {
+		return marca;
 	}
 
-	public void setMarcaId(Long marcaId) {
-		this.marcaId = marcaId;
+	public void setMarca(MarcaDTO marca) {
+		this.marca = marca;
 	}
 
-	public Long getCategoriaId() {
-		return categoriaId;
+	public CategoriaDTO getCategoria() {
+		return categoria;
 	}
 
-	public void setCategoriaId(Long categoriaId) {
-		this.categoriaId = categoriaId;
+	public void setCategoria(CategoriaDTO categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getImg() {
@@ -156,7 +210,8 @@ public class ProductDTO {
 	public String toString() {
 		return "ProductDTO [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
 				+ ", newPrice=" + newPrice + ", stock=" + stock + ", isNew=" + isNew + ", isRecommended="
-				+ isRecommended + ", marcaId=" + marcaId + ", categoriaId=" + categoriaId + ", img=" + img + "]";
+				+ isRecommended + ", marcaId=" + marca.getId() + ", categoriaId=" + categoria.getId() + ", img=" + img
+				+ "]";
 	}
 
 }

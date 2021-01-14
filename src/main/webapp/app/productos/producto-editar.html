@@ -1,0 +1,225 @@
+<jhi-alert></jhi-alert>
+<div class="container" style="background-color:white;">
+    <div class="row p-t-20" style="background-color:#00AAEE;">
+        <div class="col-12">
+            <div class="block-header">
+                <h2 style="color:white;">Editar Producto</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+            <div class="card-body">
+                <jhi-alert-error></jhi-alert-error>
+                <div style="margin-left:2%;">
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-header text-center">
+                                    <strong><h2>MODIFICAR PRODUCTO</h2></strong>
+                                </div>
+                            </div>
+                    </div>
+                <form name="createProduct" role="form" novalidate ng-submit="vm.edit()">
+                    <div class="row p-t-20">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="fg-line color-green">
+                                    <h5>Nombre de Producto</h5>
+                                    <input type="text" class="form-control input-agp" name="productSearch" ng-model="vm.producto.name"
+                                        placeholder="Ingrese el nombre del producto" ng-minlength="3" ng-maxlength="38">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="fg-line color-green">
+                                    <h5>Precio</h5>
+                                    <input type="number" class="form-control input-agp" name="productSearch" ng-model="vm.producto.price"
+                                        placeholder="Ingrese el precio">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="fg-line color-green">
+                                    <h5>Stock</h5>
+                                    <input type="number" class="form-control input-agp" name="productSearch" ng-model="vm.producto.stock"
+                                        placeholder="Ingrese el stock">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-t-20">
+                            <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="fg-line color-green">
+                                            <h5>Foto</h5>
+                                            <div class="productinfo text-center">
+                                                <div ng-show="vm.editFile == false">
+                                                    <img ng-src="{{vm.producto.img}}" alt="" />
+                                                    <h2>{{vm.producto.price}}</h2>
+                                                    <p>{{vm.producto.name}}</p>
+                                                </div>
+                                                <button ng-show="vm.editFile == false" type="button" ng-click="vm.editImg()">
+                                                    <span class="btn btn-default"><i class="fa fa-shopping-cart"></i>Editar Imagen</span>
+                                                </button>
+                                                <button ng-show="vm.editFile == true" type="button" ng-click="vm.editImg()">
+                                                        <span class="btn btn-default"><i class="fa fa-shopping-cart"></i>No Editar Imagen</span>
+                                                </button>
+                                                <div ng-show="vm.editFile == true">
+                                                    <!-- El Usuario quiere editar imagen -->
+                                                    <label form="exampleFormControlFile1" class="pull-left">Editar Imagen de producto</label>
+                                                    <input type="file" class="form-control-file" id="file" file-model="vm.producto.file">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="row p-t-20">
+                                        <div class="col-sm-12">
+                                            <div class="fg-line color-green">
+                                                <h5>Marca </h5>
+                                                <!-- 
+                                                <agp-select min-chars="3" placeholder="Seleccione una Marca" model="vm.selectedMarca" name="marca"
+                                                    options="vm.selectedMarca" parse="$item.name" required="true"
+                                                    search="vm.doMarcaSearch($search)" hidehint>
+                                                </agp-select required> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row p-t-20">
+                                            <div class="col-sm-12">
+                                                <div class="fg-line">
+                                                    <h4 class="text-info">{{vm.selectedMarca ? vm.selectedMarca.name : vm.producto.marca.name}} </h4> 
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                    <div class="fg-line">
+                                                            <p></p>
+                                                            <div>
+                                                                <label class="pull-left">Editar Marca</label>
+                                                                <agp-select min-chars="3" placeholder="Cambiar la Marca de producto" model="vm.selectedMarca" name="marca"
+                                                                    options="vm.selectedMarca" parse="$item.name" required="true"
+                                                                    search="vm.doMarcaSearch($search)" hidehint>
+                                                                </agp-select required>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="row p-t-20">
+                                            <div class="col-sm-12">
+                                                <div class="fg-line color-green">
+                                                    <h5>Categoria </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row p-t-20">
+                                                <div class="col-sm-12">
+                                                    <div class="fg-line">
+                                                        <h4 class="text-info">{{vm.selectedCategory ? vm.selectedCategory.name : vm.producto.categoria.name}} </h4> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="fg-line">
+                                                        <p></p>
+                                                        <div>
+                                                            <label class="pull-left">Editar Categoria</label>
+                                                            <agp-select min-chars="3" placeholder="Cambiar la Categoria de producto" model="vm.selectedCategory" name="categoria"
+                                                                options="vm.selectedCategory" parse="$item.name" required="true"
+                                                                search="vm.doCategorySearch($search)">
+                                                            </agp-select required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="row p-t-20">
+                            <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <i class="zmdi zmdi-comment-alt-text pull-left"></i>
+                                            <label class="pull-left">Descripcion</label>
+                                            <textarea class="f-18 textarea-custom" rows="2" ng-model="vm.producto.description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <ul>
+                                        <li>
+                                            <div class="fg-line color-green">
+                                                    <div class="fg-line">
+                                                        <label class="pull-left">Precio en Oferta (Opcional)</label>
+                                                        <input type="number" class="form-control input-agp" name="productSearch" ng-model="vm.producto.newPrice"
+                                                            placeholder="Atención! Precio rebaja ">
+                                                    </div>
+                                            </div>
+                                        </li>
+                                        <p></p>
+                                        <li>
+                                            <div class="fg-line">
+                                                <div class="fg-line">
+                                                    <label class="pull-left zmdi zmdi-hc-lg" ng-class="vm.producto.isEnable? 'zmdi-check text-success':'zmdi-close-circle text-danger'"> PUBLICAR (Visibilidad)</label>
+                                                    <p></p>
+                                                    <input type="checkbox" class="pull-left custom-control custom-checkbox checkbox-lg" id="customControlInline" ng-model="vm.producto.isEnable">
+                                                    <label class="pull-left custom-control-label text-success" ng-show="vm.producto.isEnable == true" for="checkbox-3">  ( Publicado! )</label>
+                                                    <label class="pull-left custom-control-label text-danger" ng-show="vm.producto.isEnable == false" for="checkbox-3"> ( No Visible! ) </label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row p-t-20">
+                        <div class="col-sm-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" ng-model="vm.producto.isNew">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Producto Nuevo
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" ng-model="vm.producto.isRecommended">
+                                    <label class="form-check-label" for="defaultCheck2">
+                                        Recomendado
+                                   </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-8"></div>
+                    </div>
+                    <hr>
+                    <div class="row p-t-20">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="fg-line">
+                                            <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-success separado" >
+                                                    <span class="glyphicon glyphicon-floppy-save"></span>&nbsp;<span data-translate="entity.action.edit">Save</span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger separado" ui-sref="producto" ng-click="vm.clear()">
+                                                    <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+                                                        data-translate="entity.action.cancel">Cancel</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="block-footer" has-any-authority="ROLE_AUDITOR, ROLE_ADMIN">
+
+    </div>
+</div>

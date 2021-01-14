@@ -5,7 +5,7 @@
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="categoriaPK"/>
             </column>
-            <column defaultValueBoolean="true" name="visible" type="BIT">
+            <column defaultValueBoolean="true" name="visible" type="boolean">
                 <constraints nullable="false"/>
             </column>
             <column name="nombre" type="VARCHAR(100)">
@@ -19,7 +19,7 @@
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="marcaPK"/>
             </column>
-            <column defaultValueBoolean="true" name="visible" type="BIT">
+            <column defaultValueBoolean="true" name="visible" type="boolean">
                 <constraints nullable="false"/>
             </column>
             <column name="nombre" type="VARCHAR(255)">
@@ -34,13 +34,13 @@
             </column>
             <column name="descripcion" type="VARCHAR(255)"/>
             <column defaultValue="demo.png" name="imagen" type="VARCHAR(100)"/>
-            <column defaultValueBoolean="true" name="visible" type="BIT">
+            <column defaultValueBoolean="true" name="visible" type="boolean">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="true" name="nuevo" type="BIT">
+            <column defaultValueBoolean="true" name="nuevo" type="boolean">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="recomendado" type="BIT">
+            <column defaultValueBoolean="false" name="recomendado" type="boolean">
                 <constraints nullable="false"/>
             </column>
             <column name="nombre" type="VARCHAR(100)"/>

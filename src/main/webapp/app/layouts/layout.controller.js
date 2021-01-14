@@ -56,7 +56,7 @@
         ctx.wallLink = false;
 
         //Skin Switch
-        ctx.currentSkin = 'lightblue';
+        ctx.currentSkin = 'blueCalmar';
 
         ctx.skinList = [
             'lightblue',
@@ -88,7 +88,7 @@
 
         function logout() {
             Auth.logout();
-        } 
+        }
         
         ctx.account = null;
         
@@ -113,10 +113,27 @@
         .module('gestionFlia')
         .controller('HeaderController', HeaderController);
     
-    HeaderController.$inject = ['$timeout'];
+    HeaderController.$inject = ['$timeout','HomeService','$state', 'CarritoService', 'ConfirmModalService'];
     
-    function HeaderController ($timeout) {
+    function HeaderController ($timeout, HomeService, $state, CarritoService, ConfirmModalService) {
         var vm = this;
+        vm.carritoHead = undefined;
+
+        CarritoService.getCarrito({}, function (response) {
+            vm.carritoHead = response;
+            if(vm.carritoHead && vm.carritoHead.total > 0){
+                document.getElementById("cantidadCarritoHead").innerHTML = vm.carritoHead.cantidad;
+                angular.element('#btnComprar').removeClass('disabled');
+                angular.element('#carritoBtn').addClass('dropdown open');
+                $timeout(function(e){
+                        angular.element('#carritoBtn').removeClass('open');
+                      }, 3000);
+            } else{
+                angular.element('#btnComprar').addClass('disabled');
+            }
+            //document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+            //angular.element('#cantidadCarritoHead').val(vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+        });
         
         // Top Search
         vm.openSearch = function(){
@@ -128,33 +145,62 @@
             angular.element('#header').removeClass('search-toggled');
         }
 
+        //Clear Notification
+        vm.refreshNotification = function() {
+//            $timeout(function(e){
+//                $state.go($state.current, {}, {reload: true});
+//              }, 1000);
+            //$state.reload();
+            CarritoService.getCarrito({}, function (response) {
+                vm.carritoHead = response;
+                if(vm.carritoHead && vm.carritoHead.total > 0){
+                    document.getElementById("cantidadCarritoHead").innerHTML = vm.carritoHead.cantidad;
+                    angular.element('#btnComprar').removeClass('disabled');
+                } else{
+                    angular.element('#btnComprar').addClass('disabled');
+                }
+                //document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+                //angular.element('#cantidadCarritoHead').val(vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+            });
+        }
+
 
         //Clear Notification
         vm.clearNotification = function($event) {
-            $event.preventDefault();
+            ConfirmModalService.open('Vaciar Carrito de Compras','¿Está seguro que desea vaciar el carrito?',
+            function(){
+                $event.preventDefault();
             
-            var x = angular.element($event.target).closest('.listview');
-            var y = x.find('.lv-item');
-            var z = y.size();
-            
-            angular.element($event.target).parent().fadeOut();
-            
-            x.find('.list-group').prepend('<i class="grid-loading hide-it"></i>');
-            x.find('.grid-loading').fadeIn(1500);
-            var w = 0;
-            
-            y.each(function(){
-                var z = $(this);
+                var x = angular.element($event.target).closest('.listview');
+                var y = x.find('.lv-item');
+                var z = y.size();
+                
+                angular.element($event.target).parent().fadeOut();
+                
+                x.find('.list-group').prepend('<i class="grid-loading hide-it"></i>');
+                x.find('.grid-loading').fadeIn(1500);
+                var w = 0;
+                
+                y.each(function(){
+                    var z = $(this);
+                    $timeout(function(){
+                        z.addClass('animated fadeOutRightBig').delay(1000).queue(function(){
+                            z.remove();
+                        });
+                    }, w+=150);
+                })
+                
                 $timeout(function(){
-                    z.addClass('animated fadeOutRightBig').delay(1000).queue(function(){
-                        z.remove();
-                    });
-                }, w+=150);
-            })
-            
-            $timeout(function(){
-                angular.element('#notifications').addClass('empty');
-            }, (z*150)+200);
+                    angular.element('#notifications').addClass('empty');
+                }, (z*150)+200);
+                CarritoService.clearCart({}, function (response) {
+                    vm.carritoHead = undefined;
+                    document.getElementById("cantidadCarritoHead").innerHTML = '0';
+                    $timeout(function(){
+                        $state.reload();
+                        },1500);
+                });
+            });
         }
         
         // Clear Local Storage
@@ -207,6 +253,43 @@
             }
             else {
                 launchIntoFullscreen(document.documentElement);
+            }
+        }
+
+        vm.searchProduct = function searchProduct(buscar) {
+            if(buscar){
+                $state.go('home.search', {
+                    keyword: buscar,
+                    page: 0
+                });
+            }
+        }
+
+        vm.revisarSiEstaEnCarrito = function revisarSiEstaEnCarrito() {
+            CarritoService.getCarrito({}, function (response) {
+                vm.carritoHead = response;
+                load(response.items);
+                document.getElementById("cantidadCarritoHead").innerHTML = (vm.carritoHead.cantidad? vm.carritoHead.cantidad : '0');
+            }),
+            function (err) {
+                return cb(err);
+            }
+            function load (card) {
+                if(vm.productosDestacados){
+                    for (var i = 0; i < vm.productosDestacados.length; i++) {
+                        if(card){
+                            for (var j = 0; j < card.length; j++) {
+                                if(card[j].producto.id == vm.productosDestacados[i].id){
+                                    vm.productosDestacados[i].isExistInCard=true;
+                                    vm.productosDestacados[i].isExistInCardCount=card[j].cantidad;
+                                    break;
+                                }
+                            }
+                        }else{
+                            break;
+                        }
+                    }
+                }
             }
         }
     

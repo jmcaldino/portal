@@ -14,13 +14,33 @@
                 method: 'GET',
                 url: 'api/productos'
             },
-            'agregarProducto': {
-                method: 'POST',
+            'get': {
+                method: 'GET',
+                url: 'api/productos/name/:name'
+            },
+            'delete': {
+                method: 'DELETE',
+                url: 'api/productos/name/:name'
+            },
+            'actualizarProducto': {
+                method: 'PUT',
                 url: 'api/productos'
+            },
+            'crearProducto': {
+                method: 'POST',
+                url: 'api/productos',
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
             },
             'searchInmueble': {
                 method: 'GET',
                 url: 'api/inmuebles/search-inmueble'
+            },
+            'editarProducto': {
+                method: 'PUT',
+                url: 'api/productos',
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
             }
         });
 

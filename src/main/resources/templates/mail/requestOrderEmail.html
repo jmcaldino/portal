@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en">
+    <head>
+        <title th:text="'Solicitud de Compra'"></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+        <style>
+			table, th, td {
+  				border: 1px solid black;
+			}
+
+			th, td {
+  				padding: 10px;
+			}
+		</style>
+    </head>
+    <body>
+        <p th:text="#{email.activation.greeting(${cliente})}">
+            Dear
+        </p>
+        <p>
+            <a th:with="url=(@{|${baseUrl}/#/mi-pedido/${codProducto}})" th:href="${url}"
+            th:text="'Ver detalle de Compra'">Ver detalle de Compra</a>
+        </p>
+        <br/>
+        <p>
+            <span th:text="#{email.activation.text2}">Regards, </span>
+            <br/>
+            <em th:text="#{email.signature}">JHipster.</em>
+        </p>
+    </body>
+</html>

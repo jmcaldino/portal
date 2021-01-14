@@ -1,0 +1,144 @@
+<div class="card">
+    <jhi-alert></jhi-alert>
+    <div ng-include="'app/home/home.header.html'"></div>
+
+    <div id="tv" class="card">
+            <div class="row">
+                <div class="col-sm-12 f-16">
+                    <div class="col-sm-12">
+                        <div class="card-header bgm-lightgray">
+                            <h2 class="c-black f-18 text-center"><strong>PEDIDO ONLINE</strong></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 p-t-20 f-16">
+                    <div class="col-sm-4 m-t-20">
+                        <label>Codigo de Pedido: <strong class="c-black">{{vm.pedido.codigoPedido}} </strong></label>
+                    </div>
+                    <div class="col-sm-4 m-t-20 hidden-xs"></div>
+                    <div class="col-sm-4 m-t-20">
+                        <label>Fecha de solicitud: <strong class="c-black">{{vm.pedido.createdDate | date:'dd/MM/yy' }}</strong></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card-header ch-alt">
+                <h2> Datos Personales </h2>
+            </div>
+            <div class="card-body card-padding">
+                <div class="pmo-contact p-t-10">        
+                    <ul>
+                        <li class="ng-binding">
+                            <i class="zmdi zmdi-account-box-o zmdi-hc-fw"></i> <b>Apellido y Nombre:</b> {{vm.pedido.cliente.apellido}}, {{vm.pedido.cliente.nombre}}
+                        </li>
+                        <li class="ng-binding">
+                            <i class="zmdi zmdi-pin zmdi-hc-fw"></i> <b>Domicilio:</b> {{vm.pedido.cliente.domicilio}}
+                        </li>
+                        <li class="ng-binding">
+                            <i class="zmdi zmdi-landscape zmdi-hc-fw"></i> <b>Provincia:</b> {{vm.pedido.cliente.provincia}}
+                        </li>
+                        <li class="ng-binding">
+                            <i class="zmdi zmdi zmdi-city zmdi-hc-fw"></i> <b>Ciudad:</b> {{vm.pedido.cliente.ciudad}}
+                        </li>
+                        <li class="ng-binding">
+                            <i class="zmdi zmdi-satellite zmdi-hc-fw"></i> <b>Codigo Postal:</b> {{vm.pedido.cliente.codigoPostal}}
+                        </li>
+                        <li class="ng-binding">
+                            <i class="zmdi zmdi-email zmdi-hc-fw"></i> <b>Email:</b> {{vm.pedido.cliente.email}}
+                        </li>
+                        <li class="ng-binding">
+                            <i class="zmdi zmdi-reader zmdi-hc-fw"></i> <b>Documento de Identidad:</b> {{vm.pedido.cliente.dni}}
+                        </li>
+                        <li class="ng-binding">
+                            <i class="zmdi zmdi-phone zmdi-hc-fw"></i> <b>Telefono:</b> ({{vm.pedido.cliente.telefonoArea}}) - {{vm.pedido.cliente.numeroDeTelefono}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                    <div class="card-header ch-alt">
+                        <h2> Detalle de su Pedido </h2>
+                    </div>
+                    <div>
+                        <section id="do_action">
+                            <div class="container">
+                                <div class="card-body card-padding">
+                                    <div class="pmo-contact p-t-10">        
+                                        <ul>
+                                            <li class="ng-binding">
+                                                <i class="zmdi zmdi-account-box-phone zmdi-hc-lg"></i> <b>Recuerde completar su compra contactandose con Calmar al numero 221-xxx.</b>
+                                            </li>
+                                            <li class="ng-binding">
+                                                <i class="zmdi zmdi-confirmation-number zmdi-hc-lg"></i> <b>Codigo de Pedido: </b> {{vm.pedido.codigoPedido}}
+                                            </li>
+                                            <li class="ng-binding">
+                                                    <i class="zmdi zmdi-calendar-check zmdi-hc-lg"></i> <b>Fecha de pedido:</b> {{vm.pedido.createdDate | date:'dd/MM/yy' }}
+                                            </li>
+                                            <li class="ng-binding">
+                                                    <i class="zmdi zmdi-calendar-check zmdi-hc-lg"></i> <b>Fecha de entrega: </b> Coordinarlo con el vendedor. El despacho de la mercaderia se realiza de 2 a 10 dias habiles.
+                                            </li>
+                                            <li class="ng-binding">
+                                                    <i class="zmdi zmdi-comment-alt-text zmdi-hc-lg"></i> <b>Comentario del comprador: </b> {{vm.pedido.mensaje}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-sm-12 ">
+                                            <div class="total_area">
+                                                <div class="row p-l-20">
+                                                    <div class="col-sm-12">
+                                                            <label class="f-18 c-black">Mis Productos</label>
+                                                            <table class="table table-bordered table-striped table-hover table-vmiddle">
+                                                                <thead>
+                                                                    <tr class="header">
+                                                                        <th class="name">Producto</th><th>Precio</th><th>Cantidad</th><th>Total</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr class="f-14" ng-repeat="item in vm.pedido.items">
+                                                                            <td><a href="">{{item.nombreDeProducto}}</a></td>
+                                                                            <td class="money">$ {{item.precioDeCompra}}</td>
+                                                                            <td class="number">{{item.cantidad}}</td>
+                                                                            <td class="money">$ {{item.subTotal}}</td>
+                                                                        </tr>
+                                                                  </tbody>
+                                                                  <tfoot>
+                                                                    <tr class="summary f-16">
+                                                                        <td> <strong>TOTAL</strong></td>
+                                                                        <td class="money"></td>
+                                                                        <td class="number"></td>
+                                                                        <td class="money"><strong>$ {{vm.pedido.total}}</strong></td>
+                                                                    </tr>
+                                                                  </tfoot>
+                                                            </table>
+                                                    </div>
+                                                </div>
+                                                <div class="row p-t-20">
+                                                    <div class="col-sm-10">
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col-sm-4 pull-right">
+                                                                    <!-- 
+                                                                    <button class="btn bgm-blue waves-effect m-l-10 pull-left" href="" ui-sref="pedido">
+                                                                        <i class="zmdi zmdi-account-box-mail zmdi-hc-lg m-r-5"></i> Necesito ayuda</button>
+                                                                    -->
+                                                                </div>
+                                                                <div class="col-sm-4 pull-right">
+                                                                    <button class="btn bgm-green waves-effect m-r-20 pull-right" ng-click="vm.refresh()">
+                                                                        <i class="zmdi zmdi-home zmdi-hc-lg"></i> Visitar web Calmar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+    </div>
+</div>

@@ -19,7 +19,7 @@ import org.hibernate.annotations.Check;
 @Entity
 @Table(name = "producto")
 @Check(constraints = "precio > precio_nuevo")
-public class Producto implements Serializable {
+public class Producto extends AbstractAuditingEntity implements Serializable {
 
 	private static final long serialVersionUID = 365799170906643456L;
 
@@ -29,7 +29,7 @@ public class Producto implements Serializable {
 	private Long id;
 
 	@NotNull
-	@Column(name = "nombre", columnDefinition = "varchar(100)")
+	@Column(name = "nombre", columnDefinition = "varchar(100)", unique = true, nullable = false)
 	private String name;
 
 	@Column(name = "descripcion")
@@ -45,13 +45,13 @@ public class Producto implements Serializable {
 	@Column(name = "stock")
 	private Integer stock;
 
-	@Column(name = "nuevo", columnDefinition = "bit default true", nullable = false)
+	@Column(name = "nuevo", columnDefinition = "bit default true")
 	private Boolean isNew = true;
 
-	@Column(name = "recomendado", columnDefinition = "bit default false", nullable = false)
+	@Column(name = "recomendado", columnDefinition = "bit default false")
 	private Boolean isRecommended = true;
 
-	@Column(name = "visible", columnDefinition = "bit default true", nullable = false)
+	@Column(name = "visible", columnDefinition = "bit default true")
 	private Boolean isEnable = true;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -70,6 +70,22 @@ public class Producto implements Serializable {
 
 	public Producto() {
 		super();
+	}
+
+	public Producto(String name, String description, @NotNull Double price, Double newPrice, Integer stock,
+			Boolean isNew, Boolean isRecommended, Boolean isEnable, Marca marca, Category categoria, String img) {
+		super();
+		this.setName(name);
+		this.description = description;
+		this.price = price;
+		this.newPrice = newPrice;
+		this.stock = stock;
+		this.isNew = isNew;
+		this.isRecommended = isRecommended;
+		this.isEnable = isEnable;
+		this.marca = marca;
+		this.categoria = categoria;
+		this.img = img;
 	}
 
 	public Long getId() {

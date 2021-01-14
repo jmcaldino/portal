@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +27,14 @@ public class MarcaController {
 	@GetMapping("/marcas")
 	public ResponseEntity<List<Marca>> getAllMark() {
 		log.info("Inside getAllMark method...");
+		List<Marca> listMarks = marcaService.getAllMarca();
+		log.info("Exit getAllMark method...");
+		return new ResponseEntity<>(listMarks, HttpStatus.OK);
+	}
+
+	@GetMapping("/marcas/id/{id}")
+	public ResponseEntity<List<Marca>> getMark(@PathVariable(name = "id") Long id) {
+		log.info("Inside getMark method... Param {} " + id); // TODO agregar
 		log.info("Exit getAllProducts method...");
 		return new ResponseEntity<>(marcaService.getAllMarca(), HttpStatus.OK);
 	}
