@@ -19,15 +19,12 @@
     "jwtSecretKey": "6c78ba4116caf5a9dc14c21b135b70b88461bba2",
     "useSass": false,
     "applicationType": "monolith",
-    "testFrameworks": [
-      "gatling"
-    ],
+    "testFrameworks": ["gatling"],
     "jhiPrefix": "jhi",
     "enableTranslation": true,
     "nativeLanguage": "es",
-    "languages": [
-      "es",
-      "en"
-    ]
+    "languages": ["es", "en"],
+    "herokuAppName": "calmar",
+    "herokuDeployType": "git"
   }
 }
