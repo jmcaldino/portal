@@ -141,24 +141,23 @@ project.ext.diffChangelogFile = "src/main/resources/config/liquibase/changelog/"
 liquibase {
     activities {
         main {
-            driver "com.mysql.cj.jdbc.Driver"
-            url "jdbc:mysql://localhost:3306/calmar"
-            username "juan"
-            password "juan123"
+            driver "org.postgresql.Driver"
+            url "jdbc:postgresql://localhost:5432/calmar"
+            username "postgres"
+            password "nostry314"
             changeLogFile "src/main/resources/config/liquibase/master.xml"
-            defaultSchemaName "calmar"
+            defaultSchemaName ""
             logLevel "debug"
             classpath "src/main/resources/"
-            referenceUrl "hibernate:spring:com.interna.gestionflia.domain?dialect=org.hibernate.dialect.MySQL5Dialect"
         }
         diffLog {
-            driver "com.mysql.cj.jdbc.Driver"
-            url "jdbc:mysql://localhost:3306/calmar"
-            username "juan"
-            password "juan123"
+            driver "org.postgresql.Driver"
+            url "jdbc:postgresql://localhost:5432/calmar"
+            username "postgres"
+            password "nostry314"
             changeLogFile project.ext.diffChangelogFile
-            referenceUrl "hibernate:spring:com.interna.gestionflia.domain?dialect=org.hibernate.dialect.MySQL5Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
-            defaultSchemaName "calmar"
+            referenceUrl "hibernate:spring:com.hobby.calmar.domain?dialect=io.github.jhipster.domain.util.FixedPostgreSQL10Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+            defaultSchemaName ""
             logLevel "debug"
             classpath "$buildDir/classes/java/main"
         }
